@@ -6,20 +6,25 @@ module.exports = {
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
-    container : {
-      padding: {
-        DEFAULT: '1rem',
-        md:'10px'
-        // sm: '2rem',
-        // lg: '4rem',
-        // xl: '5rem',
-        // '2xl': '6rem',
-      },
-      center:true,
-    },
+    
 
     extend: {
+      container : {
+        padding: {
+          DEFAULT: '1rem',
+          sm: '2rem',
+          lg: '4rem',
+          xl: '5rem',
+          '2xl': '8rem'
+        },
+        center:true,
+      },
+      fontFamily: {
+        'rubik': ['Rubik'],
+      },
       colors:{
+        currentRed: '#DA002B',
+
         dark: '#191919',
         darkText:"#666",
         currentGold:'#dbad76',
