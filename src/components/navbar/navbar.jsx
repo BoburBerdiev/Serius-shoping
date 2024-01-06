@@ -1,3 +1,4 @@
+import {useEffect} from 'react'
 import Link from "next/link";
 import {ImageUI} from "@/components";
 import {CiMenuBurger} from "react-icons/ci";
@@ -41,12 +42,17 @@ const navInfo = [
 const Navbar = () => {
 
     const [openNav , setOpenNav] = useState(false)
+
+
+    
+    
+
    return (
        <nav className="bg-white  fixed w-[100%] z-20 top-0 start-0 border-b border-gray-200 ">
         <MiniNavbar />
            <div className="container flex flex-wrap items-center justify-between py-4 overflow-hidden">
                <Link href="/" className="flex items-center space-x-3 relative w-[98px] h-4">
-                        <ImageUI src={'/LiAuto-logo.svg'} />
+                        <ImageUI src={'/logo.png'} />
                </Link>
                <div className="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
                    <div className="flex flex-col items-center cursor-pointer">
