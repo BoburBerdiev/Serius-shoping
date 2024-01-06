@@ -15,7 +15,7 @@ const Layout = ({ children }) => {
         // !! padding oliw kk navbarni cqarib yuboriw ucun !!
         <div className="relative bg-red-700 pt-[50px] ">
             <Navbar />
-            <div className={" pt-[53px]  " }>{children}</div>
+                <div className={" pt-[53px]  " }>{children}</div>
             <Footer />
         </div>
     );
