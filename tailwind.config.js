@@ -24,6 +24,8 @@ module.exports = {
       },
       colors:{
         currentRed: '#DA002B',
+        currentBlue: '#09273E',
+        currentGrey: '#8A8A8A',        
         darkBlue: '#0F1F39',
         dark: '#191919',
         darkText:"#666",
