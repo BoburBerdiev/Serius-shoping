@@ -12,7 +12,7 @@ const CardUI = ({src, alt, title, price, salePrice, percent, rows}) => {
           }
         </div>
       </div>
-      <div className={`gap-y-4 flex justify-between flex-col h-full ${rows ? 'w-1/2' : 'w-full'}`}>
+      <div className={`gap-y-4 flex  flex-col h-full ${rows ? 'w-1/2 justify-center' : 'w-full justify-between'}`}>
       <div className="space-y-3 lg:space-y-[18px]">
         <h5 className="font-rubik md:text-lg break-all">
           { title }
