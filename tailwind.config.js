@@ -27,6 +27,7 @@ module.exports = {
         currentBlue: '#09273E',
         currentGrey: '#8A8A8A',        
         darkBlue: '#0F1F39',
+        borderGrey: '#D9D9D9',
       },
 
       backgroundImage: {

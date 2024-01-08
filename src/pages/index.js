@@ -1,4 +1,4 @@
-import { CardUI, CategoryCardUI } from "@/components";
+import { CardUI, CategoryCardUI, SectionTitleUI } from "@/components";
 
 
 export default function Home() {
@@ -19,7 +19,10 @@ export default function Home() {
     </section>
 
     <div className="container py-20">
-      <div className="grid md:grid-cols-3 lg:grid-cols-4 grid-cols-1 gap-5 md:gap-8 py-20">
+      <div>
+        <SectionTitleUI title={'Распродажа'} isBorder={true} href={'#'}/>
+      </div>
+      <div className="grid md:grid-cols-3 lg:grid-cols-4 grid-cols-2 gap-5 md:gap-8">
         <CardUI src={'/Card.png'} title={'Чехол для iPhone 11 Pro Simply TPU'} price={'5 000 000 сум'} percent={'-25%'} salePrice={'85 000 сум'}/>
         <CardUI src={'/Card.png'} title={'Чехол для iPhone 11 Pro Simply TPU'} price={'65 000 сум'} percent={'-25%'} salePrice={'85 000 сум'}/>
         <CardUI src={'/Card.png'} title={'Чехол для iPhone 11 Pro Simply TPU '} price={'65 000 сум'} percent={'-25%'} salePrice={'85 000 сум'}/>
