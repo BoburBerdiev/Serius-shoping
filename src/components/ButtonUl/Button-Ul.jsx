@@ -1,12 +1,12 @@
 import React from 'react'
 
-const ButtonUI = ({leftIcon, rightIcon, text, onClick, href, cardBtn, className }) => {
+const ButtonUI = ({leftIcon, rightIcon, text, onClick, href, cardBtn, className, titleBtn }) => {
   return (
     <>
     {
       href 
       ? 
-      <a href={href} className={`${className} flex items-center gap-3 border border-darkBlue rounded-lg text-darkBlue font-rubik md:text-lg  ${text ? 'px-4 py-2' : 'p-3'} ${cardBtn && 'py-3 px-4 w-full justify-center'}`}>
+      <a href={href} className={`${className} ${titleBtn ? 'text-sm md:text-base lg:text-lg' : 'flex items-center gap-3 border border-darkBlue rounded-lg text-darkBlue font-rubik md:text-lg'}   ${text ? 'px-4 py-2' : 'p-3'} ${cardBtn && 'py-3 px-4 w-full justify-center'}`}>
         {
           leftIcon && <span className=''>{leftIcon}</span>
         }
