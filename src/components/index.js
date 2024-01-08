@@ -12,3 +12,4 @@ export { default as ServiceSectionUI } from "./SeviceSectionUI/ServiceSection-UI
 export { default as BannerUI } from "./BannerUI/Banner-UI";
 export { default as AddCardUI } from "./AddCardUI/AddCard-UI";
 export { default as SectionUI } from "./SectionUI/Section-UI";
+export {default as BottomNavbar} from "./bottom-navbar/bottom-navbar"

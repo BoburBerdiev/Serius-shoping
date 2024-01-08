@@ -1,4 +1,4 @@
-import {  Footer, Navbar  } from "@/components";
+import {  BottomNavbar, Footer, Navbar  } from "@/components";
 import { useEffect } from "react";
 // import Aos from "aos";
 
@@ -17,6 +17,7 @@ const Layout = ({ children }) => {
             <Navbar />
                 <div className={" pt-[53px] overflow-x-hidden " }>{children}</div>
             <Footer />
+            <BottomNavbar />
         </div>
     );
 };

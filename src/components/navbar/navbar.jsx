@@ -211,7 +211,7 @@ const Navbar = () => {
                     </Link>
                     
                     <ButtonUI className={`${openNav && 'bg-darkBlue text-white'} duration-300 max-md:text-base`} leftIcon={!openNav ? <img src='/menu.svg' className='w-4 md:w-6 h-4 md:h-6'/> : <IoClose className='text-white md:text-2xl' />} text={'Каталог'} onClick={(e) => navbarHandler(e)} />
-                    <div className={`absolute grid grid-rows-[0fr] duration-[.4s] top-[55px] md:top-[80px] w-full h-[90vh] left-0 z-50 ${openNav && 'grid-rows-[1fr]'}`}>
+                    <div className={`absolute grid grid-rows-[0fr] duration-[.4s] top-[55px] md:top-[80px] w-full left-0 z-50 ${openNav && 'grid-rows-[1fr] h-[90vh]'}`}>
                         <div className={`container overflow-hidden flex items-start flex-wrap gap-x-2 lg:gap-x-7 bg-white ${openNav && 'overflow-scroll pb-14'}`}>
                         {
                             navInfo.map((item, index) => (
