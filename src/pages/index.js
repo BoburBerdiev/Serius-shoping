@@ -3,20 +3,7 @@ import { AddCardUI, BannerUI, ButtonUI, CardUI, CategoryCardUI, ImageUI, Section
 export default function Home() {
   return (
     <>
-    <div className="relative flex flex-col md:justify-center items-center bg-darkBlue h-screen ">
-      <div className="container h-full">
-        <div className="grid grid-cols-1 md:grid-cols-2 h-full">
-          <div className="flex flex-col items-center md:items-start justify-center text-white relative z-20">
-            <h3 className="text-2xl text-center">Идеальный магазин мобильных аксессуаров</h3>
-            <ButtonUI text={'Посмотреть товары'} className={'border-white text-white w-fit'}/>
-          </div>
-          <div className="absolute z-[2] md:relative w-full h-[550px] mt-20">
-            <ImageUI src={'/header.png'} imgStyle={'object-contain'}/>
-          </div>
-        </div>
-      </div>
-    </div>
-    {/* <BannerUI src={'/mobile-images/banners/main-banner.jpg'} height={'h-[80vh]'} alt={''}/> */}
+    <BannerUI src={'/mobile-images/banners/main-banner.jpg'} height={'h-[80vh]'} alt={''}/>
     <SectionUI customPadding={'py-10 md:pt-20'}>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-7 gap-8">
         <CategoryCardUI grid={'md:row-span-2 md:h-full lg:col-span-3'} text={'Чехлы'} link={'#'} textPosition={'lg:top-10 lg:left-10'} iconPosition={'lg:bottom-auto lg:top-10 lg:right-10'} src={'/mobile-images/categories/phone-case.png'}/>
