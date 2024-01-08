@@ -1,4 +1,3 @@
-import React from 'react'
 import { ImageUI } from '..'
 import { LuArrowUpRight } from "react-icons/lu";
 

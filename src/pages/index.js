@@ -1,4 +1,4 @@
-import { CardUI, CategoryCardUI, SectionTitleUI } from "@/components";
+import { CardUI, CategoryCardUI, SectionTitleUI, ServiceSectionUI } from "@/components";
 
 
 export default function Home() {
@@ -30,6 +30,7 @@ export default function Home() {
       </div>
     </div>
     
+    <ServiceSectionUI/>
     
     </>
   )

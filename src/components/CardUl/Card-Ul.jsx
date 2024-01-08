@@ -5,7 +5,7 @@ const CardUI = ({src, alt, title, price, salePrice, percent, rows}) => {
   return (
     <div className={`flex ${rows ? 'items-center' : 'flex-col  h-full'}  gap-3.5 md:gap-6`}>
       <div className={`${rows ? 'w-[40%]' : 'w-full'}`}>
-        <div className={`relative w-full ${rows ? 'h-[200px] md:h-[240px] lg:h-[260px] ' : 'h-[220px] md:h-[270px] lg:h-[310px]'} overflow-hidden rounded-lg`}>
+        <div className={`relative w-full ${rows ? 'h-[180px] md:h-[240px] lg:h-[260px] ' : 'h-[220px] md:h-[270px] lg:h-[310px]'} overflow-hidden rounded-lg`}>
           <ImageUI src={src} alt={alt} imgStyle={'object-cover'}/>  
           {
            percent && <span className="py-1 px-2 bg-currentRed absolute text-white text-xs md:text-sm font-rubik font-medium rounded-lg top-3 right-3 z-10  ">Sale</span>
