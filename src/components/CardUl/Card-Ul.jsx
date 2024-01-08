@@ -24,8 +24,8 @@ const CardUI = ({src, alt, title, price, salePrice, percent, rows}) => {
           }
         </div>
       </div>
-      <div className="flex gap-2.5 justify-between md:pr-3">
-        <ButtonUI leftIcon={<LuShoppingBag className="h-[22px] w-[22px]"/>}/>
+      <div className="flex  gap-2.5 justify-between md:pr-3">
+        <ButtonUI leftIcon={<LuShoppingBag className="md:h-[22px] md:w-[22px]"/>}/>
         <ButtonUI href={'#'} text={'Подробнее'} cardBtn={true}/>
       </div>
       </div>
