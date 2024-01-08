@@ -24,7 +24,7 @@ const serviceData = [
 
 const ServiceSectionUI = () => {
   return (
-    <div className="container grid grid-cols-2 lg:grid-cols-4 gap-5">
+    <div className="grid grid-cols-2 lg:grid-cols-4 gap-5">
       {
         serviceData.map(item => (
           <ServiceCardUI title={item.title} subTitle={item.subTitle} icon={item.img}/>
