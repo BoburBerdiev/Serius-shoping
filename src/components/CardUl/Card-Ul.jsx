@@ -1,12 +1,54 @@
+import { Swiper, SwiperSlide } from "swiper/react";
+import  { Pagination, Autoplay } from "swiper/modules";
+
 import { ButtonUI, ImageUI } from "../index"
 import { LuShoppingBag } from "react-icons/lu";
 
-const CardUI = ({src, alt, title, price, salePrice, percent, rows}) => {
+const productImage = [
+  {
+    id: 1,
+    image : '/Card.png',
+    alt: ''
+  },
+  {
+    id: 2,
+    image : '/Card.png',
+    alt: ''
+  },
+  {
+    id: 3,
+    image : '/Card.png',
+    alt: ''
+  },
+]
+const CardUI = ({image, alt, title, price, salePrice, percent, rows}) => {
   return (
     <div className={`flex ${rows ? 'items-center' : 'flex-col  h-full'}  gap-3.5 md:gap-6`}>
       <div className={`${rows ? 'w-[40%]' : 'w-full'}`}>
         <div className={`relative w-full ${rows ? 'h-[180px] md:h-[240px] lg:h-[260px] ' : 'h-[220px] md:h-[270px] lg:h-[310px]'} overflow-hidden rounded-lg`}>
-          <ImageUI src={src} alt={alt} imgStyle={'object-cover'}/>  
+          <div className="w-full h-full ">
+            <Swiper
+              id={"mySwiper1"}
+              slidesPerView={1}
+              autoplay={{
+                delay: 2800,
+                disableOnInteraction: false,
+              }}
+              loop={"true"}
+              pagination={{ clickable: true }}
+              navigation={false}
+              modules={[Autoplay ,Pagination]}
+              className="w-full  mySwiper h-full"
+            >
+              {productImage?.map((product) => (
+                  <SwiperSlide key={product.id} >
+                    <div className={"relative w-full h-full swiper1"}>
+                      <ImageUI src={product.image} alt={product.alt} imgStyle={'object-cover'}/>  
+                    </div>
+                  </SwiperSlide>
+                ))}
+            </Swiper>
+          </div>
           {
            percent && <span className="py-1 px-2 bg-currentRed absolute text-white text-xs md:text-sm font-rubik font-medium rounded-lg top-3 right-3 z-10  ">Sale</span>
           }
