@@ -1,5 +1,6 @@
 *{
   line-height: normal !important;
+  scroll-behavior: smooth;
 }
 
 
@@ -28,4 +29,10 @@
 }
 .card-ui.swiper-slide{
   height: 100% !important;
+}
+.footer .location{
+  line-height: 24px !important;
+}
+.footer .tel{
+  line-height: 30px !important;
 }
