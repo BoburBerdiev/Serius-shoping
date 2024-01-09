@@ -6,7 +6,7 @@ const ButtonUI = ({leftIcon, rightIcon, text, onClick, href, cardBtn, className,
     {
       href 
       ? 
-      <a href={href} className={`${className} ${titleBtn ? 'text-sm md:text-base lg:text-lg' : 'flex items-center gap-3 border border-darkBlue rounded-lg text-darkBlue font-rubik md:text-lg'}   ${text ? 'px-2 py-2' : 'py-2 px-2.5 md:p-3'} ${cardBtn && 'w-full text-sm md:text-base lg:text-lg justify-center'}`}>
+      <a href={href} className={`${className} ${titleBtn ? 'text-sm md:text-base lg:text-lg' : 'flex items-center gap-3 border border-darkBlue rounded-lg text-darkBlue font-rubik md:text-lg'}   ${text ? 'px-2 py-2' : 'py-2 px-2.5 md:p-3'} ${cardBtn && 'w-full text-sm md:text-base lg:text-lg justify-center text-white bg-darkBlue'}`}>
         {
           leftIcon && <span className=''>{leftIcon}</span>
         }
@@ -16,7 +16,7 @@ const ButtonUI = ({leftIcon, rightIcon, text, onClick, href, cardBtn, className,
          }
         </a>
       :
-      <button onClick={onClick} className={`${className} flex items-center gap-3 border relative border-darkBlue rounded-lg text-darkBlue font-rubik md:text-lg  ${text ? 'px-4 py-2' : 'py-2 px-2.5 md:p-3'} ${cardBtn && 'w-full text-sm md:text-base lg:text-lg justify-center'}`}>
+      <button onClick={onClick} className={`${className} flex items-center gap-3 border relative border-darkBlue rounded-lg text-darkBlue font-rubik md:text-lg  ${text ? 'px-4 py-2' : 'py-2 px-2.5 md:p-3'} ${cardBtn && 'w-full text-sm md:text-base lg:text-lg justify-center text-white bg-darkBlue'}`}>
         {
           leftIcon && <span className=''>{leftIcon}</span>
         }

@@ -19,3 +19,13 @@
   width: 100%;
   height: 100%;
 }
+.card-ui .swiper-pagination-bullet-active{
+  background-color: #09273E;
+}
+.card-ui .swiper-pagination-bullets{
+  text-align: end;
+  padding-right: 10px;
+}
+.card-ui.swiper-slide{
+  height: 100% !important;
+}
