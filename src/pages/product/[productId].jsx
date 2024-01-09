@@ -55,7 +55,7 @@ const ProductDetailed = () => {
 
   return (
     <>
-      <SectionUI customPadding={'pt-[140px] md:pt-40 pb-10 font-rubik'}>
+      <SectionUI customPadding={'pt-[140px] md:pt-40 pb-10 font-rubik pruduct-inner'}>
         <div className='space-y-5 md:space-y-[30px]'>
           <BreadcrumbUI/>
           <SectionTitleUI title={'Наушники Xiaomi Buds 3T Pro (White)'} isBorder={true}/>
