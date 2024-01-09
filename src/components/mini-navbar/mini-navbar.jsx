@@ -69,8 +69,18 @@ const MiniNavbar = () => {
               <p className="lang-change max-md:text-sm">{language}</p>
               <div className={`absolute z-[100] dropdown-list grid grid-rows-[0fr] duration-300 rounded-2xl border-white top-[38px] -right-5 ${dropdown && 'grid-rows-[1fr] border' }`}>
                 <ul className="overflow-hidden rounded-2xl bg-darkBlue">
-                  <li onClick={() => setLanguage('Русский')} className="duration-300 p-3 hover:bg-slate-600 cursor-pointer max-md:text-sm">Русский</li>
-                  <li onClick={() => setLanguage('Узбекский')} className="duration-300 p-3 hover:bg-slate-600 cursor-pointer max-md:text-sm">Узбекский</li>         
+                  <li onClick={() => setLanguage('Русский')} className="duration-300 p-3 hover:bg-slate-600 cursor-pointer max-md:text-sm flex items-center gap-1">
+                    <div className="h-4 w-4">
+                      <img src="/ru-flag.svg" alt="ru" className="w-full h-full object-cover rounded-full" />  
+                    </div> 
+                    Русский
+                  </li>
+                  <li onClick={() => setLanguage('Узбекский')} className="duration-300 p-3 hover:bg-slate-600 cursor-pointer max-md:text-sm flex items-center gap-1">
+                    <div className="h-4 w-4">
+                      <img src="/ru-flag.svg" alt="ru" className="w-full h-full object-cover rounded-full" />
+                    </div>
+                    Узбекский
+                  </li>         
                 </ul>
               </div>
             </div>
