@@ -19,6 +19,9 @@ module.exports = {
         },
         center:true,
       },
+      gridTemplateColumns: {
+        '16': 'repeat(16, minmax(0, 1fr))',
+      },
       fontFamily: {
         'rubik': ['Rubik'],
       },

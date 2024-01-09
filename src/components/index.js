@@ -13,3 +13,6 @@ export { default as BannerUI } from "./BannerUI/Banner-UI";
 export { default as AddCardUI } from "./AddCardUI/AddCard-UI";
 export { default as SectionUI } from "./SectionUI/Section-UI";
 export {default as BottomNavbar} from "./bottom-navbar/bottom-navbar"
+export {default as BreadcrumbUI} from "./BreadcrumbUI/Breadcrumb-UI"
+export {default as InfoProductUI} from "./InfoProductUI/InfoProduct-UI"
+export {default as SwiperUI} from "./SwiperUI/Swiper-UI"
