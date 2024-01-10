@@ -1,17 +1,15 @@
 {
   "translation": {
     "navbar": {
-      "home": "Asosiy",
-      "about": "Biz haqimizda",
-      "product": "Mahsulotlar",
-      "lang": "Til",
+      "catalog":"Katalog",
+      "input":"Mahsulotlarni qidirish",
+      "basket":"Savatcha",
+      "contact":"Kontaktlar",
+      "sales":"Chegirmalar",
+      "newItems":"Yangi mahsulotlar",
+      "stock":"Aksiyalar",
       "uz":"Uz",
-      "ru": "Ru",
-      "contact":"Aloqa",
-      "order":"Buyurtma",
-      "profile": "Kabinet",
-      "story" : "Tanlangan"
-
+      "ru": "Ru"
     },
     "button": {
       "more":"Ko'proq",

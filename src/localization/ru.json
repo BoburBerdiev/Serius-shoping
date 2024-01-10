@@ -1,16 +1,15 @@
 {
   "translation": {
     "navbar": {
-      "home": "Главная",
-      "about": "O нас",
-      "product": "Продукты",
-      "lang": "Язык",
-      "uz":"Уз",
-      "ru": "Ру",
+      "catalog":"Каталог",
+      "input":"Поиск товаров",
+      "basket":"Корзина",
       "contact":"Контакты",
-      "order":"Заказ",
-      "profile": "Профиль",
-      "story" : "История"
+      "sales":"Скидки",
+      "newItems":"Новинки",
+      "stock":"Акции",
+      "uz":"Уз",
+      "ru": "Ру"
     },
     "button": {
       "more":"Более",
