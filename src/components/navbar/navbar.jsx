@@ -10,6 +10,7 @@ import { LuShoppingBag } from "react-icons/lu";
 import { FiPhone } from "react-icons/fi";
 import { IoClose } from "react-icons/io5";
 import { MdOutlineKeyboardArrowRight } from "react-icons/md";
+import { useTranslation } from "react-i18next";
 
 const navInfo = [
     {
@@ -176,6 +177,8 @@ const navInfo = [
 
 
 const Navbar = () => {
+    const { t , i18n } = useTranslation();
+
     const [openNav , setOpenNav] = useState(false)
     const [openSearch, setOpenSearch] = useState(false)
     const navbarHandler = (e) => {
@@ -246,12 +249,12 @@ const Navbar = () => {
                 <div className='flex items-center gap-[18px] max-md:hidden'>
                     <a href='#' className='flex flex-col items-center justify-center text-darkBlue duration-300 hover:text-slate-500'>
                         <LuShoppingBag className='text-xl' />
-                        Корзина
+                        {t('navbar.basket')}
                     </a>
-                    <a href='#' className='flex flex-col items-center justify-center text-darkBlue duration-300 hover:text-slate-500'>
+                    <Link href='#' className='flex flex-col items-center justify-center text-darkBlue duration-300 hover:text-slate-500'>
                         <FiPhone className='text-xl' />
-                        Контакты
-                    </a>
+                        {t('navbar.contact')}
+                    </Link>
                 </div>
                
            </div>
