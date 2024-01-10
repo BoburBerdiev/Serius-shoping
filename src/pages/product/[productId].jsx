@@ -1,7 +1,13 @@
-import { BannerUI, BreadcrumbUI, ButtonUI, CardUI, ImageUI, InfoProductUI, SectionTitleUI, SectionUI, SwiperUI } from '@/components'
+import {
+	BreadcrumbUI,
+	ImageUI,
+	InfoProductUI,
+	PriceCard,
+	SectionTitleUI,
+	SectionUI,
+	SwiperUI
+} from '@/components'
 import { Fragment, useState } from 'react'
-import { HiMiniCheckCircle } from "react-icons/hi2";
-import { GoXCircleFill } from "react-icons/go";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { FreeMode, Navigation, Thumbs } from 'swiper/modules';
 
@@ -32,6 +38,7 @@ const shortAboutProduct = [
     value: 'есть',
   },
 ]
+
 const allAboutProduct = [
   {
     title: 'Тип',
@@ -320,7 +327,6 @@ const viewedCards = [
 	},
 ]
 const ProductDetailed = () => {
-  const [isHave, setIsHave] = useState(true)
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
 
   return (
@@ -389,33 +395,14 @@ const ProductDetailed = () => {
               </div>
             </div>
             <div className='lg:col-span-4 md:col-span-5 '>
-              <div className='w-full border border-borderGrey rounded-lg p-3 md:p-5  bg-white z-30 sticky top-[100px] left-0'>
-                {
-                  isHave ? 
-                  <div className='flex items-center gap-1 text-[#36E3A4]  mb-5'>
-                    <HiMiniCheckCircle className='w-6 h-6 ' />
-                    <p>В наличии</p>
-                  </div>
-                  : 
-                  <div>
-                    <div className='flex items-center gap-1 text-currentRed  mb-5'>
-                      <GoXCircleFill className='w-6 h-6 ' />
-                      <p>Нет в наличии</p>
-                    </div>
-                  </div>
-                }
-                <h3 className={`text-xl xl:text-2xl ${isHave ? 'text-black' : 'text-borderGrey'} mb-5 md:mb-[30px] `}>1 200 000 сум</h3>
-                <ButtonUI text={'Добавить в корзину'} cardBtn={true} className={'bg-darkBlue text-white mt-3.5'}/>
-              </div>
+              <PriceCard />
             </div>
           </div>
-          <div className='grid grid-cols-16 static'>
+          <div className='grid grid-cols-16 '>
             <div className='col-span-full md:col-span-12 space-y-2.5'>
 						  <h2 className='font-medium md:text-lg'>Описание товара</h2>
-							<p className='text-justify md:text-start'>Наушники TWS Xiaomi Buds 3T Pro – модель, которая позволит не расставаться с музыкой или книгами ни на минуту. Слушайте любимые композиции дома, по пути на работу или во время занятий спортом – качественные динамики с поддержкой широкого частотного диапазона, удобная внутриканальная конструкция и система активного подавления внешних шумов подарит вам яркие эмоции при прослушивании. С помощью 6 цифровых микрофонов наушники также отлично подойдут для общения, обеспечивая точную передачу вашего голоса в любых условиях.
-								<br />
+							<p className='text-justify '>Наушники TWS Xiaomi Buds 3T Pro – модель, которая позволит не расставаться с музыкой или книгами ни на минуту. Слушайте любимые композиции дома, по пути на работу или во время занятий спортом – качественные динамики с поддержкой широкого частотного диапазона, удобная внутриканальная конструкция и система активного подавления внешних шумов подарит вам яркие эмоции при прослушивании. С помощью 6 цифровых микрофонов наушники также отлично подойдут для общения, обеспечивая точную передачу вашего голоса в любых условиях.
 								Используйте Xiaomi Buds 3T Pro с любыми устройствами при помощи беспроводной связи Bluetooth. Версия протокола 5.2 в сочетании с емкими аккумуляторами может обеспечить до 18 часов работы, а мощный и стабильный сигнал позволит слушать музыку на расстоянии до 10 метров от смартфона. Управляйте воспроизведением простым прикосновением – сенсорные кнопки на наушниках сделают использование особенно простым и удобным. Комплектация модели включает в себя набор силиконовых амбушюров разного размера.
-								<br />
 								* Комплектацию и цвет товара уточняйте у консультанта
 							</p>
             </div>

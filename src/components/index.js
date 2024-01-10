@@ -16,3 +16,4 @@ export {default as BottomNavbar} from "./bottom-navbar/bottom-navbar"
 export {default as BreadcrumbUI} from "./BreadcrumbUI/Breadcrumb-UI"
 export {default as InfoProductUI} from "./InfoProductUI/InfoProduct-UI"
 export {default as SwiperUI} from "./SwiperUI/Swiper-UI"
+export {default as PriceCard} from './priceCard/priceCard'
