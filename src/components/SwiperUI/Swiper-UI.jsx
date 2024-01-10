@@ -4,7 +4,7 @@ import { CardUI } from '..';
 
 const SwiperUI =({idSwiper, productsArr}) => {
   return (
-    <>
+    <div className='card-ui'>
      	<Swiper
             id={idSwiper}
             autoplay={{
@@ -35,15 +35,15 @@ const SwiperUI =({idSwiper, productsArr}) => {
             loop={"true"}
             navigation={true}
             modules={[Navigation]}
-            className="w-full mySwiper "
+            className="w-full mySwiper h-full flex items-center justify-center"
           >
             {productsArr?.map((product, ind) => (
-              <SwiperSlide key={ind}>
+              <SwiperSlide className={'h-full hidden'} key={ind}>
                 <CardUI title={product.title} price={product.price} imageArr={product.imageArr} />
               </SwiperSlide>
             ))}
           </Swiper>
-    </>
+    </div>
   );
 }
 export default SwiperUI

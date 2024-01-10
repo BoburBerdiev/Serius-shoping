@@ -277,7 +277,7 @@ const viewedCards = [
 		]
 	},
 	{
-		title: 'ЧехолЧехол для Xiaomi Redmi 12c Ультратонкий силикон Premium c  ',
+		title: 'Чехол для Xiaomi Redmi 12c Ультратонкий силикон Premium c  ',
 		price: '40 000 сум',
 		imageArr : [
 			{
@@ -325,11 +325,11 @@ const ProductDetailed = () => {
 
   return (
     <>
-      <SectionUI customPadding={'pt-[140px] md:pt-40 pb-10 font-rubik pruduct-inner'}>
+      <SectionUI customPadding={'pt-[140px] md:pt-40 pb-10 font-rubik pruduct-inner relative '}>
         <div className='space-y-5 md:space-y-[30px]'>
           <BreadcrumbUI/>
           <SectionTitleUI title={'Наушники Xiaomi Buds 3T Pro (White)'} isBorder={true}/>
-          <div className='grid grid-cols-1 md:grid-cols-12 lg:grid-cols-16 gap-6 lg:gap-[30px]'>
+          <div className='grid grid-cols-1 md:grid-cols-12 lg:grid-cols-16 gap-6 lg:gap-[30px] static'>
             <div className=' md:col-span-6 '>
               <div className='w-full aspect-video	h-full relative flex gap-5 md:gap-[30px]'>
                 {
@@ -343,7 +343,7 @@ const ProductDetailed = () => {
                   >
                   {
                     productImages?.map(image => (
-                      <SwiperSlide key={image?.id} className='relative w-full h-full '>
+                      <SwiperSlide key={image?.id} className='relative w-full h-full'>
                         <ImageUI src={image?.src} imgStyle={'object-cover'}/>
                       </SwiperSlide>
                     ))
@@ -362,7 +362,7 @@ const ProductDetailed = () => {
                   {
                     
                     productImages?.map(image => (
-                        <SwiperSlide key={image?.id} className='relative aspect-square h-auto w-full'>
+                        <SwiperSlide key={image?.id} className='relative aspect-square h-auto w-full border'>
                           <ImageUI src={image?.src} imgStyle={'object-cover cursor-pointer'}/>
                         </SwiperSlide>
                     ))
@@ -389,7 +389,7 @@ const ProductDetailed = () => {
               </div>
             </div>
             <div className='lg:col-span-4 md:col-span-5 '>
-              <div className='w-full border border-borderGrey rounded-lg p-3 md:p-5'>
+              <div className='w-full border border-borderGrey rounded-lg p-3 md:p-5  bg-white z-30 sticky top-[100px] left-0'>
                 {
                   isHave ? 
                   <div className='flex items-center gap-1 text-[#36E3A4]  mb-5'>
@@ -409,10 +409,10 @@ const ProductDetailed = () => {
               </div>
             </div>
           </div>
-          <div className='grid grid-cols-16'>
+          <div className='grid grid-cols-16 static'>
             <div className='col-span-full md:col-span-12 space-y-2.5'>
 						  <h2 className='font-medium md:text-lg'>Описание товара</h2>
-							<p className=''>Наушники TWS Xiaomi Buds 3T Pro – модель, которая позволит не расставаться с музыкой или книгами ни на минуту. Слушайте любимые композиции дома, по пути на работу или во время занятий спортом – качественные динамики с поддержкой широкого частотного диапазона, удобная внутриканальная конструкция и система активного подавления внешних шумов подарит вам яркие эмоции при прослушивании. С помощью 6 цифровых микрофонов наушники также отлично подойдут для общения, обеспечивая точную передачу вашего голоса в любых условиях.
+							<p className='text-justify md:text-start'>Наушники TWS Xiaomi Buds 3T Pro – модель, которая позволит не расставаться с музыкой или книгами ни на минуту. Слушайте любимые композиции дома, по пути на работу или во время занятий спортом – качественные динамики с поддержкой широкого частотного диапазона, удобная внутриканальная конструкция и система активного подавления внешних шумов подарит вам яркие эмоции при прослушивании. С помощью 6 цифровых микрофонов наушники также отлично подойдут для общения, обеспечивая точную передачу вашего голоса в любых условиях.
 								<br />
 								Используйте Xiaomi Buds 3T Pro с любыми устройствами при помощи беспроводной связи Bluetooth. Версия протокола 5.2 в сочетании с емкими аккумуляторами может обеспечить до 18 часов работы, а мощный и стабильный сигнал позволит слушать музыку на расстоянии до 10 метров от смартфона. Управляйте воспроизведением простым прикосновением – сенсорные кнопки на наушниках сделают использование особенно простым и удобным. Комплектация модели включает в себя набор силиконовых амбушюров разного размера.
 								<br />

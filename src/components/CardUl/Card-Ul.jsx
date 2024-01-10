@@ -6,7 +6,7 @@ import { LuShoppingBag } from "react-icons/lu";
 
 const CardUI = ({imageArr, title, price, salePrice, rows}) => {
   return (
-    <div className={`flex ${rows ? 'items-center' : 'flex-col  h-full'}  gap-3.5 md:gap-6 card-ui`}>
+    <div className={`flex ${rows ? 'items-center' : 'flex-col  h-full'}  gap-3.5 md:gap-6 `}>
       <div className={`${rows ? 'w-[40%]' : 'w-full'}`}>
                   <Swiper
                       id={"mySwiper1"}
@@ -36,9 +36,9 @@ const CardUI = ({imageArr, title, price, salePrice, rows}) => {
                       className="py-1 px-2 bg-currentRed absolute text-white text-xs md:text-sm font-rubik font-medium rounded-lg top-3 right-3 z-10  ">Sale</span>
               }
       </div>
-      <div className={`gap-y-4 flex  flex-col h-full ${rows ? 'w-1/2 justify-center' : 'w-full justify-between h-full'}`}>
+      <div className={`gap-y-4 flex  flex-col  ${rows ? 'w-1/2 justify-center' : 'w-full justify-between h-full'}`}>
       <div className="space-y-3 lg:space-y-[18px]">
-        <h5 className="font-rubik text-sm  md:text-lg break-all">
+        <h5 className="font-rubik text-sm  md:text-lg break-all line-clamp-2 md:line-clamp-2">
           { title }
         </h5>
         <div className="flex items-end gap-3 ">
