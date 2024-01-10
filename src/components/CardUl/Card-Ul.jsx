@@ -6,7 +6,7 @@ import { LuShoppingBag } from "react-icons/lu";
 
 const CardUI = ({imageArr, title, price, salePrice, rows}) => {
   return (
-    <div className={`flex ${rows ? 'items-center' : 'flex-col  h-full'}  gap-3.5 md:gap-6 `}>
+    <div className={`flex ${rows ? 'items-center' : 'flex-col  h-full'}  gap-3.5 md:gap-6 card-ui`}>
       <div className={`${rows ? 'w-[40%]' : 'w-full'}`}>
                   <Swiper
                       id={"mySwiper1"}
