@@ -205,8 +205,8 @@ const Navbar = () => {
        <nav className="bg-white fixed w-[100%] z-50 top-0 start-0 border-b border-gray-200 font-rubik">
         <MiniNavbar />
            <div className="container relative flex flex-wrap items-center justify-between py-2 md:py-4 gap-x-10">
-               <div className='flex items-center gap-[18px]'>
-                    <Link href="/" className="flex items-center space-x-3 relative w-[98px] h-4">
+               <div className='flex items-center gap-[18px] max-md:justify-between max-md:flex-1'>
+                    <Link href="/" className="flex items-center space-x-3 relative w-[98px] h-4 max-md:order-2 max-md:mx-auto">
                         <ImageUI src={'/logo.png'} />
                     </Link>
                     
