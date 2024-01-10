@@ -19,7 +19,16 @@ const productImage = [
 export default function Home() {
   return (
     <>
-    <BannerUI src={'/mobile-images/banners/main-banner.jpg'} height={'h-[80vh]'} alt={''}/>
+    <header className="w-full h-screen bg-darkBlue">
+      <div className="container h-full pt-40 grid grid-cols-1 md:grid-cols-2 text-white items-center">
+        <div className="flex flex-col items-center md:items-start">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl max-md:text-center font-superaGothic max-w-[600px]">Идеальный магазин мобильных аксессуаров</h2>
+        </div>
+        <div className="w-full h-full relative">
+          <ImageUI src={'/phone.png'} imgStyle={'object-contain'}/>
+        </div>
+      </div>
+    </header>
     <SectionUI customPadding={'py-10 md:pt-20'}>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-7 gap-8">
         <CategoryCardUI grid={'md:row-span-2 md:h-full lg:col-span-3'} text={'Чехлы'} link={'#'} textPosition={'lg:top-10 lg:left-10'} iconPosition={'lg:bottom-auto lg:top-10 lg:right-10'} src={'/mobile-images/categories/phone-case.png'}/>

@@ -57,3 +57,9 @@
   margin: 0;
 }
 /* input number type hidden scroll bar css */
+
+
+/* scroll bar order page */
+.order ::-webkit-scrollbar{
+  display: none;
+}

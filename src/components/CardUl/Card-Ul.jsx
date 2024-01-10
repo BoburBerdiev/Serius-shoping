@@ -11,14 +11,10 @@ const CardUI = ({imageArr, title, price, salePrice, rows}) => {
                   <Swiper
                       id={"mySwiper1"}
                       slidesPerView={1}
-                      autoplay={{
-                          delay: 2800,
-                          disableOnInteraction: false,
-                      }}
                       loop={true}
                       pagination={{clickable: true}}
                       navigation={false}
-                      modules={[Autoplay, Pagination]}
+                      modules={[ Pagination]}
                       className={` mySwiper w-full `}
                   >
                       {imageArr?.map((product) => (
@@ -49,7 +45,7 @@ const CardUI = ({imageArr, title, price, salePrice, rows}) => {
         </div>
       </div>
       <div className="flex  gap-2.5 justify-between md:pr-3">
-        <ButtonUI leftIcon={<LuShoppingBag className="md:h-[22px] md:w-[22px]"/>}/>
+        <ButtonUI className={'border-currentRed'} leftIcon={<LuShoppingBag className="md:h-[22px] text-currentRed md:w-[22px] "/>}/>
         <ButtonUI href={'#'} text={'Подробнее'} cardBtn={true} />
       </div>
       </div>

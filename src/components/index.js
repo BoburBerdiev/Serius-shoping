@@ -18,3 +18,6 @@ export {default as InfoProductUI} from "./InfoProductUI/InfoProduct-UI"
 export {default as SwiperUI} from "./SwiperUI/Swiper-UI"
 export {default as ShopCartUI} from "./ShopCartUI/ShopCart-UI"
 export {default as PriceCard} from './priceCard/priceCard'
+export {default as TotalCardUI} from './TotalCardUI/TotalCard-UI'
+export {default as OrderForm} from './OrderForm/OrderForm'
+export {default as InputUI} from './InputUI/Input-UI'
