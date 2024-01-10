@@ -4,71 +4,53 @@ import  { Pagination, Autoplay } from "swiper/modules";
 import { ButtonUI, ImageUI } from "../index"
 import { LuShoppingBag } from "react-icons/lu";
 
-const productImage = [
-  {
-    id: 1,
-    image : '/Card.png',
-    alt: ''
-  },
-  {
-    id: 2,
-    image : '/Card.png',
-    alt: ''
-  },
-  {
-    id: 3,
-    image : '/Card.png',
-    alt: ''
-  },
-]
-const CardUI = ({image, alt, title, price, salePrice, percent, rows}) => {
+const CardUI = ({imageArr, title, price, salePrice, rows}) => {
   return (
-    <div className={`flex ${rows ? 'items-center' : 'flex-col  h-full'}  gap-3.5 md:gap-6`}>
+    <div className={`flex ${rows ? 'items-center' : 'flex-col  h-full'}  gap-3.5 md:gap-6 `}>
       <div className={`${rows ? 'w-[40%]' : 'w-full'}`}>
-        <div className={`relative w-full ${rows ? 'h-[180px] md:h-[240px] lg:h-[260px] ' : 'h-[220px] md:h-[270px] lg:h-[310px]'} overflow-hidden rounded-lg`}>
-          <div className="w-full h-full ">
-            <Swiper
-              id={"mySwiper1"}
-              slidesPerView={1}
-              autoplay={{
-                delay: 2800,
-                disableOnInteraction: false,
-              }}
-              loop={"true"}
-              pagination={{ clickable: true }}
-              navigation={false}
-              modules={[Autoplay ,Pagination]}
-              className="w-full  mySwiper h-full"
-            >
-              {productImage?.map((product) => (
-                  <SwiperSlide key={product.id} >
-                    <div className={"relative w-full h-full swiper1"}>
-                      <ImageUI src={product.image} alt={product.alt} imgStyle={'object-cover'}/>  
-                    </div>
-                  </SwiperSlide>
-                ))}
-            </Swiper>
-          </div>
-          {
-           percent && <span className="py-1 px-2 bg-currentRed absolute text-white text-xs md:text-sm font-rubik font-medium rounded-lg top-3 right-3 z-10  ">Sale</span>
-          }
-        </div>
+                  <Swiper
+                      id={"mySwiper1"}
+                      slidesPerView={1}
+                      autoplay={{
+                          delay: 2800,
+                          disableOnInteraction: false,
+                      }}
+                      loop={true}
+                      pagination={{clickable: true}}
+                      navigation={false}
+                      modules={[Autoplay, Pagination]}
+                      className={` mySwiper w-full `}
+                  >
+                      {imageArr?.map((product) => (
+                          <SwiperSlide key={product.id} className="h-full "  >
+
+                              <div className={`w-full relative ${rows ? 'h-[180px] md:h-[240px] lg:h-[260px] ' : 'h-[220px] md:h-[270px] lg:h-[310px]'} overflow-hidden rounded-lg`}>
+                                  <ImageUI src={product.image} alt={product.alt} imgStyle={'object-cover'}/>
+
+                              </div>
+                          </SwiperSlide>
+                          ))}
+                  </Swiper>
+              {
+                  salePrice && <span
+                      className="py-1 px-2 bg-currentRed absolute text-white text-xs md:text-sm font-rubik font-medium rounded-lg top-3 right-3 z-10  ">Sale</span>
+              }
       </div>
-      <div className={`gap-y-4 flex  flex-col h-full ${rows ? 'w-1/2 justify-center' : 'w-full justify-between'}`}>
+      <div className={`gap-y-4 flex  flex-col  ${rows ? 'w-1/2 justify-center' : 'w-full justify-between h-full'}`}>
       <div className="space-y-3 lg:space-y-[18px]">
-        <h5 className="font-rubik text-sm  md:text-lg break-all">
+        <h5 className="font-rubik text-sm  md:text-lg break-all line-clamp-2 md:line-clamp-2">
           { title }
         </h5>
         <div className="flex items-end gap-3 ">
-          <p className={`font-rubik font-medium md:text-lg lg:text-xl ${percent ? 'text-currentRed' : 'text-currentBlue'}`}>{price} </p>
+          <p className={`font-rubik font-medium md:text-lg lg:text-xl ${salePrice ? 'text-currentRed' : 'text-currentBlue'}`}>{price} </p>
           {
-            percent && <span className="text-currentGrey line-through text-xs md:text-sm lg:text-base">{salePrice}</span>
+            salePrice && <span className="text-currentGrey line-through text-xs md:text-sm lg:text-base">{salePrice}</span>
           }
         </div>
       </div>
       <div className="flex  gap-2.5 justify-between md:pr-3">
         <ButtonUI leftIcon={<LuShoppingBag className="md:h-[22px] md:w-[22px]"/>}/>
-        <ButtonUI href={'#'} text={'Подробнее'} cardBtn={true}/>
+        <ButtonUI href={'#'} text={'Подробнее'} cardBtn={true} />
       </div>
       </div>
     </div>
