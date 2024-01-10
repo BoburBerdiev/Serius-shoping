@@ -17,3 +17,4 @@ export {default as BreadcrumbUI} from "./BreadcrumbUI/Breadcrumb-UI"
 export {default as InfoProductUI} from "./InfoProductUI/InfoProduct-UI"
 export {default as SwiperUI} from "./SwiperUI/Swiper-UI"
 export {default as ShopCartUI} from "./ShopCartUI/ShopCart-UI"
+export {default as PriceCard} from './priceCard/priceCard'
