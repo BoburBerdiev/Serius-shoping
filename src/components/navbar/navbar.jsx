@@ -206,8 +206,8 @@ const Navbar = () => {
         <MiniNavbar />
            <div className="container relative flex flex-wrap items-center justify-between py-2 md:py-4 gap-x-10">
                <div className='flex items-center gap-[18px]'>
-                    <Link href="/" className="flex items-center space-x-3 relative w-[98px] h-4">
-                        <ImageUI src={'/logo.png'} />
+                    <Link href="/" className="flex items-center space-x-3 relative w-[98px] h-10">
+                        <ImageUI src={'/logo.png'} imgStyle={'object-contain'}/>
                     </Link>
                     
                     <ButtonUI className={`${openNav && 'bg-darkBlue text-white'} duration-300 max-md:text-base`} leftIcon={!openNav ? <img src='/menu.svg' className='w-4 md:w-6 h-4 md:h-6'/> : <IoClose className='text-white md:text-2xl' />} text={'Каталог'} onClick={(e) => navbarHandler(e)} />
