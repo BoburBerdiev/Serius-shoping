@@ -191,7 +191,7 @@ const index = () => {
 					    		</div>
                 </div>
 								<SectionUI>
-			            <SectionTitleUI title={'Вам может понравиться'} href={'#'}/>
+									<SectionTitleUI title={'Вам может понравиться'} href={'#'}/>
 			           	<div>
 			           		<SwiperUI idSwiper={'myswiper2'} productsArr={beLikeProducts}/>				
 			           	</div>

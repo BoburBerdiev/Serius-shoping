@@ -14,11 +14,11 @@ export default function App({ Component, pageProps }) {
   return  (
       <HydrationProvider>
           <Provider store={store}>
-              <Layout>
                   <Client >
-                      <Component {...pageProps} />
+                        <Layout>
+                            <Component {...pageProps} />
+                        </Layout>
                   </Client>
-              </Layout>
           </Provider>
 
       </HydrationProvider>
