@@ -48,7 +48,7 @@ const BottomNavbar = () => {
         </div>
       </div>
       <div className={`absolute z-40 bottom-[-200px] left-0 right-0 w-full duration-300 text-center ${dropdown && 'bottom-[100%]'}`}>
-        <div className="bg-darkBlue py-3 space-y-3">
+        <div className="bg-darkBlue py-3 space-y-3 rounded-t-[10px] border-t border-white">
           <div className="w-10 h-[6px] rounded-full bg-slate-600 mx-auto"></div>
           <ul className="flex flex-col items-center gap-3 text-white lg:gap-10 max-md:text-sm lg:text-lg font-medium">
             {
