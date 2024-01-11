@@ -33,3 +33,8 @@
   src: url(../../public/fonts/Rubik-Black.ttf);
   font-weight: 900;
 }
+@font-face {
+  font-family: 'Supera Gothic';
+  src: url(../../public/fonts/SuperaGothic-Regular.otf);
+  font-weight: 400;
+}

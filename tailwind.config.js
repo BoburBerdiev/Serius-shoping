@@ -24,11 +24,13 @@ module.exports = {
       },
       fontFamily: {
         'rubik': ['Rubik'],
+        'superaGothic': ['']
       },
       colors:{
         currentRed: '#DA002B',
         currentBlue: '#09273E',
         currentGrey: '#8A8A8A',        
+        currentGreen: '#36E3A4',        
         darkBlue: '#0F1F39',
         borderGrey: '#D9D9D9',
         addCard: '#E91756',

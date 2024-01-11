@@ -6,19 +6,15 @@ import { LuShoppingBag } from "react-icons/lu";
 
 const CardUI = ({imageArr, title, price, salePrice, rows}) => {
   return (
-    <div className={`flex ${rows ? 'items-center' : 'flex-col  h-full'}  gap-3.5 md:gap-6 `}>
+    <div className={`flex ${rows ? 'items-center' : 'flex-col  h-full'}  gap-3.5 md:gap-6 card-ui`}>
       <div className={`${rows ? 'w-[40%]' : 'w-full'}`}>
                   <Swiper
                       id={"mySwiper1"}
                       slidesPerView={1}
-                      autoplay={{
-                          delay: 2800,
-                          disableOnInteraction: false,
-                      }}
                       loop={true}
                       pagination={{clickable: true}}
                       navigation={false}
-                      modules={[Autoplay, Pagination]}
+                      modules={[ Pagination]}
                       className={` mySwiper w-full `}
                   >
                       {imageArr?.map((product) => (
@@ -49,7 +45,7 @@ const CardUI = ({imageArr, title, price, salePrice, rows}) => {
         </div>
       </div>
       <div className="flex  gap-2.5 justify-between md:pr-3">
-        <ButtonUI leftIcon={<LuShoppingBag className="md:h-[22px] md:w-[22px]"/>}/>
+        <ButtonUI className={'border-currentRed'} leftIcon={<LuShoppingBag className="md:h-[22px] text-currentRed md:w-[22px] "/>}/>
         <ButtonUI href={'#'} text={'Подробнее'} cardBtn={true} />
       </div>
       </div>

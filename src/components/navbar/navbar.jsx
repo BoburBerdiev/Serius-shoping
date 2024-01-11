@@ -177,7 +177,7 @@ const navInfo = [
 
 
 const Navbar = () => {
-    const { t , i18n } = useTranslation();
+    const { t  } = useTranslation();
 
     const [openNav , setOpenNav] = useState(false)
     const [openSearch, setOpenSearch] = useState(false)
@@ -213,7 +213,7 @@ const Navbar = () => {
                         <ImageUI src={'/logo.png'} imgStyle={'object-contain'}/>
                     </Link>
                     
-                    <ButtonUI className={`${openNav && 'bg-darkBlue text-white'} duration-300 max-md:text-base`} leftIcon={!openNav ? <img src='/menu.svg' className='w-4 md:w-6 h-4 md:h-6'/> : <IoClose className='text-white md:text-2xl' />} text={'Каталог'} onClick={(e) => navbarHandler(e)} />
+                    <ButtonUI className={`${openNav && 'bg-darkBlue text-white'} duration-300 max-md:text-base`} leftIcon={!openNav ? <img src='/menu.svg' className='w-4 md:w-6 h-4 md:h-6'/> : <IoClose className='text-white md:text-2xl' />} text={t('navbar.catalog')} onClick={(e) => navbarHandler(e)} />
                     <div className={`absolute grid grid-rows-[0fr] duration-[.4s] top-[55px] md:top-[80px] w-full left-0 z-50 ${openNav && 'grid-rows-[1fr] h-[90vh]'}`}>
                         <div className={`container overflow-hidden flex items-start flex-wrap gap-x-2 lg:gap-x-7 bg-white ${openNav && 'overflow-scroll pb-14'}`}>
                         {
@@ -239,7 +239,7 @@ const Navbar = () => {
                 <div className='md:relative md:flex-1 md:bg-[#F5F5F5] md:py-[14px] md:px-[30px] rounded-[10px]'>
                     <div className={`max-md:absolute top-14 max-md:grid duration-500 grid-rows-[0fr] ${openSearch && 'grid-rows-[1fr] max-md:py-5'} left-0 bg-[#f5f5f5] w-full z-50 max-md:px-5 rounded-[10px]`}>
                         <div className='overflow-hidden'>
-                            <input id='search' name='search' type="search" maxLength={50} className='bg-transparent focus:outline-none w-full' placeholder='Поиск товаров ' />
+                            <input id='search' name='search' type="search" maxLength={50} className='bg-transparent focus:outline-none w-full' placeholder={t('navbar.input')} />
                         </div>
                     </div>
                     <label onClick={(e) => searchHandler(e)} for='search' className='md:h-full h-10 w-10 md:w-12 md:absolute top-0 right-0 bg-darkBlue rounded-[10px] cursor-pointer flex items-center justify-center text-white md:text-2xl'>

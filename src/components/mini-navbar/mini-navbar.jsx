@@ -1,20 +1,8 @@
 import {useEffect, useState} from "react";
+import { useTranslation } from "react-i18next";
 
-const miniNavInfo = [
-  {
-    name: 'Скидки',
-    link: '#'
-  },
-  {
-    name: 'Новинки',
-    link: '#'
-  },
-  {
-    name: 'Акции',
-    link: '#'
-  },
-]
 const MiniNavbar = () => {
+  const { t  } = useTranslation();
   const [dropdown, setDropdown] = useState(false)
   const [language, setLanguage] = useState('Русский')
 
@@ -22,7 +10,20 @@ const MiniNavbar = () => {
     i18n.changeLanguage(lang)
     setLanguage('Русский')
   }
-
+  const miniNavInfo = [
+    {
+      name: t('navbar.sales'),
+      link: '#'
+    },
+    {
+      name:  t('navbar.newItems'),
+      link: '#'
+    },
+    {
+      name: t('navbar.stock'),
+      link: '#'
+    },
+  ]
 
   // useEffect(() => {
   //   i18n.changeLanguage(lang)
@@ -65,12 +66,12 @@ const MiniNavbar = () => {
           <div onClick={(e) => handleLanguage(e)} className="lang flex items-center gap-[10px] group cursor-pointer relative z-[60]">
             <div className="w-5 md:w-7 h-3 md:h-5" >
               {
-                language === 'Русский'
+                language === t('navbar.ru')
                 &&
                 <img src="/ru-flag.svg" alt="ru"   className="w-full h-full object-cover" />
               }
               {
-                language === 'Узбекский'
+                language === t('navbar.uz')
                 &&
                 <img src="/uzbekistan.png" alt="uz"   className="w-full h-full object-cover" />
               }
@@ -79,17 +80,17 @@ const MiniNavbar = () => {
               <p className="lang-change max-md:text-xs">{language}</p>
               <div className={`absolute z-[100] dropdown-list grid grid-rows-[0fr] duration-300 rounded-xl border-white w-auto top-6 md:top-[38px] left-[50%] translate-x-[-50%] ${dropdown && 'grid-rows-[1fr] border' }`}>
                 <ul className="overflow-hidden rounded-xl bg-darkBlue">
-                  <li onClick={ () => handleChangleLang('ru') } className="duration-300 py-2 px-3 hover:bg-slate-600 cursor-pointer max-md:text-sm flex items-center gap-1">
+                  <li onClick={ () => handleChangleLang(t('navbar.ru')) } className="duration-300 py-2 px-3 hover:bg-slate-600 cursor-pointer max-md:text-sm flex items-center gap-1">
                     <div className="h-4 w-4 shrink-0">
                       <img src="/ru-flag.svg" alt="ru" className="w-full h-full object-cover rounded-full" />  
                     </div> 
-                    Ру
+                    {t('navbar.ru')}
                   </li>
-                  <li onClick={ () => handleChangleLang('uz') } className="duration-300 py-2 px-3 hover:bg-slate-600 cursor-pointer max-md:text-sm flex items-center gap-1">
+                  <li onClick={ () => handleChangleLang(t('navbar.uz')) } className="duration-300 py-2 px-3 hover:bg-slate-600 cursor-pointer max-md:text-sm flex items-center gap-1">
                     <div className="h-4 w-4 shrink-0">
                       <img src="/uzbekistan.png" alt="uz" className="w-full h-full rounded-full" />
                     </div>
-                    Уз
+                    {t('navbar.uz')}
                   </li>         
                 </ul>
               </div>
