@@ -1,4 +1,3 @@
-
 export { default as Navbar } from "./navbar/navbar";
 export {default as MiniNavbar} from "./mini-navbar/mini-navbar"
 export { default as ImageUI } from "./ImageUI/Image-UI";
@@ -21,3 +20,4 @@ export {default as PriceCard} from './priceCard/priceCard'
 export {default as TotalCardUI} from './TotalCardUI/TotalCard-UI'
 export {default as OrderForm} from './OrderForm/OrderForm'
 export {default as InputUI} from './InputUI/Input-UI'
+export {default as SelectLang} from './SelectLang/SelectLang'

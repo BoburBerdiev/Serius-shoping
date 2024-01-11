@@ -5,7 +5,7 @@ import ru from './ru.json'
 
 
 i18next.use(initReactI18next).init({
-    fallbackLng: 'uz',
+    fallbackLng: 'ru',
     supportedLngs: ['ru', 'uz'],
     interpolation: {
         escapeValue: false

@@ -249,11 +249,11 @@ const Navbar = () => {
                 </div>
                 <div className='flex items-center gap-[18px] max-md:hidden'>
                     {/* orasini kottalashtrsh kk */}
-                    <a href='#' className='flex flex-col items-center justify-center text-darkBlue duration-300 hover:text-slate-500'>
+                    <a href='/order' className='flex flex-col items-center justify-center text-darkBlue duration-300 hover:text-slate-500'>
                         <LuShoppingBag className='text-xl' />
                         {t('navbar.basket')}
                     </a>
-                    <Link href='#' className='flex flex-col items-center justify-center text-darkBlue duration-300 hover:text-slate-500'>
+                    <Link href='/contact' className='flex flex-col items-center justify-center text-darkBlue duration-300 hover:text-slate-500'>
                         <FiPhone className='text-xl' />
                         {t('navbar.contact')}
                     </Link>

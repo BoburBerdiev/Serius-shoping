@@ -1,8 +1,8 @@
 import {configureStore} from "@reduxjs/toolkit";
-import LanguageReducer from '@/slice/language'
+import langSlice from '@/slice/lang'
 export const store=configureStore({
     reducer:{
-        lang:LanguageReducer,
+        langSlice,
     },
     // devTools: process.env.NODE_ENV !== 'production',
 })

@@ -47,17 +47,20 @@ export default function Home() {
         <CardUI imageArr={productImage} src={'/Card.png'} title={'Чехол для iPhone 11 Pro Simply TPU'} price={'65 000 сум'} salePrice={'85 000 сум'}/>
         <CardUI imageArr={productImage} src={'/Card.png'} title={'Чехол для iPhone 11 Pro Simply TPU'} price={'65 000 сум'} salePrice={'85 000 сум'}/>
         <CardUI imageArr={productImage} src={'/Card.png'} title={'Чехол для iPhone 11 Pro Simply TPU'} price={'65 000 сум'} salePrice={'85 000 сум'}/>
+        <CardUI imageArr={productImage} src={'/Card.png'} title={'Чехол для iPhone 11 Pro Simply TPU'} price={'5 000 000 сум'} salePrice={'85 000 сум'}/>
+        <CardUI imageArr={productImage} src={'/Card.png'} title={'Чехол для iPhone 11 Pro Simply TPU'} price={'5 000 000 сум'} salePrice={'85 000 сум'}/>
+        <CardUI imageArr={productImage} src={'/Card.png'} title={'Чехол для iPhone 11 Pro Simply TPU'} price={'5 000 000 сум'} salePrice={'85 000 сум'}/>
+        <CardUI imageArr={productImage} src={'/Card.png'} title={'Чехол для iPhone 11 Pro Simply TPU'} price={'5 000 000 сум'} salePrice={'85 000 сум'}/>
         <AddCardUI src={'/mobile-images/banners/bannerca.png'} alt={''} href={'#'}/>
-        <CardUI imageArr={productImage} src={'/Card.png'} title={'Чехол для iPhone 11 Pro Simply TPU'} price={'5 000 000 сум'} salePrice={'85 000 сум'}/>
-        <CardUI imageArr={productImage} src={'/Card.png'} title={'Чехол для iPhone 11 Pro Simply TPU'} price={'5 000 000 сум'} salePrice={'85 000 сум'}/>
-        <CardUI imageArr={productImage} src={'/Card.png'} title={'Чехол для iPhone 11 Pro Simply TPU'} price={'5 000 000 сум'} salePrice={'85 000 сум'}/>
-        <CardUI imageArr={productImage} src={'/Card.png'} title={'Чехол для iPhone 11 Pro Simply TPU'} price={'5 000 000 сум'} salePrice={'85 000 сум'}/>
       </div>
     </SectionUI>
-    <BannerUI src={'/mobile-images/banners/banner.jpg'} height={'h-[200px] md:h-[300px] lg:h-[350px]'}/>
+      <div className="container">
+        <BannerUI src={'/mobile-images/banners/banner.jpg'} height={'h-[200px] md:h-[300px] overflow-hidden lg:h-[350px] rounded-lg'}/>
+
+      </div>
     <SectionUI customPadding={'py-10 md:pt-20'}>
       <SectionTitleUI title={'Новинки'} href={'#'}/>
-      <div className="grid md:grid-cols-3 lg:grid-cols-4 grid-cols-2 gap-5 md:gap-8">
+      <div className="grid md:grid-cols-3 lg:grid-cols-4 grid-cols-2 gap-5 md:gap-8 ">
         <CardUI imageArr={productImage} src={'/Card.png'} title={'Чехол для iPhone 11 Pro Simply TPU'} price={'5 000 000 сум'} salePrice={'85 000 сум'}/>
         <CardUI imageArr={productImage} src={'/Card.png'} title={'Чехол для iPhone 11 Pro Simply TPU'} price={'65 000 сум'} salePrice={'85 000 сум'}/>
         <CardUI imageArr={productImage} src={'/Card.png'} title={'Чехол для iPhone 11 Pro Simply TPU '} price={'65 000 сум'} salePrice={'85 000 сум'}/>
