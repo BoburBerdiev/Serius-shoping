@@ -15,6 +15,7 @@ export default function App({ Component, pageProps }) {
       <HydrationProvider>
           <Provider store={store}>
                   <Client >
+
                         <Layout>
                             <Component {...pageProps} />
                         </Layout>
