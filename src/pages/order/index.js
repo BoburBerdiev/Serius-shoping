@@ -190,12 +190,12 @@ const index = () => {
 					    			<TotalCardUI howMany={2} price={'1 440 000'} salePrice={'60 000'} btn={true} onClick={anOrderForm}/>
 					    		</div>
                 </div>
-								<SectionUI>
+								<div className="py-10">
 			            <SectionTitleUI title={'Вам может понравиться'} href={'#'}/>
 			           	<div>
 			           		<SwiperUI idSwiper={'myswiper2'} productsArr={beLikeProducts}/>				
 			           	</div>
-			          </SectionUI>
+			          </div>
 							</div>
 						: 
 							<OrderForm onClick={openModal}/>
