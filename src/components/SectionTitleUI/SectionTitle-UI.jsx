@@ -1,7 +1,9 @@
 import React from 'react'
 import { ButtonUI } from '..'
 
-const SectionTitleUI = ({isBorder, title, titleNum, href}) => {
+const SectionTitleUI = ({isBorder, title, titleNum, href, btnText, btnStyle, onClick}) => {
+ 
+  console.log('render sectiontitle');
   return (
     <div className={`flex font-rubik items-end text-darkBlue justify-between border-borderGrey mb-4 md:mb-[30px] leading-normal ${isBorder ? '' : 'pb-1.5 md:pb-2.5 border-b '}`} >
       <div className='flex items-center gap-2.5 '>
@@ -12,7 +14,7 @@ const SectionTitleUI = ({isBorder, title, titleNum, href}) => {
         }
       </div>
       {
-        href && <ButtonUI href={href} titleBtn={true} text={'Смотреть все'}/>
+        btnText && <span className={btnStyle}><ButtonUI href={href} titleBtn={true} text={btnText} onClick={onClick}/></span>
       }
     </div>
   )

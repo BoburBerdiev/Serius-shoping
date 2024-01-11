@@ -37,6 +37,7 @@ const MiniNavbar = () => {
   }, [dropdown])
 
   return (
+    // font size & weight kichrayadi
     <div className="w-full bg-darkBlue py-2 md:py-4 text-white font-rubik">
       <div className="container flex items-center justify-between">
         <ul className="flex items-center gap-5 lg:gap-10 max-md:text-md lg:text-lg font-medium max-md:hidden">

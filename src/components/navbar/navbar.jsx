@@ -181,6 +181,7 @@ const Navbar = () => {
     const navbarHandler = (e) => {
         e.stopPropagation()
         setOpenNav(prevstate => !prevstate)
+        console.log(openNav);
     }
     const searchHandler = (e) => {
         e.stopPropagation()
@@ -236,6 +237,7 @@ const Navbar = () => {
                 <div className='md:relative md:flex-1 md:bg-[#F5F5F5] md:py-[14px] md:px-[30px] rounded-[10px]'>
                     <div className={`max-md:absolute top-14 max-md:grid duration-500 grid-rows-[0fr] ${openSearch && 'grid-rows-[1fr] max-md:py-5'} left-0 bg-[#f5f5f5] w-full z-50 max-md:px-5 rounded-[10px]`}>
                         <div className='overflow-hidden'>
+                            {/* ichki radius 0 bolad */}
                             <input id='search' name='search' type="search" maxLength={50} className='bg-transparent focus:outline-none w-full' placeholder='Поиск товаров ' />
                         </div>
                     </div>
@@ -244,10 +246,12 @@ const Navbar = () => {
                     </label>
                 </div>
                 <div className='flex items-center gap-[18px] max-md:hidden'>
+                    {/* orasini kottalashtrsh kk */}
                     <a href='#' className='flex flex-col items-center justify-center text-darkBlue duration-300 hover:text-slate-500'>
                         <LuShoppingBag className='text-xl' />
                         Корзина
                     </a>
+                    {/* orasini kottalashtrsh kk */}
                     <a href='#' className='flex flex-col items-center justify-center text-darkBlue duration-300 hover:text-slate-500'>
                         <FiPhone className='text-xl' />
                         Контакты

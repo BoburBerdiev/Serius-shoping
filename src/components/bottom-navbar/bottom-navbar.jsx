@@ -39,6 +39,7 @@ const BottomNavbar = () => {
     }
   }, [dropdown])
   return (
+    // top radius boladi
     <div className='w-full h-fit fixed z-40 bottom-0 left-0 right-0 bg-darkBlue md:hidden'>
       <div className="bg-darkBlue relative z-50 py-1">
         <div className="container flex items-center justify-center gap-10">
