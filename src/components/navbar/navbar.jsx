@@ -184,6 +184,7 @@ const Navbar = () => {
     const navbarHandler = (e) => {
         e.stopPropagation()
         setOpenNav(prevstate => !prevstate)
+        console.log(openNav);
     }
     const searchHandler = (e) => {
         e.stopPropagation()
@@ -215,7 +216,7 @@ const Navbar = () => {
                     
                     <ButtonUI className={`${openNav && 'bg-darkBlue text-white'} duration-300 max-md:text-base`} leftIcon={!openNav ? <img src='/menu.svg' className='w-4 md:w-6 h-4 md:h-6'/> : <IoClose className='text-white md:text-2xl' />} text={t('navbar.catalog')} onClick={(e) => navbarHandler(e)} />
                     <div className={`absolute grid grid-rows-[0fr] duration-[.4s] top-[55px] md:top-[80px] w-full left-0 z-50 ${openNav && 'grid-rows-[1fr] h-[90vh]'}`}>
-                        <div className={`container overflow-hidden flex items-start flex-wrap gap-x-2 lg:gap-x-7 bg-white ${openNav && 'overflow-scroll pb-14'}`}>
+                        <div className={`container overflow-hidden flex items-start flex-wrap gap-x-2 lg:gap-x-7 bg-white overscroll-y-auto ${openNav && 'overflow-scroll pb-14'}`}>
                         {
                             navInfo.map((item, index) => (
                                 <ul className='text-darkBlue pt-5 lg:py-10' key={index}>
@@ -242,11 +243,12 @@ const Navbar = () => {
                             <input id='search' name='search' type="search" maxLength={50} className='bg-transparent focus:outline-none w-full' placeholder={t('navbar.input')} />
                         </div>
                     </div>
-                    <label onClick={(e) => searchHandler(e)} for='search' className='md:h-full h-10 w-10 md:w-12 md:absolute top-0 right-0 bg-darkBlue rounded-[10px] cursor-pointer flex items-center justify-center text-white md:text-2xl'>
+                    <label onClick={(e) => searchHandler(e)} for='search' className='md:h-full h-10 w-10 md:w-12 md:absolute top-0 right-0 bg-darkBlue rounded-r-[10px] cursor-pointer flex items-center justify-center text-white md:text-2xl'>
                         <IoIosSearch />
                     </label>
                 </div>
                 <div className='flex items-center gap-[18px] max-md:hidden'>
+                    {/* orasini kottalashtrsh kk */}
                     <a href='#' className='flex flex-col items-center justify-center text-darkBlue duration-300 hover:text-slate-500'>
                         <LuShoppingBag className='text-xl' />
                         {t('navbar.basket')}

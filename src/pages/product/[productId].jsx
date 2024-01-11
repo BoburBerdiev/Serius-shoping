@@ -424,7 +424,7 @@ const ProductDetailed = () => {
         
       </SectionUI>   
 			<SectionUI>
-			  <SectionTitleUI title={'Вам может понравиться'} href={'#'}/>
+			  <SectionTitleUI title={'Вам может понравиться'} btnText={'Смотреть все'} btnStyle={'border-0'} href={'#'}/>
 				<div>
 					<SwiperUI idSwiper={'myswiper2'} productsArr={beLikeProducts}/>				
 				</div>
