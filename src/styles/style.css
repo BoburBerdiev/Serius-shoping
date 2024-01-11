@@ -36,3 +36,30 @@
 .footer .tel{
   line-height: 30px !important;
 }
+/* input number type hidden scroll bar css */
+
+/* Hide the default number input arrows */
+.shop-cart input[type=number]::-webkit-inner-spin-button,
+.shop-cart input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+.shop-cart input[type=number] {
+  -moz-appearance: textfield;
+}
+
+/* Hide the arrows in Edge */
+.shop-cart input[type=number]::-webkit-outer-spin-button,
+.shop-cart input[type=number]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+/* input number type hidden scroll bar css */
+
+
+/* scroll bar order page */
+.order ::-webkit-scrollbar{
+  display: none;
+}
