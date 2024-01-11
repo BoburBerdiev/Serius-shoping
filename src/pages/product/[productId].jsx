@@ -333,7 +333,7 @@ const ProductDetailed = () => {
     <>
       <SectionUI customPadding={'pt-[140px] md:pt-40 pb-10 font-rubik pruduct-inner relative '}>
         <div className='space-y-5 md:space-y-[30px]'>
-          <BreadcrumbUI/>
+          <BreadcrumbUI pageLink={'naushnik'}/>
           <SectionTitleUI title={'Наушники Xiaomi Buds 3T Pro (White)'} isBorder={true}/>
           <div className='grid grid-cols-1 md:grid-cols-12 lg:grid-cols-16 gap-6 lg:gap-[30px] static'>
             <div className=' md:col-span-6 '>
