@@ -2,6 +2,7 @@
   "translation": {
     "navbar": {
       "catalog":"Каталог",
+      "home": "Главная",
       "input":"Поиск товаров",
       "basket":"Корзина",
       "contact":"Контакты",
