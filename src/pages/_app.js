@@ -12,13 +12,13 @@ import {store} from '@/store';
 
 export default function App({ Component, pageProps }) {
   return  (
-      <HydrationProvider  >
+      <HydrationProvider>
           <Provider store={store}>
-              <Layout>
                   <Client >
-                      <Component {...pageProps} />
+                        <Layout>
+                            <Component {...pageProps} />
+                        </Layout>
                   </Client>
-              </Layout>
           </Provider>
 
       </HydrationProvider>
