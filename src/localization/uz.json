@@ -1,0 +1,73 @@
+{
+  "translation": {
+    "navbar": {
+      "catalog":"Katalog",
+      "home": "Asosiy",
+      "input":"Mahsulotlarni qidirish",
+      "basket":"Savatcha",
+      "contact":"Aloqa",
+      "sales":"Chegirmalar",
+      "newItems":"Yangi mahsulotlar",
+      "stock":"Aksiyalar",
+      "uz":"Uz",
+      "ru": "Ru"
+    },
+    "button": {
+      "more":"Ko'proq",
+      "filter":"Saralash",
+      "delete":"O'chirish",
+      "order":"Buyurtma",
+      "next": "Keyingisi",
+      "back": "Orqaga",
+      "finish":"Yuborish"
+
+    },
+
+    "order": {
+      "totalPrice":"Jami narx",
+      "basket":"Savat",
+      "order-place": "Buyurtmani royxatdan o'tkazish",
+      "quantity":"Jami soni",
+      "online":"Onlayn to'lov",
+      "offline":" Naqd to'lov ",
+      "countLenght":"ta",
+      "money":"so'm",
+      "law": "Buyurtma berish orqali siz Maxfiylik shartnomasi va Rich Parfum foydalanuvchisi shartnomasiga muvofiq shaxsiy ma'lumotlarni qayta ishlashga rozilik bildirasiz."
+    },
+    "answer": {
+      "true" : "Sizning buyurtmangiz qabul qilindi. Operator qo'ng'irog'ini kuting!"
+    },
+
+
+    "filter": {
+      "notFound": "Hech narsa topilmadi"
+    },
+
+
+    "form": {
+
+      "name":"Ism",
+      "phone":"Telfon",
+      "address":"Manzil"
+    },
+
+    "home": {
+      "home":"Asosiy",
+      "catalog":"Katalog",
+      "client":"Mijozlar fikri"
+    },
+
+
+
+    "footer": {
+      "brands": "Brand",
+      "forEveryone": "Hamma uchun",
+      "sales":"Chegirma",
+      "catalog": "Katalog",
+      "page": "Sahifa",
+      "reserved":"©2023 Rich Parfum. Barcha huquqlar himoyalangan",
+      "forMen": "Erkaklar uchun",
+      "forWomen": "Ayollar uchun"
+    }
+  }
+}
