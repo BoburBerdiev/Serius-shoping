@@ -1,4 +1,4 @@
-import {useEffect} from 'react'
+import {useEffect, useRef} from 'react'
 import Link from "next/link";
 import {ButtonUI, ImageUI} from "@/components";
 import {CiMenuBurger} from "react-icons/ci";
@@ -11,6 +11,7 @@ import { FiPhone } from "react-icons/fi";
 import { IoClose } from "react-icons/io5";
 import { MdOutlineKeyboardArrowRight } from "react-icons/md";
 import { useTranslation } from "react-i18next";
+import SearchCardUI from '../search-card/search-card-UI';
 
 const navInfo = [
     {
@@ -180,22 +181,14 @@ const Navbar = () => {
     const { t  } = useTranslation();
 
     const [openNav , setOpenNav] = useState(false)
-    const [openSearch, setOpenSearch] = useState(false)
     const navbarHandler = (e) => {
         e.stopPropagation()
         setOpenNav(prevstate => !prevstate)
         console.log(openNav);
     }
-    const searchHandler = (e) => {
-        e.stopPropagation()
-        setOpenSearch(prevstate => !prevstate)
-    }
     useEffect(() => {
         const handleCLoseNav = () => {
             setOpenNav(false)
-        }
-        const closeSearch = () => {
-            setOpenSearch(false)
         }
 
         window.addEventListener('click', handleCLoseNav)
@@ -203,12 +196,62 @@ const Navbar = () => {
         return () => {
             window.removeEventListener('click', handleCLoseNav)
         }
-    }, [openNav, openSearch])
+    }, [openNav])
+
+    const [isSearchBarOpen, setIsSearchBarOpen] = useState(false);
+    const [isDelayActive, setIsDelayActive] = useState(false);
+    const [isSearchFocused, setIsSearchFocused] = useState(false);
+  
+    const searchInputRef = useRef(null);
+
+    useEffect(() => {
+        const handleCloseSearch = (e) => {
+          if (!e.target.closest('.search-bar')) {
+            setIsSearchBarOpen(false);
+            setIsSearchFocused(false);
+          }
+        };
+    
+        window.addEventListener('click', handleCloseSearch);
+    
+        return () => {
+          window.removeEventListener('click', handleCloseSearch);
+        };
+      }, [isSearchBarOpen]);
+    
+      const handleSearchFocus = () => {
+        setIsSearchBarOpen(true);
+        setIsSearchFocused(true);
+        setIsDelayActive(false);
+      };
+    
+      const handleSearchBlur = () => {
+        setIsDelayActive(true);
+        setTimeout(() => {
+          setIsSearchFocused(false);
+          setIsSearchBarOpen(false);
+          setIsDelayActive(false);
+        }, 100);
+      };
+    
+      const searchHandler = (e) => {
+        e.stopPropagation();
+        setIsSearchBarOpen((prevstate) => !prevstate);
+    
+        // If the search bar is being opened, focus the input
+        if (!isSearchBarOpen) {
+          searchInputRef.current.focus();
+        }
+      };
+
+      const handleInputClick = (e) => {
+        e.stopPropagation();
+      };
 
    return (
        <nav className="bg-white fixed w-[100%] z-50 top-0 start-0 border-b border-gray-200 font-rubik">
         <MiniNavbar />
-           <div className="container relative flex flex-wrap items-center justify-between py-2 md:py-4 gap-x-10">
+           <div className="container relative flex flex-wrap items-center justify-between py-2 md:py-4 gap-5 md:gap-x-10">
                <div className='flex items-center gap-[18px] max-md:justify-between max-md:flex-1'>
                     <Link href="/" className="flex items-center space-x-3 relative w-[98px] h-10 max-md:order-2 max-md:mx-auto">
                         <ImageUI src={'/logo.png'} imgStyle={'object-contain'}/>
@@ -238,17 +281,24 @@ const Navbar = () => {
                     </div>
                 </div>
                 <div className='md:relative md:flex-1 md:bg-[#F5F5F5] md:py-[14px] md:px-[30px] rounded-[10px]'>
-                    <div className={`max-md:absolute top-14 max-md:grid duration-500 grid-rows-[0fr] ${openSearch && 'grid-rows-[1fr] max-md:py-5'} left-0 bg-[#f5f5f5] w-full z-50 max-md:px-5 rounded-[10px]`}>
+                    <div className={`max-md:absolute top-14 max-md:grid duration-500 grid-rows-[0fr] ${isSearchBarOpen && 'grid-rows-[1fr] max-md:py-5'} left-0 bg-[#f5f5f5] w-full z-50 max-md:px-5 rounded-[10px]`}>
                         <div className='overflow-hidden'>
-                            <input id='search' name='search' type="search" maxLength={50} className='bg-transparent focus:outline-none w-full' placeholder={t('navbar.input')} />
+                            <input ref={searchInputRef} onFocus={handleSearchFocus} onBlur={handleSearchBlur} onClick={handleInputClick} id='search' name='search' type="search" maxLength={50} className='bg-transparent focus:outline-none w-full' placeholder={t('navbar.input')} />
                         </div>
                     </div>
-                    <label onClick={(e) => searchHandler(e)} for='search' className='md:h-full h-10 w-10 md:w-12 md:absolute top-0 right-0 bg-darkBlue rounded-r-[10px] cursor-pointer flex items-center justify-center text-white md:text-2xl'>
+                    <label onBlur={handleSearchBlur} onClick={(e) => {searchHandler(e); e.preventDefault()}} for='search' className='md:h-full h-10 w-10 md:w-12 md:absolute top-0 right-0 bg-darkBlue max-md:rounded-[10px] rounded-r-[10px] cursor-pointer flex items-center justify-center text-white md:text-2xl'>
                         <IoIosSearch />
                     </label>
+                    <div className={`${isSearchFocused ? 'block' : 'hidden'} duration-500 absolute w-full md:max-lg:w-[200%] z-50 top-[115px] md:top-14 md:left-[50%] lg:left-0 right-0 md:max-lg:translate-x-[-50%] bg-white rounded-xl overflow-hidden pb-2`}>
+                        <SearchCardUI href={'/product'}  price={'150000 сум'} />
+                        <SearchCardUI href={'#'} sale={'120000 сум'} price={'150000 сум'} />
+                        <SearchCardUI href={'#'} sale={'120000 сум'} price={'150000 сум'} />
+                        <SearchCardUI href={'#'}  price={'150000 сум'} />
+                        <SearchCardUI href={'#'} sale={'120000 сум'} price={'150000 сум'} />
+
+                    </div>
                 </div>
                 <div className='flex items-center gap-[18px] max-md:hidden'>
-                    {/* orasini kottalashtrsh kk */}
                     <a href='/order' className='flex flex-col items-center justify-center text-darkBlue duration-300 hover:text-slate-500'>
                         <LuShoppingBag className='text-xl' />
                         {t('navbar.basket')}
