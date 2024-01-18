@@ -1,10 +1,7 @@
 import React, { useEffect } from 'react'
 
 const ButtonUI = ({leftIcon, rightIcon, text, onClick, href, cardBtn, className, titleBtn }) => {
- console.log('render');
- useEffect(() => {
-  console.log(ButtonUI);
- }, [ButtonUI])
+
   return (
     <>
     {

@@ -15,7 +15,6 @@ const SelectLang = () => {
         dispatch(changleLang(lang))
     }
     const handleLanguage=(e)=>{
-        console.log(e);
         e.stopPropagation()
         setDropdown(prevState => !prevState)
     }

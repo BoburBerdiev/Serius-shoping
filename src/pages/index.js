@@ -1,24 +1,19 @@
 import { AddCardUI, BannerUI, ButtonUI, CardUI, CategoryCardUI, ImageUI, SectionTitleUI, SectionUI, ServiceSectionUI } from "@/components";
-const productImage = [
-  {
-    id: 1,
-    image : '/Card.png',
-    alt: ''
-  },
-  {
-    id: 2,
-    image : '/Card.png',
-    alt: ''
-  },
-  {
-    id: 3,
-    image : '/Card.png',
-    alt: ''
-  },
-]
-export default function Home() {
+import SEO from '@/SEO/SEO'
+import {index} from '@/SEO/SEO.config'
+import axios from "axios";
+import {Fragment} from "react";
+export default function Home({newProduct}) {
   return (
     <>
+      {/*<SEO*/}
+      {/*    ogImage={'/evolution.png'}*/}
+      {/*    title={index[lang].title}*/}
+      {/*    description={index[lang].description}*/}
+      {/*    ogTitle={index[lang].ogTitle}*/}
+      {/*    ogDescription={index[lang].ogDescription}*/}
+      {/*    twitterHandle={index[lang].twitterHandle}*/}
+      {/*/>*/}
     <header className="w-full h-screen bg-darkBlue">
       <div className="container h-full pt-40 grid grid-cols-1 md:grid-cols-2 text-white items-center">
         <div className="flex flex-col items-center md:items-start">
@@ -42,15 +37,19 @@ export default function Home() {
 
     </SectionUI>
     <SectionUI customPadding={'py-10 md:pb-20'}>
-      <SectionTitleUI title={'Распродажа'} href={'#'}/>
+      <SectionTitleUI title={'Скидки'} href={'#'}/>
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 md:gap-[30px]">
-        <CardUI imageArr={productImage} src={'/Card.png'} title={'Чехол для iPhone 11 Pro Simply TPU'} price={'65 000 сум'} salePrice={'85 000 сум'}/>
-        <CardUI imageArr={productImage} src={'/Card.png'} title={'Чехол для iPhone 11 Pro Simply TPU'} price={'65 000 сум'} salePrice={'85 000 сум'}/>
-        <CardUI imageArr={productImage} src={'/Card.png'} title={'Чехол для iPhone 11 Pro Simply TPU'} price={'65 000 сум'} salePrice={'85 000 сум'}/>
-        <CardUI imageArr={productImage} src={'/Card.png'} title={'Чехол для iPhone 11 Pro Simply TPU'} price={'5 000 000 сум'} salePrice={'85 000 сум'}/>
-        <CardUI imageArr={productImage} src={'/Card.png'} title={'Чехол для iPhone 11 Pro Simply TPU'} price={'5 000 000 сум'} salePrice={'85 000 сум'}/>
-        <CardUI imageArr={productImage} src={'/Card.png'} title={'Чехол для iPhone 11 Pro Simply TPU'} price={'5 000 000 сум'} salePrice={'85 000 сум'}/>
-        <CardUI imageArr={productImage} src={'/Card.png'} title={'Чехол для iPhone 11 Pro Simply TPU'} price={'5 000 000 сум'} salePrice={'85 000 сум'}/>
+        {
+          newProduct?.map(product => (
+              <Fragment key={product?.id}>
+                <CardUI imageArr={product?.images}
+                        slug={product?.slug}
+                        title_ru={product?.title_ru}
+                        title_uz={product?.title_uz}
+                        price={product?.price} salePrice={product?.price}/>
+              </Fragment>
+          ))
+        }
         <AddCardUI src={'/mobile-images/banners/bannerca.png'} alt={''} href={'#'}/>
       </div>
     </SectionUI>
@@ -61,14 +60,17 @@ export default function Home() {
     <SectionUI customPadding={'py-10 md:pt-20'}>
       <SectionTitleUI title={'Новинки'} href={'#'}/>
       <div className="grid md:grid-cols-3 lg:grid-cols-4 grid-cols-2 gap-5 md:gap-8 ">
-        <CardUI imageArr={productImage} src={'/Card.png'} title={'Чехол для iPhone 11 Pro Simply TPU'} price={'5 000 000 сум'} salePrice={'85 000 сум'}/>
-        <CardUI imageArr={productImage} src={'/Card.png'} title={'Чехол для iPhone 11 Pro Simply TPU'} price={'65 000 сум'} salePrice={'85 000 сум'}/>
-        <CardUI imageArr={productImage} src={'/Card.png'} title={'Чехол для iPhone 11 Pro Simply TPU '} price={'65 000 сум'} salePrice={'85 000 сум'}/>
-        <CardUI imageArr={productImage} src={'/Card.png'} title={'Чехол для iPhone 11 Pro Simply TPU '} price={'65 000 сум'}  salePrice={'85 000 сум'}/>
-        <CardUI imageArr={productImage} src={'/Card.png'} title={'Чехол для iPhone 11 Pro Simply TPU '} price={'65 000 сум'}  salePrice={'85 000 сум'}/>
-        <CardUI imageArr={productImage} src={'/Card.png'} title={'Чехол для iPhone 11 Pro Simply TPU '} price={'65 000 сум'}  salePrice={'85 000 сум'}/>
-        <CardUI imageArr={productImage} src={'/Card.png'} title={'Чехол для iPhone 11 Pro Simply TPU '} price={'65 000 сум'}  salePrice={'85 000 сум'}/>
-        <CardUI imageArr={productImage} src={'/Card.png'} title={'Чехол для iPhone 11 Pro Simply TPU '} price={'65 000 сум'}  salePrice={'85 000 сум'}/>
+        {
+          newProduct?.map(product => (
+              <Fragment key={product?.id}>
+                <CardUI imageArr={product?.images}
+                        slug={product?.slug}
+                        title_ru={product?.title_ru}
+                        title_uz={product?.title_uz}
+                        price={product?.price} salePrice={product?.price}/>
+              </Fragment>
+          ))
+        }
       </div>
     </SectionUI>
     <SectionUI customPadding={'py-10 md:pb-20'}>
@@ -77,3 +79,24 @@ export default function Home() {
     </>
   )
 }
+
+
+export async function getServerSideProps({req, res}) {
+  res.setHeader(
+      "Cache-Control",
+      "public, s-maxage=10, stale-while-revalidate=59"
+  );
+  // Fetch data from external API
+  const [newProduct, socialMedia] = await Promise.all([
+    axios.get(`${process.env.NEXT_PUBLIC_API_URL}/products-catalog?stock=new`),
+    // axios.get(`${process.env.NEXT_PUBLIC_API_URL}/about/socials/`)
+  ]);
+
+  return {
+    props: {
+      newProduct: newProduct?.data?.results,
+      // socialMedia: socialMedia.data,
+    },
+  };
+}
+

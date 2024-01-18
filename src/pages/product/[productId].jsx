@@ -1,442 +1,165 @@
 import {
-	BreadcrumbUI,
-	ImageUI,
-	InfoProductUI,
-	PriceCard,
-	SectionTitleUI,
-	SectionUI,
-	SwiperUI
+    BreadcrumbUI,
+    ImageUI,
+    InfoProductUI,
+    PriceCard,
+    SectionTitleUI,
+    SectionUI,
+    SwiperUI
 } from '@/components'
-import { Fragment, useState } from 'react'
+import {Fragment, useEffect, useState} from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { FreeMode, Navigation, Thumbs } from 'swiper/modules';
+import {useQuery} from "react-query";
+import apiService from "@/service/axois";
+import {useRouter} from "next/router";
+import {useDispatch, useSelector} from "react-redux";
+import {useTranslation} from "react-i18next";
+import {basketList ,totalAllPrice } from '@/slice/basket'
 
-
-const shortAboutProduct = [
-  {
-    title: 'SKU',
-    value: '8077',
-  },
-  {
-    title: 'Тип',
-    value: 'беспроводные наушники',
-  },
-  {
-    title: 'Тип подключения',
-    value: 'беспроводное',
-  },
-  {
-    title: 'Класс водонепроницаемости',
-    value: 'IP55',
-  },
-  {
-    title: 'Материал корпуса',
-    value: 'пластик',
-  },
-  {
-    title: 'Футляр с зарядным устройством',
-    value: 'есть',
-  },
-]
-
-const allAboutProduct = [
-  {
-    title: 'Тип',
-    value: 'беспроводные наушники',
-  },
-  {
-    title: 'Сенсорная панель управления',
-    value: 'есть',
-  },
-	{
-    title: 'Частотный диапазон',
-    value: '20-20000 Гц',
-  },
-	{
-    title: 'Сенсорная панель управления',
-    value: 'есть',
-  },
-	{
-    title: 'Сенсорная панель управления',
-    value: 'есть',
-  },
-  {
-    title: 'Тип подключения',
-    value: 'беспроводное',
-  },
- 
-  {
-    title: 'Класс водонепроницаемости',
-    value: 'IP55',
-  },
-  {
-    title: 'Сопротивление, Ом',
-    value: '32 Ом',
-  },
-	{
-    title: 'Материал корпуса',
-    value: 'пластик',
-  },
-	{
-    title: 'Дальность действия в помещении, м',
-    value: 'есть',
-  },
-  {
-    title: 'Индикатор заряда аккумулятора',
-    value: 'есть',
-  },
-  {
-    title: 'Цвет',
-    value: 'белый',
-  },
-  {
-    title: 'Время автономной работы, мин',
-    value: '360',
-  },
-  
-]
-const productImages = [
-  {
-    src: '/airpods.png',
-    alt: '',
-    id: 1
-  },
-  {
-    src: '/airpods (1).png',
-    alt: '',
-    id: 2
-  },
-  {
-    src: '/airpods (2).png',
-    alt: '',
-    id: 3
-  },
-]
-const beLikeProducts = [
-	{
-		title: 'Чехол для iPhone 14 Ультратонкий силикон Premium',
-		price: '70 000 сум',
-		imageArr : [
-			{
-				id: 1,
-				image : '/Card.png',
-				alt: ''
-			},
-			{
-				id: 2,
-				image : '/Card.png',
-				alt: ''
-			},
-			{
-				id: 3,
-				image : '/Card.png',
-				alt: ''
-			},
-		]
-	},
-	{
-		title: 'Чехол для iPhone 14 Ультратонкий силикон Premium',
-		price: '70 000 сум',
-		imageArr : [
-			{
-				id: 1,
-				image : '/Card.png',
-				alt: ''
-			},
-			{
-				id: 2,
-				image : '/Card.png',
-				alt: ''
-			},
-			{
-				id: 3,
-				image : '/Card.png',
-				alt: ''
-			},
-		]
-	},
-	{
-		title: 'Чехол для iPhone 14 Ультратонкий силикон Premium',
-		price: '70 000 сум',
-		imageArr : [
-			{
-				id: 1,
-				image : '/Card.png',
-				alt: ''
-			},
-			{
-				id: 2,
-				image : '/Card.png',
-				alt: ''
-			},
-			{
-				id: 3,
-				image : '/Card.png',
-				alt: ''
-			},
-		]
-	},
-	{
-		title: 'Чехол для iPhone 14 Ультратонкий силикон Premium',
-		price: '70 000 сум',
-		imageArr : [
-			{
-				id: 1,
-				image : '/Card.png',
-				alt: ''
-			},
-			{
-				id: 2,
-				image : '/Card.png',
-				alt: ''
-			},
-			{
-				id: 3,
-				image : '/Card.png',
-				alt: ''
-			},
-		]
-	},
-	{
-		title: 'Чехол для iPhone 14 Ультратонкий силикон Premium',
-		price: '70 000 сум',
-		imageArr : [
-			{
-				id: 1,
-				image : '/Card.png',
-				alt: ''
-			},
-			{
-				id: 2,
-				image : '/Card.png',
-				alt: ''
-			},
-			{
-				id: 3,
-				image : '/Card.png',
-				alt: ''
-			},
-		]
-	},
-	{
-		title: 'Чехол для iPhone 14 Ультратонкий силикон Premium',
-		price: '70 000 сум',
-		imageArr : [
-			{
-				id: 1,
-				image : '/Card.png',
-				alt: ''
-			},
-			{
-				id: 2,
-				image : '/Card.png',
-				alt: ''
-			},
-			{
-				id: 3,
-				image : '/Card.png',
-				alt: ''
-			},
-		]
-	},
-	{
-		title: 'Чехол для iPhone 14 Ультратонкий силикон Premium',
-		price: '70 000 сум',
-		imageArr : [
-			{
-				id: 1,
-				image : '/Card.png',
-				alt: ''
-			},
-			{
-				id: 2,
-				image : '/Card.png',
-				alt: ''
-			},
-			{
-				id: 3,
-				image : '/Card.png',
-				alt: ''
-			},
-		]
-	},
-]
-const viewedCards = [
-	{
-		title: 'Чехол для iPhone 14 Ультратонкий силикон Premium',
-		price: '70 000 сум',
-		imageArr : [
-			{
-				id: 1,
-				image : '/Card.png',
-				alt: ''
-			},
-			{
-				id: 2,
-				image : '/Card.png',
-				alt: ''
-			},
-			{
-				id: 3,
-				image : '/Card.png',
-				alt: ''
-			},
-		]
-	},
-	{
-		title: 'Чехол для Xiaomi Redmi 12c Ультратонкий силикон Premium c  ',
-		price: '40 000 сум',
-		imageArr : [
-			{
-				id: 1,
-				image : '/Card.png',
-				alt: ''
-			},
-			{
-				id: 2,
-				image : '/Card.png',
-				alt: ''
-			},
-			{
-				id: 3,
-				image : '/Card.png',
-				alt: ''
-			},
-		]
-	},
-	{
-		title: 'Чехол для iPhone 11 Pro Simply TPU',
-		price: '65 000 сум',
-		imageArr : [
-			{
-				id: 1,
-				image : '/Card.png',
-				alt: ''
-			},
-			{
-				id: 2,
-				image : '/Card.png',
-				alt: ''
-			},
-			{
-				id: 3,
-				image : '/Card.png',
-				alt: ''
-			},
-		]
-	},
-]
 const ProductDetailed = () => {
-  const [thumbsSwiper, setThumbsSwiper] = useState(null);
+    const router = useRouter()
+    const { t  } = useTranslation();
+    const { lang } = useSelector((state) => state.langSlice);
+    const {productId}=router.query
+    const dispatch = useDispatch()
+    const [thumbsSwiper, setThumbsSwiper] = useState(null);
+    const { data: product  , refetch: refetchProduct, isLoading , isSuccess } = useQuery(["products" , productId], () =>
+        apiService.getDataByID(  '/products' ,productId) , { enabled: false}
+    );
+    useEffect(() => {
+        if(productId) {
+            console.log(productId)
+            refetchProduct()
+        }
+    } ,  [productId])
+    const handleAddBag = () => {
+        const checkProduct ={
+            title_uz: product?.title_uz,
+            title_ru: product?.title_ru,
+            price:product?.price,
+            salePrice:product?.sales,
+            image: product?.images[0]?.image,
+            id: product?.id,
+            count: null,
+        }
 
-  return (
-    <>
-      <SectionUI customPadding={'pt-[140px] md:pt-40 pb-10 font-rubik pruduct-inner relative '}>
-        <div className='space-y-5 md:space-y-[30px]'>
-          <BreadcrumbUI pageLink={'naushnik'}/>
-          <SectionTitleUI title={'Наушники Xiaomi Buds 3T Pro (White)'} isBorder={true}/>
-          <div className='grid grid-cols-1 md:grid-cols-12 lg:grid-cols-16 gap-6 lg:gap-[30px] static'>
-            <div className=' md:col-span-6 '>
-              <div className='w-full aspect-video	h-full relative flex gap-5 md:gap-[30px]'>
-                {
-                  productImages &&
-                  <>
-                  <Swiper
-                    spaceBetween={10}
-                    thumbs={{swiper: thumbsSwiper && !thumbsSwiper.destroyed ? thumbsSwiper : null}}
-                    modules={[FreeMode,  Thumbs]}
-                    className={ `  mySwiper2 w-[80%] h-full order-2`}
-                  >
-                  {
-                    productImages?.map(image => (
-                      <SwiperSlide key={image?.id} className='relative w-full h-full'>
-                        <ImageUI src={image?.src} imgStyle={'object-cover'}/>
-                      </SwiperSlide>
-                    ))
-                  }
-                </Swiper>
-                <Swiper
-                  onSwiper={setThumbsSwiper}
-                  spaceBetween={10}
-                  slidesPerView={4}
-                  freeMode={true}
-                  watchSlidesProgress={true}
-                  modules={[FreeMode, Navigation, Thumbs]}
-                  className={`mySwiper w-[50px] md:w-[60px] h-full order-1 `}
-                >
-                      <div className='flex flex-col '>
-                  {
-                    
-                    productImages?.map(image => (
-                        <SwiperSlide key={image?.id} className='relative aspect-square h-auto w-full border'>
-                          <ImageUI src={image?.src} imgStyle={'object-cover cursor-pointer'}/>
-                        </SwiperSlide>
-                    ))
-                  }
+        console.log(checkProduct.image)
+        dispatch(basketList(checkProduct))
+        dispatch(totalAllPrice())
+    };
 
+
+    return (
+        <>
+            <SectionUI customPadding={'pt-[140px] md:pt-40 pb-10 font-rubik pruduct-inner relative '}>
+                <div className='space-y-5 md:space-y-[30px]'>
+                    <BreadcrumbUI pageLink={lang === 'ru' ? product?.title_ru : product?.title_uz}/>
+                    <SectionTitleUI  title={lang === 'ru' ? product?.title_ru : product?.title_uz} isBorder={true}/>
+                    <div className='grid grid-cols-1 md:grid-cols-12 lg:grid-cols-16 gap-6 lg:gap-[30px] static'>
+                        <div className=' md:col-span-6 '>
+                            <div className='w-full aspect-video	h-full relative flex gap-5 md:gap-[10px]'>
+                                {
+                                    product?.images &&
+                                    <>
+                                        <Swiper
+                                            spaceBetween={8}
+                                            thumbs={{swiper: thumbsSwiper && !thumbsSwiper.destroyed ? thumbsSwiper : null}}
+                                            modules={[FreeMode,  Thumbs]}
+                                            className={ `  mySwiper2 w-[80%] h-full order-2`}
+                                        >
+                                            {
+                                                product?.images?.map(image => (
+                                                    <SwiperSlide key={image?.id} className='relative w-full h-full  rounded-lg  overflow-hidden'>
+                                                        <ImageUI src={image?.image} imgStyle={'object-cover'}/>
+                                                    </SwiperSlide>
+                                                ))
+                                            }
+                                        </Swiper>
+                                        <Swiper
+                                            onSwiper={setThumbsSwiper}
+                                            spaceBetween={5}
+                                            slidesPerView={4}
+                                            freeMode={true}
+                                            watchSlidesProgress={true}
+                                            modules={[FreeMode, Navigation, Thumbs]}
+                                            className={`mySwiper w-[50px] md:w-[60px] h-full order-1  `}
+                                        >
+                                            <div className='flex flex-col '>
+                                                {
+
+                                                    product?.images?.map(image => (
+                                                        <SwiperSlide key={image?.id} className='relative aspect-square h-auto w-full border rounded-lg  overflow-hidden'>
+                                                            <ImageUI src={image?.image} imgStyle={'object-cover cursor-pointer '}/>
+                                                        </SwiperSlide>
+                                                    ))
+                                                }
+
+                                            </div>
+
+                                        </Swiper>
+                                    </>
+                                }
+
+                            </div>
+                        </div>
+                        <div className='md:col-span-6 space-y-2.5  text-darkBlue'>
+                            <h2 className='font-medium md:text-lg'>{t('product-inner.moreAbout')}</h2>
+                            <div className='space-y-2'>
+                                {
+                                    product?.short_descriptions?.map(item => (
+                                        <Fragment key={item.id}>
+                                            <InfoProductUI title={ lang === 'ru' ? item?.key_ru : item?.key_uz } value={lang === 'ru' ? item?.value_ru : item?.value_uz}/>
+                                        </Fragment>
+                                    ))
+                                }
+                            </div>
+                        </div>
+                        <div className='lg:col-span-4 md:col-span-5 '>
+                            <PriceCard isHave={product?.is_available} price={product?.price} handleAddBag={handleAddBag} />
+                        </div>
                     </div>
+                    <div className='grid grid-cols-16 '>
+                        <div className='col-span-full md:col-span-12 space-y-2.5'>
+                            <h2 className='font-medium md:text-lg'>{t('product-inner.description')}</h2>
+                            <p className='text-justify '>
+                                {
+                                    lang === 'ru' ?
+                                        product?.description_ru :
+                                        product?.description_uz
+                                }
+                            </p>
+                        </div>
+                    </div>
+                    <div className='grid grid-cols-16'>
+                        <div className='col-span-full lg:col-span-12 space-y-2.5'>
+                            <h2 className='font-medium md:text-lg'>{t('product-inner.about')}</h2>
+                            <div className='grid grid-cols-1 md:grid-cols-2 gap-x-10  gap-y-2'>
+                                {
+                                    product?.characteristics?.map(item => (
+                                        <Fragment key={item?.id}>
+                                            <InfoProductUI title={ lang === 'ru' ? item?.key_ru : item?.key_uz } value={lang === 'ru' ? item?.value_ru : item?.value_uz}/>
+                                        </Fragment>
+                                    ))
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-                </Swiper>
-                  </>
-                }
-                
-              </div>
-            </div>
-            <div className='md:col-span-6 space-y-2.5  text-darkBlue'>
-              <h2 className='font-medium md:text-lg'>Коротко о товаре</h2>
-              <div className='space-y-2'>
-                {
-                  shortAboutProduct.map(item => (
-                    <Fragment key={item.id}>
-                      <InfoProductUI title={item?.title} value={item?.value}/>
-                    </Fragment>
-                  ))
-                }
-              </div>
-            </div>
-            <div className='lg:col-span-4 md:col-span-5 '>
-              <PriceCard />
-            </div>
-          </div>
-          <div className='grid grid-cols-16 '>
-            <div className='col-span-full md:col-span-12 space-y-2.5'>
-						  <h2 className='font-medium md:text-lg'>Описание товара</h2>
-							<p className='text-justify '>Наушники TWS Xiaomi Buds 3T Pro – модель, которая позволит не расставаться с музыкой или книгами ни на минуту. Слушайте любимые композиции дома, по пути на работу или во время занятий спортом – качественные динамики с поддержкой широкого частотного диапазона, удобная внутриканальная конструкция и система активного подавления внешних шумов подарит вам яркие эмоции при прослушивании. С помощью 6 цифровых микрофонов наушники также отлично подойдут для общения, обеспечивая точную передачу вашего голоса в любых условиях.
-								Используйте Xiaomi Buds 3T Pro с любыми устройствами при помощи беспроводной связи Bluetooth. Версия протокола 5.2 в сочетании с емкими аккумуляторами может обеспечить до 18 часов работы, а мощный и стабильный сигнал позволит слушать музыку на расстоянии до 10 метров от смартфона. Управляйте воспроизведением простым прикосновением – сенсорные кнопки на наушниках сделают использование особенно простым и удобным. Комплектация модели включает в себя набор силиконовых амбушюров разного размера.
-								* Комплектацию и цвет товара уточняйте у консультанта
-							</p>
-            </div>
-          </div>
-					<div className='grid grid-cols-16'>
-						<div className='col-span-full lg:col-span-12 space-y-2.5'>
-							<h2 className='font-medium md:text-lg'>Все характеристики</h2>
-							<div className='grid grid-cols-1 md:grid-cols-2 gap-x-10 md:grid-rows-7 gap-y-2'>
-								{
-									allAboutProduct.map(info => (
-										<InfoProductUI title={info.title} value={info.value} key={info.title}/>
-									))
-								}
-							</div>
-						</div>
-					</div>
-        </div>
 
-        
-      </SectionUI>   
-			<SectionUI>
-			  <SectionTitleUI title={'Вам может понравиться'} btnText={'Смотреть все'} btnStyle={'border-0'} href={'#'}/>
-				<div>
-					<SwiperUI idSwiper={'myswiper2'} productsArr={beLikeProducts}/>				
-				</div>
-			</SectionUI>   
-			<SectionUI customPadding={'py-10 md:pb-20'}>
-				<SectionTitleUI title={'Недавно просмотренные'}/>
-				<div className=''>
-					<SwiperUI idSwiper={'viewedSwiper'} productsArr={viewedCards} />
-				</div>
-			</SectionUI>
-    </>
-  )
+            </SectionUI>
+            <SectionUI>
+                <SectionTitleUI title={t('product-inner.brandProduct')} btnText={t('btn.watch')} btnStyle={'border-0'} href={'#'}/>
+                <div>
+                    <SwiperUI idSwiper={'myswiper2'} productsArr={product?.related_products}/>
+                </div>
+            </SectionUI>
+            <SectionUI customPadding={'py-10 md:pb-20'}>
+                <SectionTitleUI title={t('product-inner.likeProduct')}/>
+                {/*<SwiperUI idSwiper={'viewedSwiper'} productsArr={viewedCards} />*/}
+            </SectionUI>
+        </>
+    )
 }
-
 export default ProductDetailed;

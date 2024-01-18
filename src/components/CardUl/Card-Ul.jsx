@@ -3,10 +3,13 @@ import  { Pagination, Autoplay } from "swiper/modules";
 
 import { ButtonUI, ImageUI } from "../index"
 import { LuShoppingBag } from "react-icons/lu";
+import {useSelector} from "react-redux";
 
-const CardUI = ({imageArr, title, price, salePrice, rows}) => {
-  return (
-    <div className={`flex ${rows ? 'items-center' : 'flex-col  h-full'}  gap-3.5 md:gap-6 card-ui`}>
+const CardUI = ({imageArr, title_ru , title_uz, price, salePrice, rows , slug}) => {
+    const { lang } = useSelector((state) => state.langSlice);
+
+    return (
+    <div className={`flex ${rows ? 'items-center' : 'flex-col  h-full'}  gap-3.5 md:gap-6 card-ui relative`}>
       <div className={`${rows ? 'w-[40%]' : 'w-full'}`}>
                   <Swiper
                       id={"mySwiper1"}
@@ -20,8 +23,8 @@ const CardUI = ({imageArr, title, price, salePrice, rows}) => {
                       {imageArr?.map((product) => (
                           <SwiperSlide key={product.id} className="h-full "  >
 
-                              <div className={`w-full relative ${rows ? 'h-[180px] md:h-[240px] lg:h-[260px] ' : 'h-[220px] md:h-[270px] lg:h-[310px]'} overflow-hidden rounded-lg`}>
-                                  <ImageUI src={product.image} alt={product.alt} imgStyle={'object-cover'}/>
+                              <div className={`w-full relative ${rows ? 'h-[180px] md:h-[240px] lg:h-[260px] ' : 'h-[220px] md:h-[270px] lg:h-[300px]'} overflow-hidden rounded-lg`}>
+                                  <ImageUI src={product?.image} alt={title_uz} imgStyle={'object-cover'}/>
 
                               </div>
                           </SwiperSlide>
@@ -35,7 +38,7 @@ const CardUI = ({imageArr, title, price, salePrice, rows}) => {
       <div className={`gap-y-4 flex  flex-col  ${rows ? 'w-1/2 justify-center' : 'w-full justify-between h-full'}`}>
       <div className="space-y-3 lg:space-y-[18px]">
         <h5 className="font-rubik text-sm  md:text-lg break-all line-clamp-2 md:line-clamp-2">
-          { title }
+          { lang ? title_ru : title_uz }
         </h5>
         <div className="flex items-end gap-3 ">
           <p className={`font-rubik font-medium md:text-lg lg:text-xl ${salePrice ? 'text-currentRed' : 'text-currentBlue'}`}>{price} </p>
@@ -46,7 +49,7 @@ const CardUI = ({imageArr, title, price, salePrice, rows}) => {
       </div>
       <div className="flex  gap-2.5 justify-between md:pr-3">
         <ButtonUI className={'border-currentRed'} leftIcon={<LuShoppingBag className="md:h-[22px] text-currentRed md:w-[22px] "/>}/>
-        <ButtonUI href={'#'} text={'Подробнее'} cardBtn={true} />
+        <ButtonUI href={`product/${slug}`} text={'Подробнее'} cardBtn={true} />
       </div>
       </div>
     </div>

@@ -2,8 +2,11 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import {  Navigation,  } from 'swiper/modules';
 import { CardUI } from '..';
 import {GrNext, GrPrevious} from "react-icons/gr";
+import {useSelector} from "react-redux";
 
 const SwiperUI =({idSwiper, productsArr}) => {
+    const { lang } = useSelector((state) => state.langSlice);
+
   return (
     <div className='card-ui relative'>
         <Swiper
@@ -43,8 +46,8 @@ const SwiperUI =({idSwiper, productsArr}) => {
             className="w-full mySwiper h-full flex items-center justify-center overflow-auto"
         >
             {productsArr?.map((product, ind) => (
-                <SwiperSlide className={'h-full hidden'} key={ind}>
-                    <CardUI title={product.title} price={product.price} imageArr={product.imageArr}/>
+                <SwiperSlide className={'h-full '} key={ind}>
+                    <CardUI  title_ru={product?.title_ru} title_uz={product?.title_uz}  price={product?.price} salePrice={product?.sales} imageArr={product?.images}/>
                 </SwiperSlide>
             ))}
                 <div className="absolute top-[50%] translate-y-[-50%] -left-0  cursor-pointer  my-navigation-prev z-10 p-1.5 bg-darkBlue text-white rounded-full">

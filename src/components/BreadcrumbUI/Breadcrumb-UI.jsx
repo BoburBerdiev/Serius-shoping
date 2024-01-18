@@ -15,11 +15,12 @@ const BreadcrumbUI = ({pageLink}) => {
       setPage(t('navbar.basket'))
     }else if(pageSplit[1] === 'contact') {
       setPage(t('navbar.contact'))
-    }else if(pageSplit[1] === 'product') {
+    }else if(pageSplit[1].includes('catalog') ) {
       setPage(t('navbar.catalog'))
+    }else if(pageSplit[1] === 'product') {
+      setPage(t('navbar.product'))
     }
   }
-  console.log(asPath.split('/'))
   useEffect(() => {
     selectPage(asPath)
   }, [])
