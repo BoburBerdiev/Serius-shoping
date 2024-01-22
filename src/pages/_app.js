@@ -8,27 +8,26 @@ import "swiper/css/navigation";
 import 'swiper/css/free-mode';
 import 'swiper/css/thumbs';
 import "../localization/i18n";
-import {store} from '@/store';
 import { QueryClientProvider, QueryClient } from "react-query";
+import { PersistGate } from "redux-persist/integration/react";
+import store, { persistor } from "@/store";
+import 'react-loading-skeleton/dist/skeleton.css'
+
 const queryClient = new QueryClient();
 
 export default function App({ Component, pageProps }) {
   return  (
       <HydrationProvider>
           <QueryClientProvider client={queryClient}>
-          <Provider store={store}>
-                  <Client>
-
-                        <Layout>
-                            <Component {...pageProps} />
-                        </Layout>
-                  </Client>
-          </Provider>
-
+              <Provider store={store}>
+                  <PersistGate loading={null} persistor={persistor}>
+                      <Layout>
+                          <Component {...pageProps} />
+                      </Layout>
+                  </PersistGate>
+              </Provider>
           </QueryClientProvider>
-
       </HydrationProvider>
-
       )
 
 }

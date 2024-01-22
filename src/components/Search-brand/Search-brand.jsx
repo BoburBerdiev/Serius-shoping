@@ -1,17 +1,25 @@
-import {useCallback, useEffect, useState} from "react";
+import {Fragment, useCallback, useEffect, useState} from "react";
 import {RiSearch2Line} from "react-icons/ri";
 import {AccordionUI, CheckBoxUI} from "@/components";
 
 
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
+import {selectBrand} from "@/slice/filterQuery";
 
 const SearchBrand = ({formname }) => {
+    const dispatch = useDispatch()
+    const [selectItem , setSelectItem] = useState(null)
     const [searchBrand, setSearchBrand] = useState([])
     const { brands } = useSelector((state) => state.filterSlice);
 
     useEffect(() => {
         setSearchBrand(brands)
-    } ,[brands ])
+    } ,[brands])
+
+    useEffect(() => {
+        dispatch(selectBrand(selectItem))
+        setSelectItem(null)
+    } , [])
     const onChangeBrandName=(e)=>{
         const value=e.target.value
         const filterData = brands?.filter(
@@ -40,14 +48,21 @@ const SearchBrand = ({formname }) => {
                 <div className="flex flex-col gap-3 text-textColor ">
                     {
                         searchBrand?.map(brand => (
-                            <CheckBoxUI
+                            <Fragment
                                 key={brand?.id}
-                                formname={formname}
-                                value={brand?.title_ru}
-                                title_ru={brand?.title_ru}
-                                title_uz={brand?.title_uz}
-                                style={"flex gap-3 items-center"}
-                            />
+                            >
+                                <CheckBoxUI
+                                    key={brand?.id}
+                                    formname={formname}
+                                    value={brand?.title_ru}
+                                    title_ru={brand?.title_ru}
+                                    title_uz={brand?.title_uz}
+                                    style={"flex gap-3 items-center"}
+                                    setSelectItem={setSelectItem}
+                                />
+
+                            </Fragment>
+
                         ))
                     }
                 </div>

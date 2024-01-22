@@ -17,18 +17,22 @@ const CatalogNav = () => {
         {
             title: t('filter.hightestprice'),
             value: '-price',
+            id:1,
         },
         {
             title: t('filter.loweprice'),
             value: 'price',
+            id:2,
         },
         {
             title:  t('filter.az'),
+            id:3,
             value : 'title_ru',
         },
         {
             title:  t('filter.za'),
             value : '-title_ru',
+            id:4,
         },
     ]
     const handleSort = (e) => {
@@ -92,7 +96,7 @@ const CatalogNav = () => {
                 >
                     {
                         orderList.map((order, ind) => (
-                            <div key={ind} onClick={() => handleOrder(order)}
+                            <div key={order.id} onClick={() => handleOrder(order)}
                                  className="px-3 py-2 cursor-pointer text-xs text-[#656565]  font-medium duration-500 hover:bg-[rgba(113,169,233,.559)]"
                             >
                                 {

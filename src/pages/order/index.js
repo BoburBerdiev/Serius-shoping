@@ -125,7 +125,7 @@ const Index = () => {
                         <div
                             className="w-full h-screen flex flex-col items-center justify-center gap-y-4 md:gap-y-[30px]">
                             <div className="relative w-20 h-20 md:w-[134px] md:h-[152px]">
-                                <ImageUI src={'/empty cart.png'} imgStyle={'object-contain'}/>
+                                <ImageUI src={'/empty cart.png'} alt={'card'} imgStyle={'object-contain'}/>
                             </div>
                             <div className="flex flex-col items-center ">
                                 <SectionTitleUI title={'Ваша корзина пуста'} isBorder={true}/>

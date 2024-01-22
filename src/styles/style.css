@@ -131,3 +131,25 @@
   margin-top: -5px;
 
 }
+
+/*  trumb  */
+/* Firefox */
+*{
+  scrollbar-width: auto;
+  scrollbar-color: #0F1F39 #FFFFFF;
+}
+
+/* Other browsers */
+*::-webkit-scrollbar{
+  width: 6px;
+}
+
+*::-webkit-scrollbar-track{
+  background: #FFFFFF;
+}
+
+*::-webkit-scrollbar-thumb{
+  background-color: #0F1F39;
+  border-radius: 4px;
+  border: 1px solid #FFFFFF;
+}

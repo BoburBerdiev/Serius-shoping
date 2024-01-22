@@ -16,8 +16,9 @@ import {useRouter} from "next/router";
 import {useDispatch, useSelector} from "react-redux";
 import {useTranslation} from "react-i18next";
 import {basketList ,totalAllPrice } from '@/slice/basket'
-
+import Skeleton , { SkeletonTheme } from "react-loading-skeleton";
 const ProductDetailed = () => {
+    const loading = useState(true)
     const router = useRouter()
     const { t  } = useTranslation();
     const { lang } = useSelector((state) => state.langSlice);
@@ -29,7 +30,6 @@ const ProductDetailed = () => {
     );
     useEffect(() => {
         if(productId) {
-            console.log(productId)
             refetchProduct()
         }
     } ,  [productId])
@@ -44,18 +44,19 @@ const ProductDetailed = () => {
             count: null,
         }
 
-        console.log(checkProduct.image)
         dispatch(basketList(checkProduct))
         dispatch(totalAllPrice())
     };
 
+    console.log(product)
 
     return (
         <>
+            <SkeletonTheme baseColor="#e6e5e5" highlightColor="#dfd4c7">
             <SectionUI customPadding={'pt-[140px] md:pt-40 pb-10 font-rubik pruduct-inner relative '}>
                 <div className='space-y-5 md:space-y-[30px]'>
                     <BreadcrumbUI pageLink={lang === 'ru' ? product?.title_ru : product?.title_uz}/>
-                    <SectionTitleUI  title={lang === 'ru' ? product?.title_ru : product?.title_uz} isBorder={true}/>
+                    <SectionTitleUI isLoading={loading} title={lang === 'ru' ? product?.title_ru : product?.title_uz} isBorder={true}/>
                     <div className='grid grid-cols-1 md:grid-cols-12 lg:grid-cols-16 gap-6 lg:gap-[30px] static'>
                         <div className=' md:col-span-6 '>
                             <div className='w-full aspect-video	h-full relative flex gap-5 md:gap-[10px]'>
@@ -71,7 +72,10 @@ const ProductDetailed = () => {
                                             {
                                                 product?.images?.map(image => (
                                                     <SwiperSlide key={image?.id} className='relative w-full h-full  rounded-lg  overflow-hidden'>
+                                                        {
+                                                            loading ? <Skeleton width={'100%'} height={'100%'}/> :
                                                         <ImageUI src={image?.image} imgStyle={'object-cover'}/>
+                                                        }
                                                     </SwiperSlide>
                                                 ))
                                             }
@@ -104,7 +108,9 @@ const ProductDetailed = () => {
                             </div>
                         </div>
                         <div className='md:col-span-6 space-y-2.5  text-darkBlue'>
-                            <h2 className='font-medium md:text-lg'>{t('product-inner.moreAbout')}</h2>
+                            {isLoading ? <h2 className='font-medium md:text-lg'>{t('product-inner.moreAbout')}</h2> :
+                                <Skeleton width={"100%"} height="100%"/>}
+
                             <div className='space-y-2'>
                                 {
                                     product?.short_descriptions?.map(item => (
@@ -116,7 +122,7 @@ const ProductDetailed = () => {
                             </div>
                         </div>
                         <div className='lg:col-span-4 md:col-span-5 '>
-                            <PriceCard isHave={product?.is_available} price={product?.price} handleAddBag={handleAddBag} />
+                            <PriceCard salePrice={product?.sales} isHave={product?.is_available} price={product?.price} handleAddBag={handleAddBag} />
                         </div>
                     </div>
                     <div className='grid grid-cols-16 '>
@@ -159,6 +165,7 @@ const ProductDetailed = () => {
                 <SectionTitleUI title={t('product-inner.likeProduct')}/>
                 {/*<SwiperUI idSwiper={'viewedSwiper'} productsArr={viewedCards} />*/}
             </SectionUI>
+            </SkeletonTheme>
         </>
     )
 }

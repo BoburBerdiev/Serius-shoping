@@ -1,11 +1,26 @@
 import { Swiper, SwiperSlide } from "swiper/react";
-import  { Pagination, Autoplay } from "swiper/modules";
-
+import  { Pagination } from "swiper/modules";
 import { ButtonUI, ImageUI } from "../index"
 import { LuShoppingBag } from "react-icons/lu";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
+import {basketList, totalAllPrice} from "@/slice/basket";
+const CardUI = ({imageArr, title_ru , title_uz, price, salePrice, rows , slug , id}) => {
+    const dispatch = useDispatch()
 
-const CardUI = ({imageArr, title_ru , title_uz, price, salePrice, rows , slug}) => {
+    const handleAddBag = () => {
+        const checkProduct ={
+            title_uz: title_uz,
+            title_ru: title_ru,
+            price:price,
+            salePrice:salePrice,
+            image: imageArr[0]?.image,
+            id: id,
+            count: null,
+        }
+
+        dispatch(basketList(checkProduct))
+        dispatch(totalAllPrice())
+    };
     const { lang } = useSelector((state) => state.langSlice);
 
     return (
@@ -48,8 +63,8 @@ const CardUI = ({imageArr, title_ru , title_uz, price, salePrice, rows , slug}) 
         </div>
       </div>
       <div className="flex  gap-2.5 justify-between md:pr-3">
-        <ButtonUI className={'border-currentRed'} leftIcon={<LuShoppingBag className="md:h-[22px] text-currentRed md:w-[22px] "/>}/>
-        <ButtonUI href={`product/${slug}`} text={'Подробнее'} cardBtn={true} />
+        <ButtonUI className={'border-currentRed'} onClick={handleAddBag} leftIcon={<LuShoppingBag className="md:h-[22px] text-currentRed md:w-[22px] "/>}/>
+        <ButtonUI href={`${slug}`} text={'Подробнее'} cardBtn={true} />
       </div>
       </div>
     </div>
