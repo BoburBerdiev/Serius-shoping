@@ -9,6 +9,7 @@ const filterSlice = createSlice({
         brands: null,
         product: null
     },
+
     reducers: {
         selectFilterCatalog:(state , {payload})=> {
           state.category = payload

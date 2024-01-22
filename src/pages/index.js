@@ -3,7 +3,14 @@ import SEO from '@/SEO/SEO'
 import {index} from '@/SEO/SEO.config'
 import axios from "axios";
 import {Fragment} from "react";
-export default function Home({newProduct}) {
+import {useSelector} from "react-redux";
+export default function Home({newProduct , indexCatalog}) {
+
+  const {lang} = useSelector(state => state.langSlice)
+  console.log(indexCatalog)
+
+
+
   return (
     <>
       {/*<SEO*/}
@@ -20,21 +27,20 @@ export default function Home({newProduct}) {
           <h2 className="text-3xl md:text-4xl lg:text-5xl max-md:text-center font-superaGothic max-w-[600px]">Идеальный магазин мобильных аксессуаров</h2>
         </div>
         <div className="w-full h-full relative">
-          <ImageUI src={'/phone.png'} imgStyle={'object-contain'}/>
+          <ImageUI src={'/phone.png'} alt={'phone'} imgStyle={'object-contain'}/>
         </div>
       </div>
     </header>
     <SectionUI customPadding={'py-10 md:pt-20'}>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-7 gap-8">
-        <CategoryCardUI grid={'md:row-span-2 md:h-full lg:col-span-3'} text={'Чехлы'} link={'#'} textPosition={'lg:top-10 lg:left-10'} iconPosition={'lg:bottom-auto lg:top-10 lg:right-10'} src={'/mobile-images/categories/phone-case.png'}/>
-        <CategoryCardUI grid={'lg:col-span-2'} text={'Стекла и пленки'} textPosition={'lg:top-[30px] left-7'} src={'/mobile-images/categories/phone-glass.png'}/>
-        <CategoryCardUI grid={'sm:col-span-2 md:col-span-1 lg:col-span-2'} textPosition={'lg:top-[30px] left-7'} text={'Гаджеты'} src={'/mobile-images/categories/gadgets.png'}/>
-        <CategoryCardUI grid={'lg:col-span-4'} text={'Аудио'} iconPosition={'lg:top-7 lg:right-11 lg:bottom-auto'} textPosition={'lg:top-[30px] left-7'} src={'/mobile-images/categories/audio.png'}/>
-        <CategoryCardUI grid={'lg:col-span-3'} iconPosition={'lg:top-[30px] lg:bottom-auto lg:right-[30px]'} textPosition={'lg:bottom-8 lg:left-6 lg:top-auto'} text={'Аксессуары для смарт часов'} src={'/mobile-images/categories/smart-watch.png'}/>
-        <CategoryCardUI grid={'lg:col-span-2'} text={'Кабели и ЗУ'} textPosition={'lg:top-[30px] left-7'} src={'/mobile-images/categories/cables.png'}/>
-        <CategoryCardUI grid={'lg:col-span-2'} text={'Разное'} textPosition={'lg:top-[30px] left-7'} src={'/mobile-images/categories/other-products.png'}/>
+        <CategoryCardUI grid={'md:row-span-2 md:h-full lg:col-span-3'} text={lang === 'ru' ? indexCatalog[0]?.title_ru : indexCatalog[0]?.title_uz} link={'#'} textPosition={'lg:top-10 lg:left-10'} iconPosition={'lg:bottom-auto lg:top-10 lg:right-10'} src={indexCatalog[0]?.image}/>
+        <CategoryCardUI grid={'lg:col-span-2'} text={lang === 'ru' ? indexCatalog[1]?.title_ru : indexCatalog[1]?.title_uz} textPosition={'lg:top-[30px] left-7'} src={indexCatalog[1]?.image}/>
+        <CategoryCardUI grid={'sm:col-span-2 md:col-span-1 lg:col-span-2'} textPosition={'lg:top-[30px] left-7'} text={lang === 'ru' ? indexCatalog[2]?.title_ru : indexCatalog[2]?.title_uz} src={indexCatalog[2]?.image}/>
+        <CategoryCardUI grid={'lg:col-span-4'} text={lang === 'ru' ? indexCatalog[3]?.title_ru : indexCatalog[3]?.title_uz} iconPosition={'lg:top-7 lg:right-11 lg:bottom-auto'} textPosition={'lg:top-[30px] left-7'} src={indexCatalog[3]?.image}/>
+        <CategoryCardUI grid={'lg:col-span-3'} iconPosition={'lg:top-[30px] lg:bottom-auto lg:right-[30px]'} textPosition={'lg:bottom-8 lg:left-6 lg:top-auto'} text={lang === 'ru' ? indexCatalog[4]?.title_ru : indexCatalog[4]?.title_uz} src={indexCatalog[4]?.image}/>
+        <CategoryCardUI grid={'lg:col-span-2'} text={lang === 'ru' ? indexCatalog[5]?.title_ru : indexCatalog[5]?.title_uz} textPosition={'lg:top-[30px] left-7'} src={indexCatalog[5]?.image}/>
+        <CategoryCardUI grid={'lg:col-span-2'} text={lang === 'ru' ? indexCatalog[6]?.title_ru : indexCatalog[6]?.title_uz} textPosition={'lg:top-[30px] left-7'} src={indexCatalog[6]?.image}/>
       </div>
-
     </SectionUI>
     <SectionUI customPadding={'py-10 md:pb-20'}>
       <SectionTitleUI title={'Скидки'} href={'#'}/>
@@ -87,15 +93,15 @@ export async function getServerSideProps({req, res}) {
       "public, s-maxage=10, stale-while-revalidate=59"
   );
   // Fetch data from external API
-  const [newProduct, socialMedia] = await Promise.all([
+  const [newProduct, indexCatalog] = await Promise.all([
     axios.get(`${process.env.NEXT_PUBLIC_API_URL}/products-catalog?stock=new`),
-    // axios.get(`${process.env.NEXT_PUBLIC_API_URL}/about/socials/`)
+    axios.get(`${process.env.NEXT_PUBLIC_API_URL}/main-page-categories/`)
   ]);
 
   return {
     props: {
       newProduct: newProduct?.data?.results,
-      // socialMedia: socialMedia.data,
+      indexCatalog: indexCatalog.data,
     },
   };
 }

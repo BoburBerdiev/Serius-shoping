@@ -46,7 +46,7 @@ const SwiperUI =({idSwiper, productsArr}) => {
             className="w-full mySwiper h-full flex items-center justify-center overflow-auto"
         >
             {productsArr?.map((product, ind) => (
-                <SwiperSlide className={'h-full '} key={ind}>
+                <SwiperSlide className={'h-full '} key={product?.id}>
                     <CardUI  title_ru={product?.title_ru} title_uz={product?.title_uz}  price={product?.price} salePrice={product?.sales} imageArr={product?.images}/>
                 </SwiperSlide>
             ))}

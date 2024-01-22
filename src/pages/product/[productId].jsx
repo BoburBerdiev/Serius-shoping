@@ -29,7 +29,6 @@ const ProductDetailed = () => {
     );
     useEffect(() => {
         if(productId) {
-            console.log(productId)
             refetchProduct()
         }
     } ,  [productId])
@@ -44,7 +43,6 @@ const ProductDetailed = () => {
             count: null,
         }
 
-        console.log(checkProduct.image)
         dispatch(basketList(checkProduct))
         dispatch(totalAllPrice())
     };

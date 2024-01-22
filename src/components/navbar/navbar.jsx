@@ -12,7 +12,9 @@ import { useTranslation } from "react-i18next";
 import SearchCardUI from '../search-card/search-card-UI';
 import apiService from "@/service/axois";
 import {useQuery} from "react-query";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
+import {selectFilterCatalog, selectFilterSubCategory} from "@/slice/filter";
+import {useRouter} from "next/router";
 
 
 const Navbar = () => {
@@ -20,11 +22,13 @@ const Navbar = () => {
     const { lang } = useSelector((state) => state.langSlice);
     const [openNav , setOpenNav] = useState(false)
     const [openSearch, setOpenSearch] = useState(false)
-
+    const dispatch = useDispatch()
+    const router = useRouter()
 
     const { data: catalog } = useQuery("catalog", () =>
         apiService.getData("/categories/")
     );
+
     const navbarHandler = (e) => {
         e.stopPropagation()
         setOpenNav(prevstate => !prevstate)
@@ -84,16 +88,23 @@ const Navbar = () => {
       const searchHandler = (e) => {
         e.stopPropagation();
         setIsSearchBarOpen((prevstate) => !prevstate);
-    
-        // If the search bar is being opened, focus the input
         if (!isSearchBarOpen) {
           searchInputRef.current.focus();
         }
       };
-
       const handleInputClick = (e) => {
         e.stopPropagation();
       };
+      const filterSubCatalog = (item) => {
+          console.log(item)
+          let subTitleSend = {
+              subTitle: item.title_uz,
+              title:item.categories.title_uz
+          }
+          dispatch(selectFilterSubCategory(subTitleSend))
+          subTitleSend = {}
+          router.push('/product')
+      }
 
    return (
        <nav className="bg-white fixed w-[100%] z-50 top-0 start-0 border-b border-gray-200 font-rubik">
@@ -112,13 +123,13 @@ const Navbar = () => {
                                 <ul className='text-darkBlue pt-5 lg:py-10' key={item?.id}>
                                     <h3 className='lg:text-lg font-medium pb-[10px]'>{lang === 'ru' ? item?.title_ru : item?.title_uz}</h3>
                                     {item?.sub_categories?.map(product => (
-                                        <li className='relative group z-50 pb-2 text-[#8A8A8A] duration-300 hover:text-darkBlue' key={product?.id}>
-                                            <a href={`catalog?${product?.title_uz}`} className='flex items-center justify-between gap-5 max-md:text-sm'>
+                                        <li  className='relative group z-50 pb-2 text-[#8A8A8A] duration-300 hover:text-darkBlue' key={product?.id}>
+                                            <button onClick={() => filterSubCatalog( product)} className='flex items-center justify-between gap-5 max-md:text-sm'>
                                                 {lang === 'ru' ? product?.title_ru : product?.title_uz}
                                                 <div className='text-white text-xl duration-300 group-hover:text-darkBlue'>
                                                     <MdOutlineKeyboardArrowRight />
                                                 </div>
-                                            </a>
+                                            </button>
                                         </li>
                                     ))}
                                 </ul>

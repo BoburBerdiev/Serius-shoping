@@ -11,12 +11,12 @@ const AccordionUI = ({children  , title ,style }) => {
   return (
     <div>
       <div onClick={openAccordion} className= {`${style} bg-white  cursor-pointer justify-between flex  items-center ${openList ? 'pb-5': 'p-0'}  `}>
-        <span className="font-medium text-lg">
+        <span className="font-medium lg:text-lg">
         {
           title  
         }
         </span>
-        <LuChevronDown className={`w-6 h-6 font-medium duration-200 ${openList ? '-rotate-180' : 'rotate-0'} `} />
+        <LuChevronDown className={` w-4 h-4 lg:w-6 lg:h-6 flex-shrink-0 font-medium duration-200 ${openList ? '-rotate-180' : 'rotate-0'} `} />
       </div>
       {
         openList && 
