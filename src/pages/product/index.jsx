@@ -147,7 +147,6 @@ const Index = () => {
                         </div>
                     </div>
                 </div>
-                z
             </SectionUI>
         </>
     )

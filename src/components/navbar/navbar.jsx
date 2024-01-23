@@ -151,12 +151,12 @@ const Navbar = () => {
                         <SearchCardUI href={'/product'}  price={'150000 сум'} />
                         <SearchCardUI href={'#'} sale={'120000 сум'} price={'150000 сум'} />
                         <SearchCardUI href={'#'} sale={'120000 сум'} price={'150000 сум'} />
-                        <SearchCardUI href={'#'}  price={'150000 сум'} />
+                        <SearchCardUI href={'#'} price={'150000 сум'} />
                         <SearchCardUI href={'#'} sale={'120000 сум'} price={'150000 сум'} />
 
                     </div>
                 </div>
-                <div className='flex items-center gap-[18px] max-md:hidden'>
+                <div className='flex items-center gap-[18px] max-md:hidden select-none'>
                     {/* orasini kottalashtrsh kk */}
                     <Link href='/order' className='flex flex-col items-center justify-center text-darkBlue duration-300 hover:text-slate-500'>
                         <LuShoppingBag className='text-xl' />
