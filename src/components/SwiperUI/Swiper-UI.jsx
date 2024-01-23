@@ -45,9 +45,9 @@ const SwiperUI =({idSwiper, productsArr}) => {
             modules={[Navigation]}
             className="w-full mySwiper h-full flex items-center justify-center overflow-auto"
         >
-            {productsArr?.map((product, ind) => (
+            {productsArr?.map(product => (
                 <SwiperSlide className={'h-full '} key={product?.id}>
-                    <CardUI  title_ru={product?.title_ru} title_uz={product?.title_uz}  price={product?.price} salePrice={product?.sales} imageArr={product?.images}/>
+                    <CardUI  title_ru={product?.title_ru} title_uz={product?.title_uz}  price={product?.price} salePrice={product?.sales} imageArr={product?.images} slug={product?.slug}/>
                 </SwiperSlide>
             ))}
                 <div className="absolute top-[50%] translate-y-[-50%] -left-0  cursor-pointer  my-navigation-prev z-10 p-1.5 bg-darkBlue text-white rounded-full">

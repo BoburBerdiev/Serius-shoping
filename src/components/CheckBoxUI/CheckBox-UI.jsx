@@ -5,7 +5,9 @@ const CheckBoxUI = ({  title_ru , title_uz ,value , style , formname , setSelect
     const { lang } = useSelector((state) => state.langSlice);
 
 const changleInput = (e) => {
-    if(setSelectItem) setSelectItem(e.target)
+    if(setSelectItem) {
+        setSelectItem(e.target)
+    }
     }
 
   return (
@@ -27,7 +29,7 @@ const changleInput = (e) => {
         </label>
       </div>
       <label htmlFor={title_uz} className="space-y-2 cursor-pointer">
-      <span>
+      <span className={'text-wrap'}>
       {
          lang === 'ru' ? title_ru : title_uz
       }

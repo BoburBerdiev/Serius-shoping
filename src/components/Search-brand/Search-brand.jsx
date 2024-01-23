@@ -14,7 +14,7 @@ const SearchBrand = ({formname }) => {
 
     useEffect(() => {
         setSearchBrand(brands)
-    } ,[brands ])
+    } ,[brands])
 
     useEffect(() => {
         dispatch(selectBrand(selectItem))

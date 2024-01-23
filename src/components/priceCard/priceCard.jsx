@@ -22,16 +22,19 @@ function PriceCard({isHave = true ,price ,salePrice ,handleAddBag }) {
                         </div>
                     </div>
             }
-            <h3 className={`text-xl xl:text-2xl ${isHave ? 'text-black' : 'text-borderGrey'} mb-5 md:mb-[30px] `}>
-                {
-                    salePrice?.toLocaleString('en-US', { style: 'decimal' }).replace(/,/g, ' ')
-                }
-            </h3>
-                <h3 className={`text-xl xl:text-2xl ${isHave ? 'text-black' : 'text-borderGrey'} mb-5 md:mb-[30px] `}>
+            <div className={'space-y-2'}>
+                <h3 className={`text-xl xl:text-2xl  ${salePrice && 'text-[#36E3A4]' }   `}>
                     {
-                        price?.toLocaleString('en-US', { style: 'decimal' }).replace(/,/g, ' ')
-                    }
-                    сум</h3>
+                        salePrice?.toLocaleString('en-US', { style: 'decimal' }).replace(/,/g, ' ')
+                    }сум
+                </h3>
+                    <h3 className={`text-xl xl:text-2xl  ${salePrice && 'text-currentRed' }   `}>
+                        {
+                            price?.toLocaleString('en-US', { style: 'decimal' }).replace(/,/g, ' ')
+                        }
+                        сум</h3>
+
+            </div>
 
 
                 <ButtonUI text={'Добавить в корзину'} cardBtn={true} onClick={handleAddBag}
