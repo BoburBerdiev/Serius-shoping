@@ -1,7 +1,7 @@
 import { useState } from "react";
 import {useSelector} from "react-redux";
 
-const CheckBoxUI = ({  title_ru , title_uz ,value , style , formname , setSelectItem }) => {
+const CheckBoxUI = ({  title_ru , title_uz ,value , style , formname , setSelectItem}) => {
     const { lang } = useSelector((state) => state.langSlice);
 
 const changleInput = (e) => {

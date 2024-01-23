@@ -12,19 +12,19 @@ const filterSlice = createSlice({
 
     reducers: {
         selectStock: (state, {payload}) => {
-                if (payload === 'new') {
-                    state.stock = `&is_new=${payload} : ''}`
-                } else {
-                    state.stock = `${payload ? `&stock=${payload}` : ''}`
-                }
+            if (payload === 'new') {
+                state.stock = `&is_new=${payload} : ''}`
+            } else {
+                state.stock = `${payload ? `&stock=${payload}` : ''}`
+            }
         },
         selectCatalog: (state, {payload}) => {
-                if (payload !== 'all') {
-                    state.catalog = `${payload ? `&category=${payload}` : ''}`
-                } else state.catalog = ''
+            if (payload !== 'all') {
+                state.catalog = `${payload ? `&category=${payload}` : ''}`
+            } else state.catalog = ''
         },
         selectBrand: (state, {payload}) => {
-                state.brand = `${payload ? `&brand=${payload}` : ''}`
+            state.brand = `${payload ? `&brand=${payload}` : ''}`
         },
         selectSubCatalog: (state, {payload}) => {
             state.subCatalog = `${payload ? `&sub_category=${payload}` : ''}`

@@ -15,10 +15,15 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import {useDispatch, useSelector} from "react-redux";
 import {selectAllQuery , selectSubCatalog} from "@/slice/filterQuery";
 import {AiOutlineLoading3Quarters} from "react-icons/ai";
+import {useDispatch, useSelector} from "react-redux";
+import {selectAllQuery} from "@/slice/filterQuery";
 
 const Index = () => {
     const dispatch = useDispatch()
     const {query ,subCatalog, catalog , brand  , stock} =   useSelector(state => state.filterQuerySlice)
+    const dispatch = useDispatch()
+    // const [filterQuery, setFilterQuery] = useState('')
+    const {query ,subCatalog } =   useSelector(state => state.filterQuerySlice)
     const [sideBar, setSideBar] = useState(false)
     const [page, setPage] = useState(1)
     const [productInfinity, setProductInfinity] = useState([])
@@ -78,6 +83,7 @@ const Index = () => {
         if (productFilteredSuccess) {
             if (page === 1) {
                 setProductInfinity([...productFiltered?.results])
+
                 if (productFiltered?.results.length > 0) {
                     setHasMore(true)
                 }
@@ -136,7 +142,6 @@ const Index = () => {
                         </div>
                     </div>
                 </div>
-                z
             </SectionUI>
         </>
     )

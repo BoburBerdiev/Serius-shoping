@@ -5,6 +5,10 @@ import apiService from "@/service/axois";
 import {Fragment, useEffect, useState} from "react";
 import {selectFilterBrands, selectFilterCatalog, selectFilterPrice} from "@/slice/filter";
 import {useDispatch, useSelector} from "react-redux";
+import {selectSubCatalog , selectCatalog} from "@/slice/filterQuery";
+const CatalogItemFilter = ( {formname ,setIsChangeCatalog , setValue }) => {
+import {selectFilterBrands, selectFilterCatalog, selectFilterPrice} from "@/slice/filter";
+import {useDispatch, useSelector} from "react-redux";
 import {selectSubCatalog, selectCatalog, selectAllQuery} from "@/slice/filterQuery";
 const CatalogItemFilter = ( {formname ,setIsChangeCatalog , setValue }) => {
     const dispatch = useDispatch()
@@ -34,11 +38,29 @@ const CatalogItemFilter = ( {formname ,setIsChangeCatalog , setValue }) => {
 
     } , [subCategory])
 
+    useEffect(() => {
+        setValue('catalog', subCategory?.title )
+        console.log(subCategory)
+        let product = catalogAll?.all_catalog?.find(product => product?.title_uz === subCategory?.title)
+        dispatch(selectFilterBrands(product?.brands))
+        dispatch(selectSubCatalog(subCategory?.subTitle ))
+        dispatch(selectCatalog(subCategory?.title ))
+        dispatch(selectFilterPrice([product?.min_price , product?.max_price]))
+        setValue('sub_catalog', subCategory?.subTitle)
+    } , [subCategory])
+
     useEffect(() =>{
         dispatch(selectFilterCatalog(selectItem?.value))
+        dispatch(selectCatalog(selectItem?.value))
+        dispatch(selectFilterCatalog(selectItem?.value))
         if(selectItem?.value === 'all') {
+            dispatch(selectFilterBrands(catalogAll?.brands))
+            dispatch(selectFilterPrice([catalogAll?.min_price , catalogAll?.max_price]))
             selectedBrandPrice(catalogAll)
         }else {
+            let product = catalogAll?.all_catalog?.find(product => product?.title_uz === selectItem?.value)
+            dispatch(selectFilterBrands(product?.brands))
+            dispatch(selectFilterPrice([product?.min_price , product?.max_price]))
             let product = catalogAll?.all_catalog?.find(product => product?.title_uz === selectItem?.value)
             console.log(product)
             selectedBrandPrice(product)
@@ -57,6 +79,17 @@ const CatalogItemFilter = ( {formname ,setIsChangeCatalog , setValue }) => {
     return (
         <div>
             <AccordionUI title={t('navbar.catalog')} >
+                <>
+                        <CheckBoxUI  formname={{...formname}} title_ru={'Все категории'} title_uz={'Barcha kategoriya'} value={'all'}  setSelectItem={setSelectItem}  />
+                    {
+                        catalogAll?.all_catalog?.map(item => (
+                            <Fragment key={item?.id}>
+                                <CheckBoxUI formname={{...formname}} title_ru={item?.title_ru} value={item?.title_uz} setSelectItem={setSelectItem}  />
+                            </Fragment>
+                        ))
+                    }
+
+                </>
                 <>
                         <CheckBoxUI  formname={{...formname}} title_ru={'Все категории'} title_uz={'Barcha kategoriya'} value={'all'}  setSelectItem={setSelectItem}  />
                     {
