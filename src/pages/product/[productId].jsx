@@ -108,18 +108,26 @@ const ProductDetailed = () => {
                             </div>
                         </div>
                         <div className='md:col-span-6 space-y-2.5  text-darkBlue'>
-                            {isLoading ? <h2 className='font-medium md:text-lg'>{t('product-inner.moreAbout')}</h2> :
-                                <Skeleton width={"100%"} height="100%"/>}
+                            {isLoading ?
+                              <h2 className='font-medium md:text-lg'>{t('product-inner.moreAbout')}</h2>
+                              :
+                              <Skeleton width={"25%"} height="15px"/>
+                            }
 
-                            <div className='space-y-2'>
-                                {
-                                    product?.short_descriptions?.map(item => (
-                                        <Fragment key={item.id}>
-                                            <InfoProductUI title={ lang === 'ru' ? item?.key_ru : item?.key_uz } value={lang === 'ru' ? item?.value_ru : item?.value_uz}/>
-                                        </Fragment>
-                                    ))
-                                }
-                            </div>
+                            {isLoading ?
+                                <div className='space-y-2'>
+                                    {
+                                        product?.short_descriptions?.map(item => (
+                                            <Fragment key={item.id}>
+                                                <InfoProductUI title={ lang === 'ru' ? item?.key_ru : item?.key_uz } value={lang === 'ru' ? item?.value_ru : item?.value_uz}/>
+                                            </Fragment>
+                                        ))
+                                    }
+                                </div>
+                              :
+                              <Skeleton width={"100%"} height="15px"/>
+                            }
+
                         </div>
                         <div className='lg:col-span-4 md:col-span-5 '>
                             <PriceCard salePrice={product?.sales} isHave={product?.is_available} price={product?.price} handleAddBag={handleAddBag} />
