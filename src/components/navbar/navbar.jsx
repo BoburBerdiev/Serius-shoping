@@ -13,10 +13,10 @@ import SearchCardUI from '../search-card/search-card-UI';
 import apiService from "@/service/axois";
 import {useQuery} from "react-query";
 import {useDispatch, useSelector} from "react-redux";
-import {selectFilterSubCategory} from "@/slice/filter";
+import {selectFilterCatalog, selectFilterSubCategory} from "@/slice/filter";
 import {useRouter} from "next/router";
 import NavSearch from "../nav-search/nav-search";
-import {selectCatalog,selectSubCatalog} from "@/slice/filterQuery";
+import {selectAllQuery, selectCatalog, selectSubCatalog} from "@/slice/filterQuery";
 
 
 const Navbar = () => {
@@ -93,11 +93,27 @@ const Navbar = () => {
                         </div>
                     </div>
                 </div>
+               <NavSearch/>
+                {/*<div className='md:relative md:flex-1 md:bg-[#F5F5F5] md:py-[14px] md:px-[30px] rounded-[10px]'>*/}
+                {/*    <div className={`max-md:absolute top-14 max-md:grid duration-500 grid-rows-[0fr] ${isSearchBarOpen && 'grid-rows-[1fr] max-md:py-5'} left-0 bg-[#f5f5f5] w-full z-50 max-md:px-5 rounded-[10px]`}>*/}
+                {/*        <div className='overflow-hidden'>*/}
+                {/*            <input ref={searchInputRef} onFocus={handleSearchFocus} onBlur={handleSearchBlur} onClick={handleInputClick} id='search' name='search' type="search" maxLength={50} className='bg-transparent focus:outline-none w-full' placeholder={t('navbar.input')} />*/}
+                {/*        </div>*/}
+                {/*    </div>*/}
+                {/*    <label onBlur={handleSearchBlur} onClick={(e) => {searchHandler(e); e.preventDefault()}} htmlFor='search' className='md:h-full h-10 w-10 md:w-12 md:absolute top-0 right-0 bg-darkBlue max-md:rounded-[10px] rounded-r-[10px] cursor-pointer flex items-center justify-center text-white md:text-2xl'>*/}
+                {/*        <IoIosSearch />*/}
+                {/*    </label>*/}
+                {/*    <div className={`${isSearchFocused ? 'block' : 'hidden'} duration-500 absolute w-full md:max-lg:w-[200%] z-50 top-[115px] md:top-14 md:left-[50%] lg:left-0 right-0 md:max-lg:translate-x-[-50%] bg-white rounded-xl overflow-hidden pb-2`}>*/}
+                {/*        <SearchCardUI href={'/product'}  price={'150000 сум'} />*/}
+                {/*        <SearchCardUI href={'#'} sale={'120000 сум'} price={'150000 сум'} />*/}
+                {/*        <SearchCardUI href={'#'} sale={'120000 сум'} price={'150000 сум'} />*/}
+                {/*        <SearchCardUI href={'#'}  price={'150000 сум'} />*/}
+                {/*        <SearchCardUI href={'#'} sale={'120000 сум'} price={'150000 сум'} />*/}
 
-                <div className='flex items-center gap-[18px] max-md:hidden select-none'>
-                    <NavSearch/>
-                </div>
+                {/*    </div>*/}
+                {/*</div>*/}
                 <div className='flex items-center gap-[18px] max-md:hidden'>
+                    {/* orasini kottalashtrsh kk */}
                     <Link href='/order' className='flex relative flex-col items-center justify-center text-darkBlue duration-300 hover:text-slate-500 group'>
                         <LuShoppingBag className='text-xl' />
                         <span className={'text-[10px] absolute group-hover:bg-slate-500 -top-2 right-4 py-[3px] px-[4px] bg-darkBlue text-white rounded-full'}>{allCount}</span>

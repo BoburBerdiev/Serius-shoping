@@ -79,7 +79,7 @@ const Index = () => {
             if (page === 1) {
                 setProductInfinity([...productFiltered?.results])
 
-                if (!productFiltered?.next) {
+                if (productFiltered?.results.length > 0) {
                     setHasMore(true)
                 }
             } else {

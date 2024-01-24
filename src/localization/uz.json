@@ -32,7 +32,7 @@
       "offline":" Naqd to'lov ",
       "countLenght":"ta",
       "money":"so'm",
-      "law": "Buyurtma berish orqali siz Maxfiylik shartnomasi va Sirius Tech foydalanuvchisi shartnomasiga muvofiq shaxsiy ma'lumotlarni qayta ishlashga rozilik bildirasiz."
+      "law": "Buyurtma berish orqali siz Maxfiylik shartnomasi va Rich Parfum foydalanuvchisi shartnomasiga muvofiq shaxsiy ma'lumotlarni qayta ishlashga rozilik bildirasiz."
     },
     "answer": {
       "true" : "Sizning buyurtmangiz qabul qilindi. Operator qo'ng'irog'ini kuting!"
@@ -47,7 +47,7 @@
     "form": {
 
       "name":"Ism",
-      "phone":"Telefon",
+      "phone":"Telfon",
       "address":"Manzil"
     },
 
@@ -65,7 +65,7 @@
       "sales":"Chegirma",
       "catalog": "Katalog",
       "page": "Sahifa",
-      "reserved":"©2024 Sirius Tech. Barcha huquqlar himoyalangan",
+      "reserved":"©2023 Rich Parfum. Barcha huquqlar himoyalangan",
       "forMen": "Erkaklar uchun",
       "forWomen": "Ayollar uchun"
     }
