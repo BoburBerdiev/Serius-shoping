@@ -35,6 +35,8 @@ const NavSearch = () => {
 
 
 
+
+
     return (
         <div className='md:relative md:flex-1 md:bg-[#F5F5F5] md:py-[14px] md:px-[30px] rounded-[10px]'>
             <div

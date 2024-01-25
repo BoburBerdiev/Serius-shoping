@@ -6,7 +6,7 @@ import apiService from "@/service/axois";
 import {useQuery} from "react-query";
 import {useSelector} from "react-redux";
 import {useTranslation} from "react-i18next";
-const Footer = () => {
+const Footer = ({contact , socialMedia}) => {
     const [newYear , setNewYear] = useState(null)
     const { t  } = useTranslation();
     const { lang } = useSelector((state) => state.langSlice);
@@ -14,11 +14,7 @@ const Footer = () => {
         setNewYear(new Date().getFullYear())
     }, [])
 
-    const { data: contact } = useQuery("contact", () =>
-        apiService.getData("/about/contacts/"),
-    ); const { data: socialMedia } = useQuery("socialMedia", () =>
-        apiService.getData("/about/socials/")
-    );
+
 
 
     return (

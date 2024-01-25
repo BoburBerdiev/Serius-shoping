@@ -21,8 +21,9 @@ const basketSlice = createSlice({
         },
         basketList: (state, { payload }) => {
             const { id } = payload;
-            const existingProduct = state.basket?.find(
+            let existingProduct = state.basket?.find(
                 (item) => item?.id === id );
+
             if (existingProduct) {
                 existingProduct.count += 1;
                 existingProduct.totalPrice =

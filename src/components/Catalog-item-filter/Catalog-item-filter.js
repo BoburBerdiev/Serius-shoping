@@ -14,7 +14,6 @@ const CatalogItemFilter = ( {formname ,setIsChangeCatalog , setValue }) => {
     const { data: catalogAll , refetch:refetchCatalogAll , isLoading: isLoadingCatalogAll  } = useQuery("catalogAll", () =>
         apiService.getData("/categories/all-categories/")
     );
-
     useEffect(()=> {
         refetchCatalogAll()
     }, [])
@@ -35,7 +34,6 @@ const CatalogItemFilter = ( {formname ,setIsChangeCatalog , setValue }) => {
 
     useEffect(() => {
         setValue('catalog', subCategory?.title )
-        console.log(subCategory)
         let product = catalogAll?.all_catalog?.find(product => product?.title_uz === subCategory?.title)
         dispatch(selectSubCatalog(subCategory?.subTitle ))
         dispatch(selectCatalog(subCategory?.title ))

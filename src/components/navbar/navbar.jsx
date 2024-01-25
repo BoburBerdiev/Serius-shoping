@@ -1,6 +1,6 @@
 import {useEffect, useRef} from 'react'
 import Link from "next/link";
-import {ButtonUI, ImageUI} from "@/components";
+import {ButtonUI, ImageUI, NavSearch} from "@/components";
 import {useState} from "react";
 import MiniNavbar from "../mini-navbar/mini-navbar";
 import { IoIosSearch } from "react-icons/io";
@@ -15,11 +15,10 @@ import {useQuery} from "react-query";
 import {useDispatch, useSelector} from "react-redux";
 import {selectFilterCatalog, selectFilterSubCategory} from "@/slice/filter";
 import {useRouter} from "next/router";
-import NavSearch from "../nav-search/nav-search";
 import {selectAllQuery, selectCatalog, selectSubCatalog} from "@/slice/filterQuery";
 
 
-const Navbar = () => {
+const Navbar = ({catalog}) => {
     const { t  } = useTranslation();
     const { lang } = useSelector((state) => state.langSlice);
     const [openNav , setOpenNav] = useState(false)
@@ -27,9 +26,7 @@ const Navbar = () => {
     const router = useRouter()
     const {allCount} = useSelector(state => state.basketSlice)
 
-    const { data: catalog } = useQuery("catalog", () =>
-        apiService.getData("/categories/")
-    );
+
 
     const navbarHandler = (e) => {
         e.stopPropagation()
@@ -55,6 +52,7 @@ const Navbar = () => {
           dispatch(selectFilterSubCategory(subTitleSend))
           dispatch(selectCatalog(item?.title))
           dispatch(selectSubCatalog(item?.subTitle))
+          dispatch(selectAllQuery())
           subTitleSend = {}
           router.push('/product')
       }
@@ -75,6 +73,7 @@ const Navbar = () => {
                         <div className={`container overflow-hidden flex items-start flex-wrap gap-x-2 lg:gap-x-7 bg-white overscroll-y-auto ${openNav && 'overflow-scroll pb-14'}`}>
                         {
                             catalog?.map(item  => (
+                                item?.sub_categories.length > 0 &&
                                 <ul className='text-darkBlue pt-5 lg:py-10' key={item?.id}>
                                     <h3 className='lg:text-lg font-medium pb-[10px]'>{lang === 'ru' ? item?.title_ru : item?.title_uz}</h3>
                                     {item?.sub_categories?.map(product => (
@@ -94,24 +93,6 @@ const Navbar = () => {
                     </div>
                 </div>
                <NavSearch/>
-                {/*<div className='md:relative md:flex-1 md:bg-[#F5F5F5] md:py-[14px] md:px-[30px] rounded-[10px]'>*/}
-                {/*    <div className={`max-md:absolute top-14 max-md:grid duration-500 grid-rows-[0fr] ${isSearchBarOpen && 'grid-rows-[1fr] max-md:py-5'} left-0 bg-[#f5f5f5] w-full z-50 max-md:px-5 rounded-[10px]`}>*/}
-                {/*        <div className='overflow-hidden'>*/}
-                {/*            <input ref={searchInputRef} onFocus={handleSearchFocus} onBlur={handleSearchBlur} onClick={handleInputClick} id='search' name='search' type="search" maxLength={50} className='bg-transparent focus:outline-none w-full' placeholder={t('navbar.input')} />*/}
-                {/*        </div>*/}
-                {/*    </div>*/}
-                {/*    <label onBlur={handleSearchBlur} onClick={(e) => {searchHandler(e); e.preventDefault()}} htmlFor='search' className='md:h-full h-10 w-10 md:w-12 md:absolute top-0 right-0 bg-darkBlue max-md:rounded-[10px] rounded-r-[10px] cursor-pointer flex items-center justify-center text-white md:text-2xl'>*/}
-                {/*        <IoIosSearch />*/}
-                {/*    </label>*/}
-                {/*    <div className={`${isSearchFocused ? 'block' : 'hidden'} duration-500 absolute w-full md:max-lg:w-[200%] z-50 top-[115px] md:top-14 md:left-[50%] lg:left-0 right-0 md:max-lg:translate-x-[-50%] bg-white rounded-xl overflow-hidden pb-2`}>*/}
-                {/*        <SearchCardUI href={'/product'}  price={'150000 сум'} />*/}
-                {/*        <SearchCardUI href={'#'} sale={'120000 сум'} price={'150000 сум'} />*/}
-                {/*        <SearchCardUI href={'#'} sale={'120000 сум'} price={'150000 сум'} />*/}
-                {/*        <SearchCardUI href={'#'}  price={'150000 сум'} />*/}
-                {/*        <SearchCardUI href={'#'} sale={'120000 сум'} price={'150000 сум'} />*/}
-
-                {/*    </div>*/}
-                {/*</div>*/}
                 <div className='flex items-center gap-[18px] max-md:hidden'>
                     {/* orasini kottalashtrsh kk */}
                     <Link href='/order' className='flex relative flex-col items-center justify-center text-darkBlue duration-300 hover:text-slate-500 group'>
