@@ -93,8 +93,6 @@ const Index = () => {
             }
         }
     }, [productFiltered])
-
-    console.log(productInfinity)
     return (
         <>
             <SectionUI customPadding={'pt-[140px] md:pt-40 pb-10 font-rubik relative '}>
@@ -134,7 +132,9 @@ const Index = () => {
                                         ))
                                     }
                                 </div>
+
                             </InfiniteScroll>
+
                         </div>
                     </div>
                 </div>
