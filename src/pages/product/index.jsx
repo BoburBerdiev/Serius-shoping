@@ -127,7 +127,8 @@ const Index = () => {
                                                         title_ru={product?.title_ru}
                                                         title_uz={product?.title_uz}
                                                         rows={cardPosition}
-                                                        price={product?.price} salePrice={product?.price}/>
+                                                        price={product?.price} salePrice={product?.price}
+                                                        product={product}/>
                                         ))
                                     }
                                 </div>

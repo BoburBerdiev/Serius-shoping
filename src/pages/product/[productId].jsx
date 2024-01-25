@@ -73,8 +73,10 @@ const ProductDetailed = () => {
                                                 product?.images?.map(image => (
                                                     <SwiperSlide key={image?.id} className='relative w-full h-full  rounded-lg  overflow-hidden'>
                                                         {
-                                                            loading ? <Skeleton width={'100%'} height={'100%'}/> :
-                                                        <ImageUI src={image?.image} imgStyle={'object-cover'}/>
+                                                            loading ? 
+                                                            <ImageUI src={image?.image} imgStyle={'object-cover'}/>
+                                                            :
+                                                            <Skeleton width={'100%'} height={'100%'}/>
                                                         }
                                                     </SwiperSlide>
                                                 ))
@@ -109,12 +111,21 @@ const ProductDetailed = () => {
                         </div>
                         <div className='md:col-span-6 space-y-2.5  text-darkBlue'>
                             {isLoading ?
-                              <h2 className='font-medium md:text-lg'>{t('product-inner.moreAbout')}</h2>
+                              <Skeleton width={"25%"} height="25px"/>
                               :
-                              <Skeleton width={"25%"} height="15px"/>
+                              <h2 className='font-medium md:text-lg'>{t('product-inner.moreAbout')}</h2>
                             }
 
                             {isLoading ?
+                              <div>
+                                <Skeleton width={"100%"} height="15px"/>
+                                <Skeleton width={"100%"} height="15px"/>
+                                <Skeleton width={"100%"} height="15px"/>
+                                <Skeleton width={"100%"} height="15px"/>
+                                <Skeleton width={"100%"} height="15px"/>
+                                <Skeleton width={"100%"} height="15px"/>
+                              </div>
+                              :
                                 <div className='space-y-2'>
                                     {
                                         product?.short_descriptions?.map(item => (
@@ -124,37 +135,79 @@ const ProductDetailed = () => {
                                         ))
                                     }
                                 </div>
-                              :
-                              <Skeleton width={"100%"} height="15px"/>
                             }
 
                         </div>
                         <div className='lg:col-span-4 md:col-span-5 '>
-                            <PriceCard salePrice={product?.sales} isHave={product?.is_available} price={product?.price} handleAddBag={handleAddBag} />
+                            <PriceCard salePrice={product?.sales} isHave={product?.is_available} price={product?.price} handleAddBag={handleAddBag} isLoading={isLoading} />
                         </div>
                     </div>
                     <div className='grid grid-cols-16 '>
                         <div className='col-span-full md:col-span-12 space-y-2.5'>
-                            <h2 className='font-medium md:text-lg'>{t('product-inner.description')}</h2>
-                            <p className='text-justify '>
+                            <div>
                                 {
-                                    lang === 'ru' ?
-                                        product?.description_ru :
-                                        product?.description_uz
+                                    isLoading
+                                    ?
+                                    <Skeleton width={'25%'} height={'25px'} />
+                                    :
+                                    <h2 className='font-medium md:text-lg'>{t('product-inner.description')}</h2>
                                 }
-                            </p>
+                            </div>
+                            <div>
+                                {
+                                    isLoading
+                                    ?
+                                    <div>
+                                        <Skeleton width={'100%'} height={'15px'} />
+                                        <Skeleton width={'100%'} height={'15px'} />
+                                        <Skeleton width={'100%'} height={'15px'} />
+                                        <Skeleton width={'100%'} height={'15px'} />
+                                        <Skeleton width={'100%'} height={'15px'} />
+                                    </div>
+                                    :
+                                    <p className='text-justify '>
+                                        {
+                                            lang === 'ru' ?
+                                                product?.description_ru :
+                                                product?.description_uz
+                                        }
+                                    </p>
+                                }
+                            </div>
                         </div>
                     </div>
                     <div className='grid grid-cols-16'>
                         <div className='col-span-full lg:col-span-12 space-y-2.5'>
-                            <h2 className='font-medium md:text-lg'>{t('product-inner.about')}</h2>
-                            <div className='grid grid-cols-1 md:grid-cols-2 gap-x-10  gap-y-2'>
+                            <div>
                                 {
-                                    product?.characteristics?.map(item => (
-                                        <Fragment key={item?.id}>
-                                            <InfoProductUI title={ lang === 'ru' ? item?.key_ru : item?.key_uz } value={lang === 'ru' ? item?.value_ru : item?.value_uz}/>
-                                        </Fragment>
-                                    ))
+                                    isLoading
+                                    ?
+                                    <Skeleton width={'25%'} height={'25px'} />
+                                    :
+                                    <h2 className='font-medium md:text-lg'>{t('product-inner.about')}</h2>
+                                }
+                            </div>
+                            <div>
+                                {
+                                    isLoading
+                                    ?
+                                    <div>
+                                        <Skeleton width={'100%'} height={'15px'} />
+                                        <Skeleton width={'100%'} height={'15px'} />
+                                        <Skeleton width={'100%'} height={'15px'} />
+                                        <Skeleton width={'100%'} height={'15px'} />
+                                        <Skeleton width={'100%'} height={'15px'} />
+                                    </div>
+                                    :
+                                    <div className='grid grid-cols-1 md:grid-cols-2 gap-x-10  gap-y-2' >
+                                        {
+                                            product?.characteristics?.map(item => (
+                                                <Fragment key={item?.id}>
+                                                    <InfoProductUI title={ lang === 'ru' ? item?.key_ru : item?.key_uz } value={lang === 'ru' ? item?.value_ru : item?.value_uz}/>
+                                                </Fragment>
+                                            ))
+                                        }
+                                    </div>
                                 }
                             </div>
                         </div>
