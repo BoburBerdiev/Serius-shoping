@@ -29,12 +29,12 @@ const CardUI = ({imageArr, title_ru , title_uz, price, salePrice, rows , slug , 
     return (
       <>
         <SkeletonTheme>
-          <div className={`flex ${rows ? 'items-center' : 'flex-col  h-full'}  gap-3.5 md:gap-6  relative`}>
-            <div className={`${rows ? 'w-[32%]' : 'w-full'}`}>
+          <div className={`flex ${rows ? 'items-center' : 'flex-col  h-full'}  gap-3.5 md:gap-6 card-ui relative`}>
+            <div className={`${rows ? 'w-[40%] overflow-hidden ' : 'w-full'}`}>
                         <Swiper
                             id={"mySwiper1"}
                             slidesPerView={1}
-                            spaceBetween={5}
+                            spaceBetween={10}
                             loop={true}
                             pagination={{clickable: true}}
                             navigation={false}
@@ -44,7 +44,7 @@ const CardUI = ({imageArr, title_ru , title_uz, price, salePrice, rows , slug , 
                             {imageArr?.map((product) => (
                                 <SwiperSlide key={product.id} className="h-full w-fit"  >
 
-                                  <div className={`relative ${rows ? 'h-[180px] md:h-[240px] lg:h-[260px]  w-full' : 'h-[220px] md:h-[270px] lg:h-[300px] w-full'} overflow-hidden rounded-lg`}>
+                                  <div className={`relative w-full ${rows ? 'h-[180px] md:h-[240px] lg:h-[260px] ' : 'h-[220px] md:h-[270px] lg:h-[300px]'} overflow-hidden rounded-lg`}>
                                     {
                                       product.image
                                       ?
