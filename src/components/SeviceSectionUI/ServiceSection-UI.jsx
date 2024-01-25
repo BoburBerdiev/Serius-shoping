@@ -3,11 +3,7 @@ import {useQuery} from "react-query";
 import apiService from "@/service/axois";
 import {Fragment} from "react";
 
-const ServiceSectionUI = () => {
-
-  const { data: service } = useQuery("service", () =>
-      apiService.getData("/about/services/")
-  );
+const ServiceSectionUI = ({service}) => {
 
 
   return (
@@ -18,7 +14,7 @@ const ServiceSectionUI = () => {
         service &&
         service.map(item => (
             <Fragment key={item?.id}>
-              <ServiceCardUI  title_uz={item?.title_uz} title_ru={item?.title_ru} subTitle_ru={item?.sub_title_ru} subTitle_uz={item?.sub_title_uz}/>
+              <ServiceCardUI icon={item?.image} title_uz={item?.title_uz} title_ru={item?.title_ru} subTitle_ru={item?.sub_title_ru} subTitle_uz={item?.sub_title_uz}/>
             </Fragment>
         ))
       }

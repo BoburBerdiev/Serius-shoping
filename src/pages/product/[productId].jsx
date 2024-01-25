@@ -128,7 +128,7 @@ const ProductDetailed = () => {
                               :
                                 <div className='space-y-2'>
                                     {
-                                        product?.short_descriptions?.map(item => (
+                                        short_descriptions?.map(item => (
                                             <Fragment key={item.id}>
                                                 <InfoProductUI title={ lang === 'ru' ? item?.key_ru : item?.key_uz } value={lang === 'ru' ? item?.value_ru : item?.value_uz}/>
                                             </Fragment>

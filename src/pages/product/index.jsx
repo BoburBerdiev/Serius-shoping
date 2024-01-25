@@ -40,7 +40,7 @@ const Index = () => {
         "filter",
         () =>
             apiService.getData(
-                `products-catalog?${minMaxValue[0] ? `min_price=${minMaxValue[0]}` : ''}${minMaxValue[1]  ? `&max_price=${minMaxValue[1]}` : ''}${query}&page=${page}&page_size=2`
+                `products-catalog?${minMaxValue[0] ? `min_price=${minMaxValue[0]}` : ''}${minMaxValue[1]  ? `&max_price=${minMaxValue[1]}` : ''}${query}&page=${page}&page_size=10`
             ),
         {
             enabled: false,
@@ -127,8 +127,8 @@ const Index = () => {
                                                         title_ru={product?.title_ru}
                                                         title_uz={product?.title_uz}
                                                         rows={cardPosition}
-                                                        price={product?.price} salePrice={product?.price}
-                                                        product={product}/>
+                                                        id={product?.id}
+                                                        price={product?.price} salePrice={product?.price}/>
                                         ))
                                     }
                                 </div>

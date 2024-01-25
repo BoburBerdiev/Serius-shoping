@@ -7,7 +7,7 @@ import {basketList, totalAllPrice} from "@/slice/basket";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import { t } from "i18next";
 import { Fragment } from "react";
-const CardUI = ({imageArr, title_ru , title_uz, price, salePrice, rows , slug , id, product}) => {
+const CardUI = ({imageArr, title_ru , title_uz, price, salePrice, rows , slug , id, short_descriptions}) => {
     const dispatch = useDispatch()
 
     const handleAddBag = () => {
@@ -73,9 +73,10 @@ const CardUI = ({imageArr, title_ru , title_uz, price, salePrice, rows , slug , 
                     <h2 className='font-medium md:text-lg'>{t('product-inner.moreAbout')}</h2>
                     <div>
                         {
-                            product?.short_descriptions?.map(item => (
+                            short_descriptions?.map(item => (
                                 <Fragment key={item.id}>
-                                    <InfoProductUI title={ lang === 'ru' ? item?.key_ru : item?.key_uz } value={lang === 'ru' ? item?.value_ru : item?.value_uz}/>
+                                    <InfoProductUI title={ lang === 'ru' ? item?.key_ru : item?.key_uz } value={lang === 'ru' ? item?.value_ru : item?.value_uz}
+                                    />
                                 </Fragment>
                             ))
                         }
