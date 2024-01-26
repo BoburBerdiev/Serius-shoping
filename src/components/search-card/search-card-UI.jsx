@@ -1,16 +1,20 @@
 import Link from "next/link";
 import { RiArrowRightSLine } from "react-icons/ri";
+import {ImageUI} from "@/components";
+import lang from "@/slice/lang";
 
-const SearchCardUI = ({src, href, alt, title, subtitle, price, sale}) => {
+const SearchCardUI = ({image, href,  title_uz , title_ru ,subtitle_ru ,subtitle_uz, price, sale}) => {
   return (
     <a href={href} className="flex items-center justify-between gap-x-5 border-b p-3 bg-white hover:bg-slate-100 duration-300">
         <div className="flex items-center gap-3">
-          <div className="w-8 h-8 rounded bg-white">
-            <img src={'/mobile-images/categories/smart-watch.png'} alt={alt} className="w-full h-full object-cover" />
+          <div className="w-8 h-8 relative rounded bg-white">
+            <ImageUI src={image} alt={title_uz} imgStyle={'object-contain'}  />
           </div>
           <div className="flex flex-col justify-between gapy-1">
-            <h4 className="text-sm font-bold">{`Iphone XS`}</h4>
-            <p className="text-currentGrey text-xs">{`subtitle`}</p>
+            <h4 className="text-sm font-bold">
+                {lang === 'ru' ? title_ru :title_uz}
+            </h4>
+            <p className="text-currentGrey text-xs">{lang === 'ru' ? subtitle_ru :subtitle_uz}</p>
           </div>
           <div className="flex flex-col items-center justify-between">
             {
