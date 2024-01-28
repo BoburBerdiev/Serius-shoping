@@ -30,3 +30,4 @@ export {default as CatalogItemFilter} from './Catalog-item-filter/Catalog-item-f
 export {default as StockItemFilter} from './Stock-item-filter/Stock-item-filter'
 export {default as CatalogNav} from './CatalogNav/CatalogNav'
 export {default as NavSearch} from './nav-search/nav-search'
+export {default as IndexCatalog} from './index-product/index-product'
