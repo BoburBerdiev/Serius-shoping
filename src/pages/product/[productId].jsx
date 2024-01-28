@@ -17,17 +17,37 @@ import {useDispatch, useSelector} from "react-redux";
 import {useTranslation} from "react-i18next";
 import {basketList ,totalAllPrice } from '@/slice/basket'
 import Skeleton , { SkeletonTheme } from "react-loading-skeleton";
+import {changleLastProduct} from "@/slice/lastProduct";
 const ProductDetailed = () => {
     const loading = useState(true)
     const router = useRouter()
     const { t  } = useTranslation();
     const { lang } = useSelector((state) => state.langSlice);
+    const { lastProduct } = useSelector((state) => state.lastProductSlice);
     const {productId}=router.query
     const dispatch = useDispatch()
     const [thumbsSwiper, setThumbsSwiper] = useState(null);
     const { data: product  , refetch: refetchProduct, isLoading , isSuccess } = useQuery(["products" , productId], () =>
         apiService.getDataByID(  '/products' ,productId) , { enabled: false}
     );
+
+
+    useEffect(() => {
+        let sendProduct = {
+            id: product?.id,
+            images: product?.images,
+            slug: product?.slug,
+            title_ru: product?.title_ru,
+            title_uz: product?.title_uz,
+            price: product?.price,
+            salePrice: product?.sales,
+        }
+
+        console.log(sendProduct)
+      dispatch(changleLastProduct(sendProduct))
+    } , [product])
+
+
     useEffect(() => {
         if(productId) {
             refetchProduct()
@@ -48,6 +68,7 @@ const ProductDetailed = () => {
         dispatch(totalAllPrice())
     };
 
+    console.log(product?.related_products)
     console.log(product)
 
     return (
@@ -128,14 +149,14 @@ const ProductDetailed = () => {
                               :
                                 <div className='space-y-2'>
                                     {
-                                        short_descriptions?.map(item => (
+                                        product?.short_descriptions?.map(item => (
                                             <Fragment key={item.id}>
                                                 <InfoProductUI title={ lang === 'ru' ? item?.key_ru : item?.key_uz } value={lang === 'ru' ? item?.value_ru : item?.value_uz}/>
                                             </Fragment>
                                         ))
                                     }
                                 </div>
-                            }
+                      }
 
                         </div>
                         <div className='lg:col-span-4 md:col-span-5 '>
@@ -217,14 +238,14 @@ const ProductDetailed = () => {
 
             </SectionUI>
             <SectionUI>
-                <SectionTitleUI title={t('product-inner.brandProduct')} btnText={t('btn.watch')} btnStyle={'border-0'} href={'#'}/>
+                <SectionTitleUI title={t('product-inner.brandProduct')}  btnStyle={'border-0'} />
                 <div>
                     <SwiperUI idSwiper={'myswiper2'} productsArr={product?.related_products}/>
                 </div>
             </SectionUI>
             <SectionUI customPadding={'py-10 md:pb-20'}>
                 <SectionTitleUI title={t('product-inner.likeProduct')}/>
-                {/*<SwiperUI idSwiper={'viewedSwiper'} productsArr={viewedCards} />*/}
+                <SwiperUI idSwiper={'viewedSwiper'} productsArr={lastProduct} />
             </SectionUI>
             </SkeletonTheme>
         </>

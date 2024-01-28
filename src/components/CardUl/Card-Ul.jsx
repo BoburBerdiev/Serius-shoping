@@ -84,9 +84,9 @@ const CardUI = ({imageArr, title_ru , title_uz, price, salePrice, rows , slug , 
                   </div>
                   :
                   <div className={`flex items-end gap-3 `}>
-                    <p className={`font-rubik font-medium md:text-lg lg:text-xl ${salePrice ? 'text-currentRed' : 'text-currentBlue'}`}>{price} </p>
+                    <p className={`font-rubik font-medium md:text-lg lg:text-xl ${salePrice ? 'text-currentRed' : 'text-currentBlue'}`}>{salePrice} </p>
                     {
-                      salePrice && <span className="text-currentGrey line-through text-xs md:text-sm lg:text-base">{salePrice}</span>
+                      salePrice && <span className="text-currentGrey line-through text-xs md:text-sm lg:text-base">{price}</span>
                     }
                   </div>
                 }

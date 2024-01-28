@@ -6,15 +6,12 @@ import {Fragment} from "react";
 import {useSelector} from "react-redux";
 import {useQuery} from "react-query";
 import apiService from "@/service/axois";
-export default function Home({newProduct , indexCatalog , service , advertisingProduct, banner}) {
+import product from "@/pages/product";
+import {log} from "next/dist/server/typescript/utils";
+import IndexProduct from "@/components/index-product/index-product";
+export default function Home({newProduct , indexCatalog , service, endBanners , advertisingProduct, banners}) {
 
   const {lang} = useSelector(state => state.langSlice)
-  console.log(advertisingProduct)
-
-
-  console.log(indexCatalog)
-
-    console.log(banner)
   return (
       <>
         {/*<SEO*/}
@@ -26,9 +23,9 @@ export default function Home({newProduct , indexCatalog , service , advertisingP
         {/*    twitterHandle={index[lang].twitterHandle}*/}
         {/*/>*/}
 
-        <div className="container pt-28">
-          <BannerUI src={'/mobile-images/banners/banner.jpg'} alt={'reklama'}
-                    height={'h-[200px] md:h-[300px] overflow-hidden lg:h-[350px] rounded-lg'}/>
+        <div className="container pt-36">
+          <BannerUI banners={banners}
+                    height={'h-[350px] md:h-[400px] overflow-hidden lg:h-[450px] rounded-lg'}/>
 
         </div>
         <SectionUI customPadding={'py-10 md:pt-20'}>
@@ -60,26 +57,33 @@ export default function Home({newProduct , indexCatalog , service , advertisingP
           </div>
         </SectionUI>
         <SectionUI customPadding={'py-10 md:pb-20'}>
-          <SectionTitleUI title={'Скидки'} href={'#'}/>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 md:gap-[30px]">
-            {
-              newProduct?.map(product => (
-                  <CardUI key={product?.id} imageArr={product?.images}
-                          slug={`product/${product?.slug}`}
-                          title_ru={product?.title_ru}
-                          title_uz={product?.title_uz}
-                          id={product?.id}
-                          price={product?.price} salePrice={product?.price}/>
-              ))
-            }
-            <AddCardUI src={'/mobile-images/banners/bannerca.png'} alt={''} href={'#'}/>
-          </div>
-        </SectionUI>
-        <div className="container">
-          <BannerUI src={'/mobile-images/banners/banner.jpg'} alt={'reklama'}
-                    height={'h-[200px] md:h-[300px] overflow-hidden lg:h-[350px] rounded-lg'}/>
+          {
+            advertisingProduct?.map(item => (
+              <IndexProduct list={item}  key={item?.id}/>
 
-        </div>
+            ))
+          }
+
+
+          {/*<SectionTitleUI title={lang === 'ru' ? advertisingProduct?.title_ru : advertisingProduct?.title_uz} href={'#'}/>*/}
+          {/*<div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 md:gap-[30px]">*/}
+          {/*  {*/}
+          {/*    newProduct?.map(product => (*/}
+          {/*        <CardUI key={product?.id} imageArr={product?.images}*/}
+          {/*                slug={`product/${product?.slug}`}*/}
+          {/*                title_ru={product?.title_ru}*/}
+          {/*                title_uz={product?.title_uz}*/}
+          {/*                id={product?.id}*/}
+          {/*                price={product?.price} salePrice={product?.sales}/>*/}
+          {/*    ))*/}
+          {/*  }*/}
+          {/*</div>*/}
+        </SectionUI>
+          <SectionUI>
+            <BannerUI banners={endBanners}
+                      height={'h-[150px] md:h-[250px] overflow-hidden lg:h-[300px] rounded-lg'}/>
+          </SectionUI>
+
         <SectionUI customPadding={'py-10 md:pt-20'}>
           <SectionTitleUI title={'Новинки'} href={'#'}/>
           <div className="grid md:grid-cols-3 lg:grid-cols-4 grid-cols-2 gap-5 md:gap-8 ">
@@ -90,7 +94,10 @@ export default function Home({newProduct , indexCatalog , service , advertisingP
                             slug={product?.slug}
                             title_ru={product?.title_ru}
                             title_uz={product?.title_uz}
-                            price={product?.price} salePrice={product?.price}/>
+                            short_descriptions={product?.short_descriptions}
+                            price={product?.price}
+                            salePrice={product?.sales}
+                    />
                   </Fragment>
               ))
             }
@@ -110,21 +117,22 @@ export async function getServerSideProps({req, res}) {
       "public, s-maxage=10, stale-while-revalidate=59"
   );
   // Fetch data from external API
-  const [newProduct, indexCatalog , service , advertisingProduct , banner] = await Promise.all([
+  const [newProduct,banners,endBanners, indexCatalog , service , advertisingProduct , ] = await Promise.all([
     axios.get(`${process.env.NEXT_PUBLIC_API_URL}/products-catalog?stock=new`),
+      axios.get(`${process.env.NEXT_PUBLIC_API_URL}/banners/`),
+      axios.get(`${process.env.NEXT_PUBLIC_API_URL}/ad-banners/`),
     axios.get(`${process.env.NEXT_PUBLIC_API_URL}/main-page-categories/`),
     axios.get(`${process.env.NEXT_PUBLIC_API_URL}/about/services/`),
     axios.get(`${process.env.NEXT_PUBLIC_API_URL}/index-categories/`),
-    axios.get(`${process.env.NEXT_PUBLIC_API_URL}/banners/`)
-
   ]);
   return {
     props: {
       newProduct: newProduct?.data?.results,
+        endBanners:endBanners?.data,
+        banners: banners?.data,
       indexCatalog: indexCatalog.data,
       service: service?.data,
       advertisingProduct: advertisingProduct?.data,
-      banner: banner?.data,
     },
   };
 }

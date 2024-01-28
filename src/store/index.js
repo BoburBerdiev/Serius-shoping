@@ -18,9 +18,10 @@ import CardSlice from '@/slice/cardPosition'
 import filterSlice from '@/slice/filter'
 import filterQuerySlice from '@/slice/filterQuery'
 import basketSlice from '@/slice/basket'
+import lastProductSlice from '@/slice/lastProduct'
 
 const rootReducer =combineReducers({
-    langSlice,sortSlice , pageSlice ,CardSlice, filterSlice , basketSlice ,filterQuerySlice
+    langSlice,sortSlice , pageSlice ,CardSlice, lastProductSlice ,filterSlice , basketSlice ,filterQuerySlice
 })
 
 const persistConfig = {

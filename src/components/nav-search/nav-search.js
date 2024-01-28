@@ -99,10 +99,10 @@ const NavSearch = () => {
             </label>
             <div
                 className={`${data?.results.length > 0 && isShowPanel && isSearchBarOpen
-                    ? 'block' : 'hidden'} duration-500 absolute w-full md:max-lg:w-[200%] z-50 top-[115px] md:top-14 md:left-[50%] lg:left-0 right-0 md:max-lg:translate-x-[-50%] bg-white rounded-xl overflow-hidden pb-2`}>
+                    ? 'block' : 'hidden'}  max-h-[300px] md:max-h-[600px] overflow-y-scroll duration-500 absolute w-full md:max-lg:w-[200%] z-50 top-[115px] md:top-14 md:left-[50%] lg:left-0 right-0 md:max-lg:translate-x-[-50%] bg-white rounded-xl overflow-hidden pb-2`}>
                 {
                     data?.results?.map(product => (
-                        <SearchCardUI key={product?.id} image={product?.images[0].image} title_ru={product?.title_ru} title_uz={product.title_uz} subtitle_ru={product?.brands?.title_ru} subtitle_uz={product?.brands?.title_uz} href={`product/${product?.slug}`} price={product?.price} sale={product?.salePrice}/>
+                        <SearchCardUI key={product?.id} image={product?.image?.image} title_ru={product?.title_ru} title_uz={product.title_uz} subtitle_ru={product?.brands?.title_ru} subtitle_uz={product?.brands?.title_uz} href={`product/${product?.slug}`} price={product?.price} sale={product?.salePrice}/>
 
                     ))
                 }
