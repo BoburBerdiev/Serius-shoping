@@ -12,7 +12,7 @@ import {useForm} from "react-hook-form"
 import {useQuery} from "react-query";
 import apiService from "@/service/axois";
 import InfiniteScroll from "react-infinite-scroll-component";
-import {selectAllQuery , selectSubCatalog} from "@/slice/filterQuery";
+import {selectAllQuery, selectBrand, selectCatalog, selectStock, selectSubCatalog} from "@/slice/filterQuery";
 import {AiOutlineLoading3Quarters} from "react-icons/ai";
 import {useDispatch, useSelector} from "react-redux";
 
@@ -24,8 +24,7 @@ const Index = () => {
     const [productInfinity, setProductInfinity] = useState([])
     const [hasMore, setHasMore] = useState(false)
     const {cardPosition} = useSelector(state => state.CardSlice)
-    const [minMaxValue, setMinMaxValue] = useState([0, 100000000000])
-    const [isChangeCatalog, setIsChangeCatalog] = useState(false)
+    const [minMaxValue, setMinMaxValue] = useState([0, 0])
     const {register, resetField ,  reset, handleSubmit, setValue} = useForm()
     const sideBarHandler = () => {
         setSideBar(prevSideBar => !prevSideBar)
@@ -40,39 +39,39 @@ const Index = () => {
         "filter",
         () =>
             apiService.getData(
-                `products-catalog?${minMaxValue[0] ? `min_price=${minMaxValue[0]}` : ''}${minMaxValue[1]  ? `&max_price=${minMaxValue[1]}` : ''}${query}&page=${page}&page_size=10`
+                `products-catalog?${minMaxValue[0] ? `min_price=${minMaxValue[0]}` : ''}${minMaxValue[1]  ? `&max_price=${minMaxValue[1]}` : ''}${query}&page=${page}&page_size=2`
             ),
         {
             enabled: false,
         }
     );
 
-    const RefretchFristPage =() =>{
-        dispatch(selectAllQuery())
-        productFilteredRefetch()
-    }
-    // useEffect(() => {
-    //     setPage(1)
-    //     if(page === 1) productFilteredRefetch()
-    // } , [query])
 
-    useEffect(() => {
-        setPage(1)
-        if(page === 1) RefretchFristPage()
-    }, [subCatalog])
 
-    useEffect(() => {
-        productFilteredRefetch()
-    }, [ ]);
 
-    const onSubmit = (data) => {
+    const onSubmit = () => {
         setPage(1)
         dispatch(selectSubCatalog(''))
         dispatch(selectAllQuery())
-        RefretchFristPage()
     }
+    useEffect(() => {
+        if (query!==null && query!==""&&page===1){
+            // setPage(1)
+            productFilteredRefetch()
+        }
+    }, [query]);
 
-    console.log(productFiltered?.next)
+
+    useEffect(() => {
+        return ()=>{
+            dispatch(selectStock(""))
+            dispatch(selectCatalog(""))
+            dispatch(selectBrand(""))
+            dispatch(selectSubCatalog(""))
+            dispatch(selectAllQuery())
+
+        }
+    }, []);
 
     useEffect(() => {
         if (productFilteredSuccess) {
@@ -103,7 +102,7 @@ const Index = () => {
                     <div className="grid grid-cols-1 md:grid-cols-5 relative gap-6 min-h-screen">
                         <form onSubmit={handleSubmit(onSubmit)}
                               className={`border space-y-4 lg:space-y-[30px] p-4 rounded-lg max-md:absolute z-40 top-0 left-[-100%] max-md:h-[100vh] max-md:w-[30vh] duration-500 bg-white ${sideBar && 'left-[0%]'}`}>
-                            <CatalogItemFilter setIsChangeCatalog={setIsChangeCatalog} setValue={setValue} formname={{...register("catalog")}}/>
+                            <CatalogItemFilter setPage={setPage}  resetField={resetField} setValue={setValue} formname={{...register("catalog")}}/>
                             <StockItemFilter formname={{...register("stock")}}/>
                             <SearchBrand formname={{...register("brand")}}/>
                             <FilterPrice minMaxValue={minMaxValue} setMinMaxValue={setMinMaxValue}/>

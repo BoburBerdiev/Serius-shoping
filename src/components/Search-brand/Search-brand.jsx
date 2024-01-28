@@ -5,6 +5,7 @@ import {AccordionUI, CheckBoxUI} from "@/components";
 
 import {useDispatch, useSelector} from "react-redux";
 import {selectBrand} from "@/slice/filterQuery";
+import {selectFilterPrice} from "@/slice/filter";
 
 const SearchBrand = ({formname }) => {
     const dispatch = useDispatch()
@@ -16,10 +17,17 @@ const SearchBrand = ({formname }) => {
         setSearchBrand(brands)
     } ,[brands])
 
+
     useEffect(() => {
-        dispatch(selectBrand(selectItem))
-        setSelectItem(null)
-    } , [])
+        if (selectItem){
+            dispatch(selectBrand(selectItem?.value))
+            let brand = brands?.find(product => product?.title_uz === selectItem?.value)
+            // setSelectItem(null)
+            dispatch(selectFilterPrice([brand?.min_price,brand?.max_price
+            ]))
+        }
+
+    } , [selectItem])
     const onChangeBrandName=(e)=>{
         const value=e.target.value
         const filterData = brands?.filter(

@@ -6,20 +6,27 @@ import apiService from "@/service/axois";
 
 
 const Layout = ({ children }) => {
-    const { data: catalog } = useQuery("catalog", () =>
-        apiService.getData("/categories/")
+    const { data: catalog,refetch:refetchCatalog } = useQuery("catalog", () =>
+        apiService.getData("/categories/"),
+        {
+            enabled:false
+        }
     );
-    const { data: contact } = useQuery("contact", () =>
-        apiService.getData("/about/contacts/"),
-    ); const { data: socialMedia } = useQuery("socialMedia", () =>
-        apiService.getData("/about/socials/")
+    const { data: contact,refetch:refetchContact } = useQuery("contact", () =>
+        apiService.getData("/about/contacts/"),{
+        enabled:false
+        }
+    ); const { data: socialMedia,refetch:refetchSocialMedia } = useQuery("socialMedia", () =>
+        apiService.getData("/about/socials/"),{
+        enabled:false
+        }
     );
 
-    // useEffect(() => {
-    //     Aos.init({
-    //         once: true
-    //     });
-    // }, []);
+    useEffect(() => {
+        refetchContact()
+        refetchSocialMedia()
+        refetchCatalog()
+    }, []);
 
     return (
         <div className={''}>

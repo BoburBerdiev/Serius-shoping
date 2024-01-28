@@ -3,7 +3,7 @@ import {createSlice} from "@reduxjs/toolkit";
 const filterSlice = createSlice({
     name: 'filterQuerySlice',
     initialState: {
-        query: '',
+        query: null,
         catalog: '',
         subCatalog: '',
         brand: '',
@@ -13,7 +13,7 @@ const filterSlice = createSlice({
     reducers: {
         selectStock: (state, {payload}) => {
             if (payload === 'new') {
-                state.stock = `&is_new=${payload} : ''}`
+                state.stock = `&is_new=${payload}`
             } else {
                 state.stock = `${payload ? `&stock=${payload}` : ''}`
             }
@@ -30,7 +30,6 @@ const filterSlice = createSlice({
             state.subCatalog = `${payload ? `&sub_category=${payload}` : ''}`
         },
         selectAllQuery: (state) => {
-            state.query = null
             state.query = state.catalog + state.subCatalog + state.stock + state.brand
         }
     }
