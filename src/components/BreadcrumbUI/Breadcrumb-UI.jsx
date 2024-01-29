@@ -3,12 +3,13 @@ import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { LuChevronRight } from "react-icons/lu";
 import Link from "next/link";
+import {useSelector} from "react-redux";
 
 const BreadcrumbUI = ({pageLink}) => {
   const { t  } = useTranslation();
   const {asPath} = useRouter()
   const [page, setPage] = useState(null)
-
+  const {catalog} = useSelector(state => state.filterQuerySlice)
   const selectPage = (pageAsPath) => {
     const pageSplit = pageAsPath.split('/')
     if(pageSplit[1] === 'order'){
@@ -18,6 +19,7 @@ const BreadcrumbUI = ({pageLink}) => {
     }else if(pageSplit[1].includes('catalog') ) {
       setPage(t('navbar.catalog'))
     }else if(pageSplit[1] === 'product') {
+      const data = catalog.split("=")[1]
       setPage(t('navbar.product'))
     }
   }

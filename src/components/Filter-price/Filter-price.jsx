@@ -4,7 +4,7 @@ import Slider from "react-slider";
 import {AccordionUI} from "@/components";
 
 const FilterPrice = ({minMaxValue, setMinMaxValue}) => {
-    const [minMax, setMinMax] = useState([100, 220000]);
+    const [minMax, setMinMax] = useState([0, 0]);
     const {priceData} = useSelector(state => state.filterSlice)
 
     const onChangeRange = (newValues) => {
