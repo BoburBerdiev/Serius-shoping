@@ -3,11 +3,17 @@ import {useTranslation} from "react-i18next";
 import {useQuery} from "react-query";
 import apiService from "@/service/axois";
 import {Fragment, useEffect, useState} from "react";
-import {selectFilterBrands, selectFilterCatalog, selectFilterPrice, selectFilterSubCategory} from "@/slice/filter";
+import {
+    selectFilterBrands,
+    selectFilterCatalog,
+    selectFilterPrice,
+    selectFilterPriceValue,
+    selectFilterSubCategory
+} from "@/slice/filter";
 import {useDispatch, useSelector} from "react-redux";
 import filterQuerySlice, {selectSubCatalog, selectCatalog, selectAllQuery, selectBrand} from "@/slice/filterQuery";
 
-const CatalogItemFilter = ({formname, resetField,setPage, setValue}) => {
+const CatalogItemFilter = ({formname, resetField, setPage, setValue}) => {
     const dispatch = useDispatch()
     const [selectItem, setSelectItem] = useState(null)
     const {t} = useTranslation();
@@ -49,14 +55,13 @@ const CatalogItemFilter = ({formname, resetField,setPage, setValue}) => {
     }, [subCategory])
 
 
-
     useEffect(() => {
         if (selectItem?.value) {
             dispatch(selectFilterCatalog(selectItem?.value))
             dispatch(selectCatalog(selectItem?.value))
 
             if (selectItem?.value === 'all') {
-
+                console.log(selectItem?.value)
                 selectedBrandPrice(catalogAll)
             } else {
                 dispatch(selectBrand(""))
@@ -65,8 +70,8 @@ const CatalogItemFilter = ({formname, resetField,setPage, setValue}) => {
 
                 selectedBrandPrice(product)
             }
-        dispatch(selectSubCatalog(''))
-        dispatch(selectFilterSubCategory(null))
+            dispatch(selectSubCatalog(''))
+            dispatch(selectFilterSubCategory(null))
         }
 
 
@@ -75,36 +80,44 @@ const CatalogItemFilter = ({formname, resetField,setPage, setValue}) => {
 
     useEffect(() => {
 
+        if (catalog === "") {
+            setValue("catalog", 'all')
+        }
+
         if (catalog !== "" || subCatalog !== "" || brand !== "" || stock !== "") {
             if (catalog !== "") {
                 const data = catalog.split("=")[1]
                 setValue("catalog", data)
                 let product = catalogAll?.all_catalog?.find(product => product?.title_uz === data)
+                console.log(product)
                 selectedBrandPrice(product)
+            }else{
+                setValue("catalog", 'all')
             }
 
-            if (subCatalog !== "" ) {
+            if (subCatalog !== "") {
                 const data = catalog.split("=")[1]
                 setValue("sub_catalog", subCatalog.split("=")[1])
                 let product = catalogAll?.all_catalog?.find(product => product?.title_uz === data)
                 setPage(1)
+                dispatch(selectFilterPriceValue([0, 0]))
                 console.log(product)
                 selectedBrandPrice(product)
                 dispatch(selectAllQuery())
             }
-            if (brand !== "" ) {
+            if (brand !== "") {
                 setValue("brand", brand.split("=")[1])
             }
-            if (stock !== "" ) {
+            if (stock !== "") {
                 setValue("stock", stock.split("=")[1])
             }
 
         }
         // selectedBrandPrice(catalogAll)
-    }, [catalog,subCatalog,brand,stock,catalogAll])
+    }, [catalog, subCatalog, brand, stock, catalogAll])
 
     useEffect(() => {
-        if (catalog !== "" || subCatalog !== "" || brand !== "" || stock !== ""){
+        if (catalog !== "" || subCatalog !== "" || brand !== "" || stock !== "") {
             dispatch(selectAllQuery())
         }
     }, []);
@@ -114,13 +127,17 @@ const CatalogItemFilter = ({formname, resetField,setPage, setValue}) => {
         <div>
             <AccordionUI title={t('navbar.catalog')}>
                 <>
-                    <CheckBoxUI formname={{...formname}} title_ru={'Все категории'} title_uz={'Barcha kategoriya'}
+                    <CheckBoxUI isRadio={true} formname={{...formname}} title_ru={'Все категории'} title_uz={'Barcha kategoriya'}
                                 value={'all'} setSelectItem={setSelectItem}/>
                     {
                         catalogAll?.all_catalog?.map(item => (
                             <Fragment key={item?.id}>
-                                <CheckBoxUI formname={{...formname}} title_ru={item?.title_ru} value={item?.title_uz}
-                                            setSelectItem={setSelectItem}/>
+                                <CheckBoxUI
+                                    isRadio={true}
+                                    formname={{...formname}} title_ru={item?.title_ru}
+                                    title_uz={item?.title_uz}
+                                    value={item?.title_uz}
+                                    setSelectItem={setSelectItem}/>
                             </Fragment>
                         ))
                     }

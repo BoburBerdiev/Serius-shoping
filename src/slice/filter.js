@@ -5,7 +5,8 @@ const filterSlice = createSlice({
     initialState: {
         category:null,
         subCategory:null,
-        priceData:null,
+        priceData:[0,0],
+        priceDataValue:[0,0],
         brands: null,
         product: null
     },
@@ -22,11 +23,14 @@ const filterSlice = createSlice({
         },
         selectFilterPrice:(state , {payload}) =>{
             state.priceData = payload
+        },
+        selectFilterPriceValue:(state , {payload}) =>{
+            state.priceDataValue = payload
         }
        }
 })
 
 
 
-export const {selectFilterCatalog ,selectFilterSubCategory ,selectFilterBrands, selectFilterPrice} = filterSlice.actions
+export const {selectFilterCatalog,selectFilterPriceValue ,selectFilterSubCategory ,selectFilterBrands, selectFilterPrice} = filterSlice.actions
 export default filterSlice.reducer

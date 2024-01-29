@@ -6,32 +6,34 @@ import {useDispatch, useSelector} from "react-redux";
 import {CiGrid41} from "react-icons/ci";
 import {RxHamburgerMenu} from "react-icons/rx";
 import {changleCardPosition} from "@/slice/cardPosition";
+import {selectSort} from "@/slice/filterQuery";
 
 const CatalogNav = () => {
     const {t} = useTranslation()
     const dispatch = useDispatch()
     const [isSort, setIsSort] = useState(false)
     const {cardPosition} = useSelector(state => state.CardSlice)
+    const {lang}=useSelector(state => state.langSlice)
 
     const orderList = [
         {
             title: t('filter.hightestprice'),
-            value: '-price',
+            value: 'price',
             id:1,
         },
         {
             title: t('filter.loweprice'),
-            value: 'price',
+            value: '-price',
             id:2,
         },
         {
             title:  t('filter.az'),
             id:3,
-            value : 'title_ru',
+            value : lang==='ru' ? 'title_ru' : 'title_uz',
         },
         {
             title:  t('filter.za'),
-            value : '-title_ru',
+            value : lang==='ru' ? '-title_ru' : '-title_uz',
             id:4,
         },
     ]
@@ -44,7 +46,7 @@ const CatalogNav = () => {
         setIsSort(false)
     }
     const handleOrder = (value) => {
-        dispatch(changleOrder(value.value))
+        dispatch(selectSort(value.value))
     }
     useEffect(() => {
         const handleWindow = () => {

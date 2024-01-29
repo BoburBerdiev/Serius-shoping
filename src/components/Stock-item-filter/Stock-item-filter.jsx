@@ -4,8 +4,9 @@ import {useDispatch} from "react-redux";
 import {selectStock} from "@/slice/filterQuery";
 import {useQuery} from "react-query";
 import apiService from "@/service/axois";
+
 const StockItemFilter = ({formname}) => {
-    const [selectItem , setSelectItem] = useState(null)
+    const [selectItem, setSelectItem] = useState(null)
     const dispatch = useDispatch()
 
 
@@ -20,22 +21,33 @@ const StockItemFilter = ({formname}) => {
         }
     );
 
-    useEffect(()=>{
+    useEffect(() => {
         refetchStock()
-    },[])
+    }, [])
 
     useEffect(() => {
-        if (selectItem){
-        dispatch(selectStock(selectItem?.value))
+        if (selectItem) {
+            dispatch(selectStock(selectItem?.value))
+        } else {
+            dispatch(selectStock(""))
         }
-    } , [selectItem])
+    }, [selectItem])
     return (
         <AccordionUI title={'Акции'}>
-            <CheckBoxUI formname={{...formname}}    value={'new'} title_ru={'Новинки'} title_uz={'Yangi'} setSelectItem={setSelectItem}  />
-            {/*<CheckBoxUI formname={{...formname}} value={'sales'}  title_ru={"Скидки"}  setSelectItem={setSelectItem} />*/}
+            <CheckBoxUI formname={{...formname}} value={'new'}
+                        title_ru={'Новинки'}
+                        title_uz={'Yangi'}
+                        setSelectItem={setSelectItem}/>
             {
-                stocks?.map((stock)=>(
-                    <CheckBoxUI key={stock.id} formname={{...formname}} value={stock.title_uz}  title_ru={stock.title_ru} setSelectItem={setSelectItem} title_uz={stock.title_uz} />
+                stocks?.map((stock) => (
+                    <CheckBoxUI
+                        isRadio={false}
+                        key={stock.id}
+                        formname={{...formname}}
+                        value={stock.title_uz}
+                        title_ru={stock.title_ru}
+                        setSelectItem={setSelectItem}
+                        title_uz={stock.title_uz}/>
                 ))
             }
 

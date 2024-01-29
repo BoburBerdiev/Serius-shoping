@@ -60,6 +60,7 @@ const SearchBrand = ({formname }) => {
                                 key={brand?.id}
                             >
                                 <CheckBoxUI
+                                    isRadio={true}
                                     key={brand?.id}
                                     formname={formname}
                                     value={brand?.title_ru}

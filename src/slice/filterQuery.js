@@ -7,14 +7,18 @@ const filterSlice = createSlice({
         catalog: '',
         subCatalog: '',
         brand: '',
-        stock: ''
+        stock: '',
+        sort:''
     },
 
     reducers: {
         selectStock: (state, {payload}) => {
             if (payload === 'new') {
                 state.stock = `&is_new=${payload}`
-            } else {
+            }else if (payload==="") {
+                state.stock = ''
+            }
+            else {
                 state.stock = `${payload ? `&stock=${payload}` : ''}`
             }
         },
@@ -29,10 +33,18 @@ const filterSlice = createSlice({
         selectSubCatalog: (state, {payload}) => {
             state.subCatalog = `${payload ? `&sub_category=${payload}` : ''}`
         },
+        selectSort: (state, {payload}) => {
+            state.subCatalog = `${payload ? `&order_by=${payload}` : ''}`
+        },
         selectAllQuery: (state) => {
-            state.query = state.catalog + state.subCatalog + state.stock + state.brand
+            const data= state.catalog + state.subCatalog + state.stock + state.brand+state.sort
+            if (data){
+            state.query =data
+            }else {
+                state.query=""
+            }
         }
     }
 })
-export const {selectStock , selectAllQuery, selectSubCatalog ,selectBrand, selectCatalog} = filterSlice.actions
+export const {selectStock,selectSort , selectAllQuery, selectSubCatalog ,selectBrand, selectCatalog} = filterSlice.actions
 export default filterSlice.reducer
