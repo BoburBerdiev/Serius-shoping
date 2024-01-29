@@ -7,7 +7,6 @@ import {
     SectionUI,
     ServiceSectionUI,
     ShopCartUI,
-    SwiperUI,
     TotalCardUI
 } from "@/components"
 import {useEffect, useState} from "react"
@@ -66,23 +65,23 @@ const Index = () => {
             }
             orderProductUser.order.push(list);
         })
-
-        //
         userPost({ url: "/product-orders/", data: orderProductUser });
         reset();
     }
     return (
-        <div className="font-rubik h-full">
+        <div className="font-rubik min-h-screen">
             {
 				allCount > 0 ?
                     <div>
                         <SectionUI customPadding={'pt-[140px] md:pt-40 pb-10 font-rubik'}>
                             <BreadcrumbUI/>
                             {
-								isOrderForm ?
+
                                     <div>
                                         <div className="grid lg:grid-cols-6 mt-[30px] gap-4 lg:gap-x-[30px]">
                                             <div className="lg:col-span-4 order">
+                                                {
+                                                isOrderForm ?
                                                 <div
                                                     className="px-3 md:px-[30px] flex flex-col w-full divide-y  divide-borderGrey border border-borderGrey rounded-lg max-h-[580px] md:max-h-[420px] overflow-y-scroll">
                                                     {
@@ -95,10 +94,13 @@ const Index = () => {
                                                         ))
                                                     }
                                                 </div>
+                                                    :
+                                                    <OrderForm onSubmit={handleSubmit(onSubmit)}  formUserName={{...register("name")}} formUserPhone={{...register("phone")}} formUserAddress={{...register("address")}}/>}
                                             </div>
+
                                             <div className="lg:col-span-2">
-                                                <TotalCardUI howMany={allCount} price={allPrice} salePrice={'60 000'}
-                                                             btn={true} onClick={anOrderForm}/>
+                                                <TotalCardUI howMany={allCount} price={allPrice}
+                                                             btn={isOrderForm} onClick={anOrderForm}/>
                                             </div>
                                         </div>
                                         <div className="py-10">
@@ -108,8 +110,7 @@ const Index = () => {
                                             </div>
                                         </div>
                                     </div>
-                                    :
-                                    <OrderForm onSubmit={handleSubmit(onSubmit)}  formUserName={{...register("name")}} formUserPhone={{...register("phone")}} formUserAddress={{...register("address")}}    />
+
                             }
                         </SectionUI>
 

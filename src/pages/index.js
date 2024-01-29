@@ -81,7 +81,7 @@ export default function Home({newProduct , indexCatalog , service, endBanners , 
         </SectionUI>
           <SectionUI>
             <BannerUI banners={endBanners}
-                      height={'h-[150px] md:h-[250px] overflow-hidden lg:h-[300px] rounded-lg'}/>
+                      height={'h-[200px] md:h-[300px] overflow-hidden lg:h-[350px] rounded-lg'}/>
           </SectionUI>
 
         <SectionUI customPadding={'py-10 md:pt-20'}>
@@ -91,7 +91,8 @@ export default function Home({newProduct , indexCatalog , service, endBanners , 
               newProduct?.map(product => (
                   <Fragment key={product?.id}>
                     <CardUI imageArr={product?.images}
-                            slug={product?.slug}
+                            id={product?.id}
+                            slug={`${product?.slug}`}
                             title_ru={product?.title_ru}
                             title_uz={product?.title_uz}
                             short_descriptions={product?.short_descriptions}
@@ -118,7 +119,7 @@ export async function getServerSideProps({req, res}) {
   );
   // Fetch data from external API
   const [newProduct,banners,endBanners, indexCatalog , service , advertisingProduct , ] = await Promise.all([
-    axios.get(`${process.env.NEXT_PUBLIC_API_URL}/products-catalog?stock=new`),
+    axios.get(`${process.env.NEXT_PUBLIC_API_URL}/products-catalog?is_new=new&page=1&page_size=10`),
       axios.get(`${process.env.NEXT_PUBLIC_API_URL}/banners/`),
       axios.get(`${process.env.NEXT_PUBLIC_API_URL}/ad-banners/`),
     axios.get(`${process.env.NEXT_PUBLIC_API_URL}/main-page-categories/`),
@@ -136,10 +137,5 @@ export async function getServerSideProps({req, res}) {
     },
   };
 }
-
-
-// const { data: service } = useQuery("service", () =>
-//     apiService.getData("/about/services/")
-// );
 
 

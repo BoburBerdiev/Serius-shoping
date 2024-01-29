@@ -26,7 +26,6 @@ const Navbar = ({catalog}) => {
     const router = useRouter()
     const {allCount} = useSelector(state => state.basketSlice)
 
-
     const navbarHandler = (e) => {
         e.stopPropagation()
         setOpenNav(prevstate => !prevstate)
@@ -65,18 +64,18 @@ const Navbar = ({catalog}) => {
                 className="container relative flex flex-wrap items-center justify-between py-2 md:py-4 gap-5 md:gap-x-10">
                 <div className='flex items-center gap-[18px] max-md:justify-between max-md:flex-1'>
                     <Link href="/"
-                          className="flex items-center space-x-3 relative w-[98px] h-10 max-md:order-2 max-md:mx-auto">
+                          className="flex flex-shrink-0 items-center space-x-3 relative w-[98px] h-10 max-md:order-2 max-md:mx-auto">
                         <ImageUI src={'/logo.png'} alt={'Sirus'} imgStyle={'object-contain'}/>
                     </Link>
 
-                    <ButtonUI className={`${openNav && 'bg-darkBlue text-white'} duration-300 max-md:text-base`}
-                              leftIcon={!openNav ? <img src='/menu.svg' className='w-4 md:w-6 h-4 md:h-6'/> :
+                    <ButtonUI respText={true} className={`${openNav && 'bg-darkBlue text-white'} flex-shrink-0 duration-300 max-md:text-base`}
+                              leftIcon={!openNav ? <img alt={'menu'} src='/menu.svg' className='w-4 md:w-6 h-4 md:h-6'/> :
                                   <IoClose className='text-white md:text-2xl'/>} text={t('navbar.catalog')}
                               onClick={(e) => navbarHandler(e)}/>
                     <div
                         className={`absolute grid grid-rows-[0fr] duration-[.4s] top-[55px] md:top-[80px] w-full left-0 z-50 ${openNav && 'grid-rows-[1fr] h-[90vh]'}`}>
                         <div
-                            className={`container overflow-hidden flex items-start flex-wrap gap-x-2 lg:gap-x-7 bg-white overscroll-y-auto ${openNav && 'overflow-scroll pb-14'}`}>
+                            className={`container overflow-hidden grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 bg-white overscroll-y-auto ${openNav && 'overflow-scroll pb-14'}`}>
                             {
                                 catalog?.map(item => (
                                     item?.sub_categories.length > 0 &&
@@ -86,7 +85,7 @@ const Navbar = ({catalog}) => {
                                             <li className='relative group z-50 pb-2 text-[#8A8A8A] duration-300 hover:text-darkBlue'
                                                 key={product?.id}>
                                                 <button onClick={() => filterSubCatalog(product)}
-                                                        className='flex items-center justify-between gap-5 max-md:text-sm'>
+                                                        className='flex text-wrap break-words items-center justify-between gap-5 max-md:text-sm whitespace-nowrap'>
                                                     {lang === 'ru' ? product?.title_ru : product?.title_uz}
                                                     <div
                                                         className='text-white text-xl duration-300 group-hover:text-darkBlue'>
@@ -103,7 +102,6 @@ const Navbar = ({catalog}) => {
                 </div>
                 <NavSearch/>
                 <div className='flex items-center gap-[18px] max-md:hidden'>
-                    {/* orasini kottalashtrsh kk */}
                     <Link href='/order'
                           className='flex relative flex-col items-center justify-center text-darkBlue duration-300 hover:text-slate-500 group'>
                         <LuShoppingBag className='text-xl'/>

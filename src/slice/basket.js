@@ -24,19 +24,20 @@ const basketSlice = createSlice({
             let existingProduct = state.basket?.find(
                 (item) => item?.id === id );
 
+
             if (existingProduct) {
                 existingProduct.count += 1;
                 existingProduct.totalPrice =
                     existingProduct.price * existingProduct.count;
                 existingProduct.totalSales =
-                    existingProduct.sales * existingProduct.count;
+                    existingProduct.salePrice * existingProduct.count;
                 state.allCount = ++state.allCount
             } else {
                 const newOrder = {
                     ...payload,
                     count: 1,
                     totalPrice: payload.price,
-                    totalPriceDiscount: payload.sales,
+                    totalSales: payload.salePrice,
                 };
                 state.allCount = ++state.allCount
                 state.basket.push(newOrder);
@@ -52,7 +53,7 @@ const basketSlice = createSlice({
                 existingProduct.totalPrice =
                     existingProduct.price * existingProduct.count;
                 existingProduct.totalSales =
-                    existingProduct.sales * existingProduct.count;
+                    existingProduct.salePrice * existingProduct.count;
                 state.allCount = ++state.allCount
             }
         },
@@ -65,7 +66,7 @@ const basketSlice = createSlice({
                 existingProduct.totalPrice =
                     existingProduct.price * existingProduct.count;
                 existingProduct.totalSales =
-                    existingProduct.sales * existingProduct.count;
+                    existingProduct.salePrice * existingProduct.count;
                 state.allCount = --state.allCount
             } else if (existingProduct.count === 1) {
                 const indexOfProduct = state.basket.indexOf(existingProduct);

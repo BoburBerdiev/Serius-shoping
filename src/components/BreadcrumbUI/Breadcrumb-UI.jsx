@@ -16,10 +16,10 @@ const BreadcrumbUI = ({pageLink}) => {
       setPage(t('navbar.basket'))
     }else if(pageSplit[1] === 'contact') {
       setPage(t('navbar.contact'))
-    }else if(pageSplit[1].includes('catalog') ) {
+    }else if(pageSplit[1].includes('product') ) {
       setPage(t('navbar.catalog'))
     }else if(pageSplit[1] === 'product') {
-      const data = catalog.split("=")[1]
+      const data = catalog.split("navbar.catalog")[1]
       setPage(t('navbar.product'))
     }
   }

@@ -7,6 +7,7 @@ import {basketList, totalAllPrice} from "@/slice/basket";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import { t } from "i18next";
 import { Fragment } from "react";
+import {priceView} from "@/helper";
 const CardUI = ({imageArr, title_ru , title_uz, price, salePrice, rows , slug , id, short_descriptions}) => {
     const dispatch = useDispatch()
 
@@ -20,6 +21,7 @@ const CardUI = ({imageArr, title_ru , title_uz, price, salePrice, rows , slug , 
             id: id,
             count: null,
         }
+
 
         dispatch(basketList(checkProduct))
         dispatch(totalAllPrice())
@@ -63,14 +65,14 @@ const CardUI = ({imageArr, title_ru , title_uz, price, salePrice, rows , slug , 
             </div>
             <div className={`gap-y-4 flex w-full h-full ${rows ? ' max-md:flex-col justify-between gap-x-5' : 'flex-col justify-between '}`}>
               <div className="space-y-3 lg:space-y-[18px] w-full">
-                <h5 className="font-rubik text-sm  md:text-lg break-all line-clamp-2 md:line-clamp-2">
+                <h5 className="font-rubik text-sm h-8  md:text-lg break-all line-clamp-2 md:line-clamp-2">
                   { lang ? title_ru : title_uz }
                 </h5>
                 {
                   rows 
                   ?
                   <div className="flex flex-col gap-2 w-full">
-                    <h2 className='font-medium md:text-lg'>{t('product-inner.moreAbout')}</h2>
+                    <h2 className=' md:text-lg'>{t('product-inner.moreAbout')}</h2>
                     <div>
                         {
                             short_descriptions?.map(item => (
@@ -84,9 +86,9 @@ const CardUI = ({imageArr, title_ru , title_uz, price, salePrice, rows , slug , 
                   </div>
                   :
                   <div className={`flex items-end gap-3 `}>
-                    <p className={`font-rubik font-medium md:text-lg lg:text-xl ${salePrice ? 'text-currentRed' : 'text-currentBlue'}`}>{salePrice} </p>
+                    <p className={`font-rubik font-medium md:text-lg lg:text-xl ${salePrice ? 'text-currentRed' : 'text-currentBlue'}`}>{ priceView(salePrice) || priceView(price) } </p>
                     {
-                      salePrice && <span className="text-currentGrey line-through text-xs md:text-sm lg:text-base">{price}</span>
+                      salePrice && <span className="text-currentGrey line-through text-xs md:text-sm lg:text-base">{priceView(price)}</span>
                     }
                   </div>
                 }
@@ -96,9 +98,9 @@ const CardUI = ({imageArr, title_ru , title_uz, price, salePrice, rows , slug , 
                   rows
                   &&
                   <div className="max-md:flex items-center gap-3 space-y-3 ">
-                    <p className={`font-rubik font-medium md:text-lg lg:text-xl ${salePrice ? 'text-currentRed' : 'text-currentBlue'}`}>{price} </p>
+                    <p className={`font-rubik font-medium md:text-lg lg:text-xl ${salePrice ? 'text-currentRed' : 'text-currentBlue'}`}>{priceView(salePrice) || priceView(price)} </p>
                     {
-                      salePrice && <span className="text-currentGrey line-through text-xs md:text-sm lg:text-base">{salePrice}</span>
+                      salePrice && <span className="text-currentGrey line-through text-xs md:text-sm lg:text-base">{priceView(price)}</span>
                     }
                   </div>
                 }
