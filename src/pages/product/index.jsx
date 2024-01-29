@@ -24,6 +24,8 @@ const Index = () => {
     const [productInfinity, setProductInfinity] = useState([])
     const [hasMore, setHasMore] = useState(false)
     const {cardPosition} = useSelector(state => state.CardSlice)
+    const {priceData} = useSelector(state => state.filterSlice)
+
     const [minMaxValue, setMinMaxValue] = useState([0, 0])
     const {register, resetField ,  reset, handleSubmit, setValue} = useForm()
     const sideBarHandler = () => {
@@ -57,9 +59,10 @@ const Index = () => {
     useEffect(() => {
         if (query!==null && query!==""&&page===1){
             // setPage(1)
+            console.log(page)
             productFilteredRefetch()
         }
-    }, [query]);
+    }, [query,page]);
 
 
     useEffect(() => {

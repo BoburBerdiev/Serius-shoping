@@ -7,7 +7,7 @@ import {selectFilterBrands, selectFilterCatalog, selectFilterPrice, selectFilter
 import {useDispatch, useSelector} from "react-redux";
 import filterQuerySlice, {selectSubCatalog, selectCatalog, selectAllQuery, selectBrand} from "@/slice/filterQuery";
 
-const CatalogItemFilter = ({formname, resetField, getValues,setPage, setValue}) => {
+const CatalogItemFilter = ({formname, resetField,setPage, setValue}) => {
     const dispatch = useDispatch()
     const [selectItem, setSelectItem] = useState(null)
     const {t} = useTranslation();
@@ -42,7 +42,7 @@ const CatalogItemFilter = ({formname, resetField, getValues,setPage, setValue}) 
             dispatch(selectSubCatalog(subCategory?.subTitle))
             dispatch(selectCatalog(subCategory?.title))
 
-            selectedBrandPrice(product)
+            // selectedBrandPrice(product)
             setValue('sub_catalog', subCategory?.subTitle)
             setValue('catalog', subCategory?.title)
         }
@@ -87,8 +87,9 @@ const CatalogItemFilter = ({formname, resetField, getValues,setPage, setValue}) 
                 const data = catalog.split("=")[1]
                 setValue("sub_catalog", subCatalog.split("=")[1])
                 let product = catalogAll?.all_catalog?.find(product => product?.title_uz === data)
+                setPage(1)
                 console.log(product)
-                // selectedBrandPrice(product)
+                selectedBrandPrice(product)
                 dispatch(selectAllQuery())
             }
             if (brand !== "" ) {
@@ -104,7 +105,6 @@ const CatalogItemFilter = ({formname, resetField, getValues,setPage, setValue}) 
 
     useEffect(() => {
         if (catalog !== "" || subCatalog !== "" || brand !== "" || stock !== ""){
-            setPage(1)
             dispatch(selectAllQuery())
         }
     }, []);
