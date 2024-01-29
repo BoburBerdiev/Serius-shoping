@@ -59,7 +59,6 @@ const Index = () => {
     useEffect(() => {
         if (query!==null && query!==""&&page===1){
             // setPage(1)
-            console.log(page)
             productFilteredRefetch()
         }
     }, [query,page]);
@@ -75,6 +74,7 @@ const Index = () => {
 
         }
     }, []);
+
 
     useEffect(() => {
         if (productFilteredSuccess) {

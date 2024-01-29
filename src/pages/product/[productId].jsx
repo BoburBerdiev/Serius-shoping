@@ -43,7 +43,6 @@ const ProductDetailed = () => {
             salePrice: product?.sales,
         }
 
-        console.log(sendProduct)
       dispatch(changleLastProduct(sendProduct))
     } , [product])
 
@@ -68,8 +67,6 @@ const ProductDetailed = () => {
         dispatch(totalAllPrice())
     };
 
-    console.log(product?.related_products)
-    console.log(product)
 
     return (
         <>

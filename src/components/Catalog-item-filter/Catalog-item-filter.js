@@ -88,7 +88,6 @@ const CatalogItemFilter = ({formname, resetField,setPage, setValue}) => {
                 setValue("sub_catalog", subCatalog.split("=")[1])
                 let product = catalogAll?.all_catalog?.find(product => product?.title_uz === data)
                 setPage(1)
-                console.log(product)
                 selectedBrandPrice(product)
                 dispatch(selectAllQuery())
             }

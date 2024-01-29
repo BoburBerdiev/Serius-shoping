@@ -1,4 +1,5 @@
 import { ButtonUI } from '..'
+import {priceView} from "@/helper";
 
 const TotalCardUI = ({howMany, price, salePrice, btn, onClick}) => {
   return (
@@ -10,16 +11,17 @@ const TotalCardUI = ({howMany, price, salePrice, btn, onClick}) => {
           <span> товара на сумму:</span>
         </p>
         <p className='font-medium  xl:text-xl '>
-          <span>{price}</span>
+          <span>{priceView(price)}</span>
           <span>сум</span>
         </p>
       </div>
       {
-        salePrice && <p className='text-currentGreen mt-2.5  text-sm xl:text-base'>Скидка: {salePrice} сум</p>
+        salePrice && <p className='text-currentGreen mt-2.5  text-sm xl:text-base'>Скидка: {priceView(salePrice)} сум</p>
       }
       {
         
         btn && <div className='mt-4 md:mt-6'>
+
           <ButtonUI cardBtn={true} className={'md:py-4'} text={'Оформить заказ'} onClick={onClick}/>
         </div> 
       }

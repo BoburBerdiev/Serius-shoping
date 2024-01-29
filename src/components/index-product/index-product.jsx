@@ -51,6 +51,7 @@ const IndexProduct = ({list}) => {
                                         short_descriptions={product?.short_descriptions}
                                         price={product?.price}
                                         salePrice={product?.sales}
+                                        id={product?.id}
                                 />
                             ))
                         }

@@ -4,6 +4,8 @@ import {GoPlus, GoXCircleFill} from "react-icons/go";
 import {ButtonUI} from "@/components";
 import {decrementCount, incrementCount} from "@/slice/basket";
 import Skeleton from 'react-loading-skeleton';
+import {t} from "i18next";
+import {priceView} from "@/helper";
 
 function PriceCard({isHave = true ,price ,salePrice ,handleAddBag, isLoading }) {
 
@@ -19,7 +21,7 @@ function PriceCard({isHave = true ,price ,salePrice ,handleAddBag, isLoading }) 
                                 :
                             <div className='flex items-center gap-1 text-[#36E3A4]  mb-5'>
                                 <HiMiniCheckCircle className='w-6 h-6 '/>
-                                <p>В наличии</p>
+                                <p> {t('product-inner.yesProduct')}</p>
                             </div>
                         }
                     </div>
@@ -32,7 +34,7 @@ function PriceCard({isHave = true ,price ,salePrice ,handleAddBag, isLoading }) 
                             :
                             <div className='flex items-center gap-1 text-currentRed  mb-5'>
                                 <GoXCircleFill className='w-6 h-6 '/>
-                                <p>Нет в наличии</p>
+                                <p> {t('product-inner.noProduct')} </p>
                             </div>
                         }
                     </div>
@@ -44,10 +46,15 @@ function PriceCard({isHave = true ,price ,salePrice ,handleAddBag, isLoading }) 
                         ?
                         <Skeleton width={'100%'} height={'30px'} />
                         :
-                        <h3 className={`text-xl xl:text-2xl  ${salePrice && 'text-[#36E3A4]' }   `}>
-                            {
-                                salePrice?.toLocaleString('en-US', { style: 'decimal' }).replace(/,/g, ' ')
-                            }сум
+                        <h3 className={`text-xl xl:text-2xl space-x-2  ${salePrice && 'text-[#36E3A4]' }   `}>
+                           <span>
+                               {
+                                   priceView(salePrice)
+                               }
+                           </span>
+                           <span>
+                                {t('product-inner.sum')}
+                           </span>
                         </h3>
                     }
                 </div>
@@ -57,17 +64,22 @@ function PriceCard({isHave = true ,price ,salePrice ,handleAddBag, isLoading }) 
                         ?
                         <Skeleton width={'100%'} height={'30px'} />
                         :
-                        <h3 className={`text-xl xl:text-2xl  ${salePrice && 'text-currentRed' }   `}>
-                            {
-                                price?.toLocaleString('en-US', { style: 'decimal' }).replace(/,/g, ' ')
-                            }
-                            сум
-                        </h3>
+                            <h3 className={`text-xl xl:text-2xl  space-x-2 ${salePrice && 'text-currentRed'}   `}>
+                                <span>
+                                    {
+                                        priceView(price)
+                                    }
+                                </span>
+
+                                <span>
+                                {t('product-inner.sum')}
+                           </span>
+                            </h3>
                     }
                 </div>
             </div>
             <div>
-                {
+            {
                     isLoading
                     ?
                     <Skeleton width={'100%'} height={'30px'} />

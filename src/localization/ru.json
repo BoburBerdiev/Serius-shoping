@@ -31,8 +31,10 @@
       "description": "Описание товара",
       "about" : "Все характеристики",
       "brandProduct": "Вам может понравиться",
-      "likeProduct": "Недавно просмотренные"
-
+      "likeProduct": "Недавно просмотренные",
+      "noProduct": "Нет в наличии",
+      "yesProduct": "В наличии",
+      "sum" : "сум"
     },
     "filter": {
       "hightestprice": "Самая высокая цена",
