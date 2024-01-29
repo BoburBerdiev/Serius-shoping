@@ -25,45 +25,44 @@ const IndexProduct = ({list}) => {
 
 
     const {data: products, refetch, isLoading} = useQuery(["index-product-filter", list?.title_uz], () =>
-            apiService.getData(`products-catalog?${list?.title_uz}&page=${1}&page_size=10`), {
+            apiService.getData(`products-catalog?index_category=${list?.title_uz}&page=${1}&page_size=10`), {
             enabled: false
         }
     );
-    console.log(products)
-    console.log(list)
-
     useEffect(() => {
         refetch()
     } , [list])
 
-
     return (
-        <div className={' '}>
-            <div className={'pt-10 md:pt-20'}>
-                <SectionTitleUI title={lang === 'ru' ? list?.title_ru : list?.title_uz} />
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+        <>
+            {
+                products?.count > 0 &&
+                <div className={'pt-10 md:pt-20'}>
+                    <SectionTitleUI title={lang === 'ru' ? list?.title_ru : list?.title_uz}/>
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
 
-                    {
-                        products?.count > 0 &&
-                        products?.results?.map(product => (
-                            <CardUI key={product?.id} imageArr={product?.images}
-                                    slug={`product/${product?.slug}`}
-                                    title_ru={product?.title_ru}
-                                    title_uz={product?.title_uz}
-                                    short_descriptions={product?.short_descriptions}
-                                    price={product?.price}
-                                    salePrice={product?.sales}
-                            />
-                        ))
-                    }
+                        {
+                            products?.count > 0 &&
+                            products?.results?.map(product => (
+                                <CardUI key={product?.id} imageArr={product?.images}
+                                        slug={`product/${product?.slug}`}
+                                        title_ru={product?.title_ru}
+                                        title_uz={product?.title_uz}
+                                        short_descriptions={product?.short_descriptions}
+                                        price={product?.price}
+                                        salePrice={product?.sales}
+                                />
+                            ))
+                        }
 
-                    <AddCardUI onClick={() => handleSelectBanner(list)} src={list?.image} alt={list?.title_uz}/>
+                        <AddCardUI onClick={() => handleSelectBanner(list)} src={list?.image} alt={list?.title_uz}/>
+                    </div>
+
                 </div>
+            }
 
-            </div>
 
-
-        </div>
+        </>
     );
 };
 

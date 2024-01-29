@@ -118,7 +118,7 @@ export async function getServerSideProps({req, res}) {
   );
   // Fetch data from external API
   const [newProduct,banners,endBanners, indexCatalog , service , advertisingProduct , ] = await Promise.all([
-    axios.get(`${process.env.NEXT_PUBLIC_API_URL}/products-catalog?stock=new`),
+    axios.get(`${process.env.NEXT_PUBLIC_API_URL}/products-catalog?is_new=new&page=1&page_size=10`),
       axios.get(`${process.env.NEXT_PUBLIC_API_URL}/banners/`),
       axios.get(`${process.env.NEXT_PUBLIC_API_URL}/ad-banners/`),
     axios.get(`${process.env.NEXT_PUBLIC_API_URL}/main-page-categories/`),
@@ -136,10 +136,5 @@ export async function getServerSideProps({req, res}) {
     },
   };
 }
-
-
-// const { data: service } = useQuery("service", () =>
-//     apiService.getData("/about/services/")
-// );
 
 

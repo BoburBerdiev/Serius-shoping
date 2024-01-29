@@ -7,7 +7,6 @@ import {
     SectionUI,
     ServiceSectionUI,
     ShopCartUI,
-    SwiperUI,
     TotalCardUI
 } from "@/components"
 import {useEffect, useState} from "react"
@@ -97,7 +96,7 @@ const Index = () => {
                                                 </div>
                                             </div>
                                             <div className="lg:col-span-2">
-                                                <TotalCardUI howMany={allCount} price={allPrice} salePrice={'60 000'}
+                                                <TotalCardUI howMany={allCount} price={allPrice} salePrice={}
                                                              btn={true} onClick={anOrderForm}/>
                                             </div>
                                         </div>

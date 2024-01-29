@@ -4,6 +4,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {decrementCount, incrementCount,totalAllPrice, deleteOrderAction,  } from "@/slice/basket";
 import {GoPlus} from "react-icons/go";
 import {HiOutlineMinusSmall} from "react-icons/hi2";
+import {priceView} from "@/helper";
 
 const ShopCartUI = ({product}) => {
 const dispatch =     useDispatch()
@@ -36,7 +37,7 @@ const dispatch =     useDispatch()
           {product?.salePrice &&
              <h3 className=" line-through text-currentGrey text-xs lg:text-sm absolute -bottom-4 lg:-bottom-5 ">{product?.salePrice?.toLocaleString('en-US', { style: 'decimal' }).replace(/,/g, ' ')}сум</h3>
           }   
-          <h4 className='lg:text-lg '>{product?.price?.toLocaleString('en-US', { style: 'decimal' }).replace(/,/g, ' ')}сум</h4>
+          <h4 className='lg:text-lg '>{priceView(product?.price)}сум</h4>
         </div>
       </div>
        <div className="flex  items-center gap-5 justify-end w-full sm:w-auto">
