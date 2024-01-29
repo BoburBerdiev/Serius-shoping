@@ -12,19 +12,19 @@ import {useForm} from "react-hook-form"
 import {useQuery} from "react-query";
 import apiService from "@/service/axois";
 import InfiniteScroll from "react-infinite-scroll-component";
-import {selectAllQuery, selectBrand, selectCatalog, selectStock, selectSubCatalog} from "@/slice/filterQuery";
+import {selectAllQuery, selectSubCatalog} from "@/slice/filterQuery";
 import {AiOutlineLoading3Quarters} from "react-icons/ai";
 import {useDispatch, useSelector} from "react-redux";
 
 const Index = () => {
-    const {query, subCatalog, catalog, brand, stock} = useSelector(state => state.filterQuerySlice)
+    const {query} = useSelector(state => state.filterQuerySlice)
     const dispatch = useDispatch()
     const [sideBar, setSideBar] = useState(false)
     const [page, setPage] = useState(1)
     const [productInfinity, setProductInfinity] = useState([])
     const [hasMore, setHasMore] = useState(false)
     const {cardPosition} = useSelector(state => state.CardSlice)
-    const {priceData,priceDataValue} = useSelector(state => state.filterSlice)
+    const {priceDataValue} = useSelector(state => state.filterSlice)
 
     const {register, resetField, reset, handleSubmit, setValue} = useForm()
     const sideBarHandler = () => {
@@ -56,22 +56,12 @@ const Index = () => {
     useEffect(() => {
         if (query !== null && page === 1) {
             // setPage(1)
-            console.log('render')
+            console.log(query)
             productFilteredRefetch()
         }
     }, [query, page]);
 
 
-    useEffect(() => {
-        return () => {
-            // dispatch(selectStock(""))
-            // dispatch(selectCatalog(""))
-            // dispatch(selectBrand(""))
-            // dispatch(selectSubCatalog(""))
-            // dispatch(selectAllQuery(null))
-
-        }
-    }, []);
 
     useEffect(() => {
         if (productFilteredSuccess) {
@@ -107,7 +97,8 @@ const Index = () => {
                             <StockItemFilter formname={{...register("stock")}}/>
                             <SearchBrand formname={{...register("brand")}}/>
                             <FilterPrice/>
-                            <button type={'submit'}>send</button>
+                            <ButtonUI text={'Перейти на главную'} type={'submit'}
+                                      className={'bg-darkBlue text-white py-3 px-5 md:py-4 md:px-8'}/>
                         </form>
 
                         <div className=" w-full relative md:col-span-4">

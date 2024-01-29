@@ -14,7 +14,7 @@ const FilterPrice = () => {
     useEffect(() => {
         if (priceData?.length > 0) {
             // setMinMax([priceData[0], priceData[1]]);
-            dispatch(selectFilterPriceValue([priceData[0], priceData[1]]))
+            // dispatch(selectFilterPriceValue([priceData[0], priceData[1]]))
 
         }
     }, [priceData]);

@@ -61,7 +61,6 @@ const CatalogItemFilter = ({formname, resetField, setPage, setValue}) => {
             dispatch(selectCatalog(selectItem?.value))
 
             if (selectItem?.value === 'all') {
-                console.log(selectItem?.value)
                 selectedBrandPrice(catalogAll)
             } else {
                 dispatch(selectBrand(""))
@@ -80,19 +79,13 @@ const CatalogItemFilter = ({formname, resetField, setPage, setValue}) => {
 
     useEffect(() => {
 
-        if (catalog === "") {
-            setValue("catalog", 'all')
-        }
 
         if (catalog !== "" || subCatalog !== "" || brand !== "" || stock !== "") {
             if (catalog !== "") {
                 const data = catalog.split("=")[1]
                 setValue("catalog", data)
                 let product = catalogAll?.all_catalog?.find(product => product?.title_uz === data)
-                console.log(product)
                 selectedBrandPrice(product)
-            }else{
-                setValue("catalog", 'all')
             }
 
             if (subCatalog !== "") {
@@ -100,8 +93,7 @@ const CatalogItemFilter = ({formname, resetField, setPage, setValue}) => {
                 setValue("sub_catalog", subCatalog.split("=")[1])
                 let product = catalogAll?.all_catalog?.find(product => product?.title_uz === data)
                 setPage(1)
-                dispatch(selectFilterPriceValue([0, 0]))
-                console.log(product)
+                // dispatch(selectFilterPriceValue([0, 0]))
                 selectedBrandPrice(product)
                 dispatch(selectAllQuery())
             }
@@ -112,8 +104,10 @@ const CatalogItemFilter = ({formname, resetField, setPage, setValue}) => {
                 setValue("stock", stock.split("=")[1])
             }
 
+        }else {
+            setValue("catalog", 'all')
+
         }
-        // selectedBrandPrice(catalogAll)
     }, [catalog, subCatalog, brand, stock, catalogAll])
 
     useEffect(() => {
@@ -126,7 +120,7 @@ const CatalogItemFilter = ({formname, resetField, setPage, setValue}) => {
     return (
         <div>
             <AccordionUI title={t('navbar.catalog')}>
-                <>
+                <div className={'max-h-[192px] overflow-y-scroll w-full space-y-2'}>
                     <CheckBoxUI isRadio={true} formname={{...formname}} title_ru={'Все категории'} title_uz={'Barcha kategoriya'}
                                 value={'all'} setSelectItem={setSelectItem}/>
                     {
@@ -141,7 +135,7 @@ const CatalogItemFilter = ({formname, resetField, setPage, setValue}) => {
                             </Fragment>
                         ))
                     }
-                </>
+                </div>
             </AccordionUI>
         </div>
     );

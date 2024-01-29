@@ -12,6 +12,7 @@ const CatalogNav = () => {
     const {t} = useTranslation()
     const dispatch = useDispatch()
     const [isSort, setIsSort] = useState(false)
+    const [sortValue, setSortValue] = useState("")
     const {cardPosition} = useSelector(state => state.CardSlice)
     const {lang}=useSelector(state => state.langSlice)
 
@@ -46,6 +47,7 @@ const CatalogNav = () => {
         setIsSort(false)
     }
     const handleOrder = (value) => {
+        setSortValue(value.title)
         dispatch(selectSort(value.value))
     }
     useEffect(() => {
@@ -68,7 +70,10 @@ const CatalogNav = () => {
                     className="flex items-center justify-between px-4 py-2 gap-3 rounded-[41px] border border-[#efefef]"
                     onClick={(e) => handleSort(e)}
                 >
+                    <div className={'flex items-center gap-1'}>
                     <RiMenu2Line className="text-xs xs:text-xl ri-menu-2-line"/>
+                        <p className={'text-xs text-[#656565]  font-medium duration-500 hover:bg-[rgba(113,169,233,.559)]'}>{sortValue}</p>
+                    </div>
                     <div className="flex-col items-start hidden xs:flex">
                         <p
                             className="text-[8px] font-bold uppercase tracking-[0.8px] "

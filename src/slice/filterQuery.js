@@ -36,7 +36,11 @@ const filterSlice = createSlice({
         selectSort: (state, {payload}) => {
             state.subCatalog = `${payload ? `&order_by=${payload}` : ''}`
         },
-        selectAllQuery: (state) => {
+        selectAllQuery: (state,{payload}) => {
+            if (payload===null){
+                state.query=null
+                return
+            }
             const data= state.catalog + state.subCatalog + state.stock + state.brand+state.sort
             if (data){
             state.query =data

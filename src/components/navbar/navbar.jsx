@@ -13,7 +13,7 @@ import SearchCardUI from '../search-card/search-card-UI';
 import apiService from "@/service/axois";
 import {useQuery} from "react-query";
 import {useDispatch, useSelector} from "react-redux";
-import {selectFilterCatalog, selectFilterSubCategory} from "@/slice/filter";
+import {selectFilterCatalog, selectFilterPriceValue, selectFilterSubCategory} from "@/slice/filter";
 import {useRouter} from "next/router";
 import {selectAllQuery, selectBrand, selectCatalog, selectStock, selectSubCatalog} from "@/slice/filterQuery";
 
@@ -30,6 +30,19 @@ const Navbar = ({catalog}) => {
         e.stopPropagation()
         setOpenNav(prevstate => !prevstate)
     }
+
+
+
+    useEffect(() => {
+        if (router.asPath!=='/product'){
+            dispatch(selectStock(""))
+            dispatch(selectCatalog(""))
+            dispatch(selectBrand(""))
+            dispatch(selectSubCatalog(""))
+            dispatch(selectAllQuery(null))
+            // dispatch(selectFilterPriceValue([0,0]))
+        }
+    }, [router.asPath]);
 
     useEffect(() => {
         const handleCLoseNav = () => {

@@ -11,20 +11,13 @@ const MiniNavbar = () => {
   const dispatch = useDispatch()
 
   const miniNavInfo = [
-    {
-      name: t('navbar.sales'),
-      link: '/product',
-      value:"sales"
-    },
+
     {
       name:  t('navbar.newItems'),
       link: '/product',
       value: "new"
     },
-    {
-      name: t('navbar.stock'),
-      link: '/product'
-    },
+
   ]
 
 
