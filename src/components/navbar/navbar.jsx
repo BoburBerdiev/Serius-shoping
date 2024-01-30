@@ -13,7 +13,7 @@ import SearchCardUI from '../search-card/search-card-UI';
 import apiService from "@/service/axois";
 import {useQuery} from "react-query";
 import {useDispatch, useSelector} from "react-redux";
-import {selectFilterCatalog, selectFilterPriceValue, selectFilterSubCategory} from "@/slice/filter";
+import {selectFilterBrands, selectFilterCatalog, selectFilterPriceValue, selectFilterSubCategory} from "@/slice/filter";
 import {useRouter} from "next/router";
 import {selectAllQuery, selectBrand, selectCatalog, selectStock, selectSubCatalog} from "@/slice/filterQuery";
 
@@ -40,7 +40,11 @@ const Navbar = ({catalog}) => {
             dispatch(selectBrand(""))
             dispatch(selectSubCatalog(""))
             dispatch(selectAllQuery(null))
-            // dispatch(selectFilterPriceValue([0,0]))
+            dispatch(selectFilterPriceValue([0,0]))
+
+            // dispatch(selectFilterCatalog(null))
+            dispatch(selectFilterSubCategory(null))
+            // dispatch(selectFilterBrands(null))
         }
     }, [router.asPath]);
 

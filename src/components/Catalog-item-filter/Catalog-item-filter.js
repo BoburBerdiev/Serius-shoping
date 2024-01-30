@@ -48,7 +48,7 @@ const CatalogItemFilter = ({formname, resetField, setPage, setValue}) => {
             dispatch(selectSubCatalog(subCategory?.subTitle))
             dispatch(selectCatalog(subCategory?.title))
 
-            // selectedBrandPrice(product)
+            selectedBrandPrice(product)
             setValue('sub_catalog', subCategory?.subTitle)
             setValue('catalog', subCategory?.title)
         }
@@ -89,6 +89,7 @@ const CatalogItemFilter = ({formname, resetField, setPage, setValue}) => {
             }
 
             if (subCatalog !== "") {
+
                 const data = catalog.split("=")[1]
                 setValue("sub_catalog", subCatalog.split("=")[1])
                 let product = catalogAll?.all_catalog?.find(product => product?.title_uz === data)
@@ -98,7 +99,14 @@ const CatalogItemFilter = ({formname, resetField, setPage, setValue}) => {
                 dispatch(selectAllQuery())
             }
             if (brand !== "") {
-                setValue("brand", brand.split("=")[1])
+                const data=brand.split("=")[1]
+                let product =null
+                // product=catalogAll?.all_catalog?.map(category=>{
+                //     category?.brands?.find(brand=>brand.title_uz===data)
+                // })
+                // console.log(product)
+                // selectedBrandPrice(product)
+                setValue("brand", data)
             }
             if (stock !== "") {
                 setValue("stock", stock.split("=")[1])

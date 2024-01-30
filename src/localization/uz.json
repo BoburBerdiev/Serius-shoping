@@ -25,7 +25,9 @@
       "watch": "Hammasini ko'ring",
       "checkout": "Buyurtma berish",
       "back": "Orqaga",
-      "order": "Zakaz"
+      "order": "Zakaz",
+      "filter": "Jo'natish"
+
     },
     "form": {
       "name": "Ism",

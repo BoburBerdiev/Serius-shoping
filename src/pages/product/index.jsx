@@ -12,10 +12,11 @@ import {useForm} from "react-hook-form"
 import {useQuery} from "react-query";
 import apiService from "@/service/axois";
 import InfiniteScroll from "react-infinite-scroll-component";
-import {selectAllQuery, selectSubCatalog} from "@/slice/filterQuery";
+import {selectAllQuery, selectStock, selectSubCatalog} from "@/slice/filterQuery";
 import {AiOutlineLoading3Quarters} from "react-icons/ai";
 import {useDispatch, useSelector} from "react-redux";
 import {useTranslation} from "react-i18next";
+import {selectFilterPriceValue} from "@/slice/filter";
 
 const Index = () => {
     const {query} = useSelector(state => state.filterQuerySlice)
@@ -31,8 +32,7 @@ const Index = () => {
     // commit ucun
     const {priceDataValue} = useSelector(state => state.filterSlice)
 
-    const [minMaxValue, setMinMaxValue] = useState([0, 0])
-    const {register, resetField ,  reset, handleSubmit, setValue} = useForm()
+    const {register, resetField, reset, handleSubmit, setValue} = useForm()
     const sideBarHandler = () => {
         setSideBar(prevSideBar => !prevSideBar)
         resetField("sub_catalog")
@@ -54,10 +54,15 @@ const Index = () => {
     );
 
 
-    const onSubmit = () => {
+    const onSubmit = (data) => {
+        if (data.stock.length===0){
+            dispatch(selectStock(''))
+        }
+        console.log(data)
         setPage(1)
         dispatch(selectSubCatalog(''))
         dispatch(selectAllQuery())
+        dispatch(selectFilterPriceValue([0,0]))
     }
     useEffect(() => {
         if (query !== null && page === 1) {
@@ -102,7 +107,7 @@ const Index = () => {
                             <StockItemFilter formname={{...register("stock")}}/>
                             <SearchBrand formname={{...register("brand")}}/>
                             <FilterPrice/>
-                            <ButtonUI text={'Перейти на главную'} type={'submit'}
+                            <ButtonUI text={t('btn.filter')} type={'submit'}
                                       className={'bg-darkBlue text-white py-3 px-5 md:py-4 md:px-8'}/>
                         </form>
 

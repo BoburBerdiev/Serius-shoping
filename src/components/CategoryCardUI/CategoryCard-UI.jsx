@@ -8,6 +8,7 @@ const CategoryCardUI = ({src,  text, textPosition, iconPosition, grid  }) => {
     const dispatch = useDispatch()
     const router = useRouter()
     const FilterCatalog = () => {
+        console.log(text)
         dispatch(selectCatalog(text))
         router.push('/product')
     }

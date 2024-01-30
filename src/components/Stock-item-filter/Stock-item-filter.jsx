@@ -28,8 +28,6 @@ const StockItemFilter = ({formname}) => {
     useEffect(() => {
         if (selectItem) {
             dispatch(selectStock(selectItem?.value))
-        } else {
-            dispatch(selectStock(""))
         }
     }, [selectItem])
     return (

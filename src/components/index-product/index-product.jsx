@@ -12,15 +12,17 @@ const IndexProduct = ({list}) => {
     const router = useRouter()
 
     const handleSelectBanner = (value) => {
+        console.log(value)
         if(value?.brand) {
             dispatch(selectBrand(value?.brand?.title))
-        }else if(value?.catalog) {
-            dispatch(selectCatalog(value?.catalog?.title))
+        }else if(value?.category) {
+            dispatch(selectCatalog(value?.category?.title))
         }else if(value?.stock?.stock_type) {
             dispatch(selectStock(value?.stock?.stock_type))
         }else if(value?.sub_category) {
             dispatch(selectSubCatalog(value?.sub_category?.title))
         }
+        router.push('/product')
     }
 
 
