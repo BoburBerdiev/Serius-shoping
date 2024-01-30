@@ -65,19 +65,6 @@ export default function Home({newProduct , indexCatalog , service, endBanners , 
           }
 
 
-          {/*<SectionTitleUI title={lang === 'ru' ? advertisingProduct?.title_ru : advertisingProduct?.title_uz} href={'#'}/>*/}
-          {/*<div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 md:gap-[30px]">*/}
-          {/*  {*/}
-          {/*    newProduct?.map(product => (*/}
-          {/*        <CardUI key={product?.id} imageArr={product?.images}*/}
-          {/*                slug={`product/${product?.slug}`}*/}
-          {/*                title_ru={product?.title_ru}*/}
-          {/*                title_uz={product?.title_uz}*/}
-          {/*                id={product?.id}*/}
-          {/*                price={product?.price} salePrice={product?.sales}/>*/}
-          {/*    ))*/}
-          {/*  }*/}
-          {/*</div>*/}
         </SectionUI>
           <SectionUI>
             <BannerUI banners={endBanners}

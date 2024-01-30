@@ -26,6 +26,7 @@
       "checkout": "Оформить заказ",
       "back": "Назад",
       "order": "Заказать",
+      "sendHome": "Перейти на главную",
       "filter": "Далее"
     },
     "form": {
@@ -37,7 +38,9 @@
       "all": "Итого",
       "discountPrice": "Скидка:",
       "productPrice": "товара на сумму",
-      "checkout": "Оформление заказа"
+      "checkout": "Оформление заказа",
+      "orderAccepted": "Ваш заказ принят",
+      "clear": "Ваша корзина пуста"
     },
     "product-inner": {
       "moreAbout": "Коротко о товаре",
@@ -48,7 +51,8 @@
       "noProduct": "Нет в наличии",
       "yesProduct": "В наличии",
       "sum" : "сум",
-      "addBasket": "Добавить в корзину"
+      "addBasket": "Добавить в корзину",
+      "discount": "скидка"
     },
     "filter": {
       "hightestprice": "Самая высокая цена",

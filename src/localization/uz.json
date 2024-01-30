@@ -26,8 +26,8 @@
       "checkout": "Buyurtma berish",
       "back": "Orqaga",
       "order": "Zakaz",
+      "sendHome": "Asosiy sahifaga o'ting",
       "filter": "Jo'natish"
-
     },
     "form": {
       "name": "Ism",
@@ -38,7 +38,9 @@
       "all": "Jami",
       "discountPrice": "Chegirma:",
       "productPrice": "tovar narxi",
-      "checkout": "Buyurtma berish"
+      "checkout": "Buyurtma berish",
+      "orderAccepted": "Buyurtmangiz qabul qilinadi",
+      "clear": "Siz hali harid qilmadingiz"
     },
     "product-inner": {
       "moreAbout": "Tovar haqida qisqacha",
@@ -49,7 +51,8 @@
       "noProduct": "Mavjud emas",
       "yesProduct": "Mavjud",
       "sum": "so'm",
-      "addBasket": "Savatga qo'shish"
+      "addBasket": "Savatga qo'shish",
+      "discount": "chegirma"
     },
     "filter": {
       "hightestprice": "Eng yuqori narx",
