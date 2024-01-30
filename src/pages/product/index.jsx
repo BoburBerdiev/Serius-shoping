@@ -124,6 +124,7 @@ const Index = () => {
                                 <div
                                     className={` ${cardPosition ? 'grid-cols-1 divide-y' : 'grid-cols-2  md:grid-cols-3 lg:grid-cols-4 '} grid gap-5`}>
                                     {
+
                                         productInfinity?.map(product => (
                                             <CardUI key={product?.id} imageArr={product?.images}
                                                     slug={`product/${product?.slug}`}
