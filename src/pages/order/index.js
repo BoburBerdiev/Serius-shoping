@@ -67,6 +67,8 @@ const Index = () => {
             }
             orderProductUser.order.push(list);
         })
+
+        console.log(orderProductUser)
         userPost({url: "/product-orders/", data: orderProductUser});
         reset();
     }
@@ -108,12 +110,15 @@ const Index = () => {
                                                          btn={isOrderForm} onClick={anOrderForm}/>
                                         </div>
                                     </div>
+                                    {
+                                        lastProduct.length > 0 &&
                                     <div className="py-10">
                                         <SectionTitleUI title={t('product-inner.likeProduct')}/>
                                         <div>
                                             <SwiperUI idSwiper={'myswiper2'} productsArr={lastProduct}/>
                                         </div>
                                     </div>
+                                    }
                                 </div>
 
                             }
@@ -134,10 +139,10 @@ const Index = () => {
                                 <ImageUI src={'/empty cart.png'} alt={'card'} imgStyle={'object-contain'}/>
                             </div>
                             <div className="flex flex-col items-center ">
-                                <SectionTitleUI title={'Ваша корзина пуста'} isBorder={true}/>
+                                <SectionTitleUI title={t('order.clear')} isBorder={true}/>
                                 <p className="text-center">{t('catalog.findProduct')}</p>
                             </div>
-                            <ButtonUI text={'Перейти на главную'} href={'#'}
+                            <ButtonUI text={t('btn.sendHome')} href={'/'}
                                       className={'bg-darkBlue text-white py-3 px-5 md:py-4 md:px-8'}/>
                         </div>
                     </div>
@@ -153,11 +158,11 @@ const Index = () => {
                         <IoIosCheckmarkCircle
                             className="w-10 h-10 md:w-20 md:h-20 lg:w-[90px] lg:h-[90px] text-currentGreen"/>
                         <div>
-                            <SectionTitleUI ismargin={'true'} title={'Ваш заказ принят'} isBorder={true}/>
+                            <SectionTitleUI ismargin={'true'} title={t('order.orderAccepted')} isBorder={true}/>
                         </div>
-                        <p className="mt-2.5 text-center">Мы в скором времени свяжемся с вами</p>
+                        <p className="mt-2.5 text-center"></p>
                         <div className="w-1/2">
-                            <ButtonUI text={'Перейти на главную'} cardBtn={true} className={'py-3 md:py-4'} href={'/'}/>
+                            <ButtonUI text={t('btn.sendHome')} cardBtn={true} className={'py-3 md:py-4'} href={'/'}/>
                         </div>
                     </div>
                 </div>

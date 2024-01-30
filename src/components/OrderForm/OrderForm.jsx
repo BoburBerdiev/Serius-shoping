@@ -18,7 +18,7 @@ const OrderForm = ({onClick , onSubmit , formUserAddress , formUserPhone ,formUs
           </div>
           <div className='grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-[30px] items-center mt-4 md:mt-[30px]'>
             {
-            <ButtonUI  cardBtn={true} text={t('btn.order')} className={'py-3 md:py-4'} onClick={onClick}/>
+            <ButtonUI type={'submit'}  cardBtn={true} text={t('btn.order')} className={'py-3 md:py-4'} onClick={onClick}/>
             }
           </div>
         </form>

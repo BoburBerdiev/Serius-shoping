@@ -16,6 +16,8 @@ import {useDispatch, useSelector} from "react-redux";
 import {selectFilterCatalog, selectFilterPriceValue, selectFilterSubCategory} from "@/slice/filter";
 import {useRouter} from "next/router";
 import {selectAllQuery, selectBrand, selectCatalog, selectStock, selectSubCatalog} from "@/slice/filterQuery";
+import {CiMenuFries} from "react-icons/ci";
+import {BiCategoryAlt} from "react-icons/bi";
 
 
 const Navbar = ({catalog}) => {
@@ -82,7 +84,7 @@ const Navbar = ({catalog}) => {
                     </Link>
 
                     <ButtonUI respText={true} className={`${openNav && 'bg-darkBlue text-white'} flex-shrink-0 duration-300 max-md:text-base`}
-                              leftIcon={!openNav ? <img alt={'menu'} src='/menu.svg' className='w-4 md:w-6 h-4 md:h-6'/> :
+                              leftIcon={!openNav ? <BiCategoryAlt  className='w-4 md:w-6 h-4 md:h-6'/>  :
                                   <IoClose className='text-white md:text-2xl'/>} text={t('navbar.catalog')}
                               onClick={(e) => navbarHandler(e)}/>
                     <div
@@ -98,7 +100,7 @@ const Navbar = ({catalog}) => {
                                             <li className='relative group z-50 pb-2 text-[#8A8A8A] duration-300 hover:text-darkBlue'
                                                 key={product?.id}>
                                                 <button onClick={() => filterSubCatalog(product)}
-                                                        className='flex text-wrap break-words items-center justify-between gap-5 max-md:text-sm whitespace-nowrap'>
+                                                        className='flex text-wrap break-words items-center justify-between text-left gap-5 max-md:text-sm whitespace-nowrap'>
                                                     {lang === 'ru' ? product?.title_ru : product?.title_uz}
                                                     <div
                                                         className='text-white text-xl duration-300 group-hover:text-darkBlue'>
@@ -117,9 +119,11 @@ const Navbar = ({catalog}) => {
                 <div className='flex items-center gap-[18px] max-md:hidden'>
                     <Link href='/order'
                           className='flex relative flex-col items-center justify-center text-darkBlue duration-300 hover:text-slate-500 group'>
+                        <div className={'relative'}>
                         <LuShoppingBag className='text-xl'/>
                         <span
-                            className={'text-[10px] absolute group-hover:bg-slate-500 -top-2 right-4 py-[3px] px-[4px] bg-darkBlue text-white rounded-full'}>{allCount}</span>
+                            className={'text-[10px] absolute group-hover:bg-slate-500 -top-2 -right-1 py-[3px] px-[4px] bg-darkBlue text-white rounded-full'}>{allCount}</span>
+                        </div>
                         {t('navbar.basket')}
                     </Link>
                     <Link href='/contact'
