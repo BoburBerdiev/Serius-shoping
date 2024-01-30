@@ -15,6 +15,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import {selectAllQuery, selectSubCatalog} from "@/slice/filterQuery";
 import {AiOutlineLoading3Quarters} from "react-icons/ai";
 import {useDispatch, useSelector} from "react-redux";
+import {useTranslation} from "react-i18next";
 
 const Index = () => {
     const {query} = useSelector(state => state.filterQuerySlice)
@@ -24,9 +25,14 @@ const Index = () => {
     const [productInfinity, setProductInfinity] = useState([])
     const [hasMore, setHasMore] = useState(false)
     const {cardPosition} = useSelector(state => state.CardSlice)
+    const { t  } = useTranslation();
+
+
+    // commit ucun
     const {priceDataValue} = useSelector(state => state.filterSlice)
 
-    const {register, resetField, reset, handleSubmit, setValue} = useForm()
+    const [minMaxValue, setMinMaxValue] = useState([0, 0])
+    const {register, resetField ,  reset, handleSubmit, setValue} = useForm()
     const sideBarHandler = () => {
         setSideBar(prevSideBar => !prevSideBar)
         resetField("sub_catalog")
@@ -56,7 +62,6 @@ const Index = () => {
     useEffect(() => {
         if (query !== null && page === 1) {
             // setPage(1)
-            console.log(query)
             productFilteredRefetch()
         }
     }, [query, page]);
@@ -112,7 +117,7 @@ const Index = () => {
                                 className={'w-full'}
                                 dataLength={productInfinity?.count || []}>
                                 <div
-                                    className={` ${cardPosition ? 'grid-cols-1' : 'grid-cols-2  md:grid-cols-3 lg:grid-cols-4 '} grid gap-5`}>
+                                    className={` ${cardPosition ? 'grid-cols-1 divide-y' : 'grid-cols-2  md:grid-cols-3 lg:grid-cols-4 '} grid gap-5`}>
                                     {
                                         productInfinity?.map(product => (
                                             <CardUI key={product?.id} imageArr={product?.images}

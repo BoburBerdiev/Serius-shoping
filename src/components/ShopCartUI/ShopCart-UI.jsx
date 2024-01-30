@@ -5,9 +5,11 @@ import {decrementCount, incrementCount,totalAllPrice, deleteOrderAction,  } from
 import {GoPlus} from "react-icons/go";
 import {HiOutlineMinusSmall} from "react-icons/hi2";
 import {priceView} from "@/helper";
+import {useTranslation} from "react-i18next";
 
 const ShopCartUI = ({product}) => {
 const dispatch =     useDispatch()
+    const {t} = useTranslation();
 
     const { lang } = useSelector((state) => state.langSlice);
     const handlePlus = () => {
@@ -25,7 +27,7 @@ const dispatch =     useDispatch()
     };
   return (
     <div className='flex justify-between w-full font-rubik max-sm:flex-col items-center gap-2 sm:gap-0 shop-cart relative py-5 sm:py-0'>
-      <div className="flex items-center w-full sm:w-auto gap-3 ">
+      <div className="flex items-center w-full  sm:w-[50%] gap-3 ">
         <div className='h-16 w-16 xl:w-24 xl:h-24 relative'>
             {
                 product?.image &&
@@ -34,21 +36,23 @@ const dispatch =     useDispatch()
         </div>
           <div className={'space-y-2'}>
             <p className='line-clamp-2	text-sm md:text-lg font-semibold max-w-[150px] xl:max-w-[280px]'>{lang === 'ru' ? product?.title_ru : product?.title_uz}</p>
-            <div className="relative ">
-              {product?.salePrice &&
-                 <h3 className=" line-through text-currentGrey text-xs lg:text-sm absolute -bottom-4 lg:-bottom-5 space-x-1">
-                     <span>
-                         { priceView(product?.salePrice) }
+              <div className="relative ">
+                  <h4 className='lg:text-lg '>{ product?.salePrice ? priceView(product?.salePrice) : priceView(product?.price)}<span>{t('product-inner.sum')}</span></h4>
+                  {
+                      product?.salePrice &&
+                      <h3 className=" line-through text-currentGrey text-xs lg:text-sm  space-x-1 ">
+                     <span className={'break-normal'}>
+                           {priceView(product?.price)}
                      </span>
-                      <span>сум</span> </h3>
-              }
-                <h4 className='lg:text-lg '>{priceView(product?.price)}<span>сум</span></h4>
-            </div>
+                     <span>{t('product-inner.sum')}</span></h3>
+                  }
+
+              </div>
 
           </div>
       </div>
-       <div className="flex  items-center gap-5 justify-end w-full sm:w-auto">
-        <div className='flex px-3 py-1.5 bg-[#F5F5F5] rounded-lg order-2 sm:order-1'>
+        <div className="flex  items-center gap-5 justify-end w-full sm:w-auto">
+        <div className='flex px-3 py-1.5 bg-[#F5F5F5] rounde-lg order-2 sm:order-1'>
           <button onClick={handleMinus} className="cursor-pointer outline-none p-2">
               <HiOutlineMinusSmall />
           </button>

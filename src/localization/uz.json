@@ -12,6 +12,9 @@
       "uz": "O'z",
       "ru": "Ru"
     },
+    "catalog": {
+      "findProduct": "Katalogda yoki qidirish orqali kerakli mahsulotlarni toping"
+    },
     "contact": {
       "contact": "Bizning aloqa ma'lumotlari",
       "email": "Elektron pochta",
@@ -19,12 +22,21 @@
       "shop": "Dukan"
     },
     "btn": {
-      "watch": "Hammasini ko'ring"
+      "watch": "Hammasini ko'ring",
+      "checkout": "Buyurtma berish",
+      "back": "Orqaga",
+      "order": "Zakaz"
     },
     "form": {
       "name": "Ism",
       "phone": "Telefon",
       "address": "Manzil"
+    },
+    "order": {
+      "all": "Jami",
+      "discountPrice": "Chegirma:",
+      "productPrice": "tovar narxi",
+      "checkout": "Buyurtma berish"
     },
     "product-inner": {
       "moreAbout": "Tovar haqida qisqacha",
@@ -34,7 +46,8 @@
       "likeProduct": "Keyinroq ko'rsatilganlar",
       "noProduct": "Mavjud emas",
       "yesProduct": "Mavjud",
-      "sum": "so'm"
+      "sum": "so'm",
+      "addBasket": "Savatga qo'shish"
     },
     "filter": {
       "hightestprice": "Eng yuqori narx",

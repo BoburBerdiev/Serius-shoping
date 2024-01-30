@@ -6,7 +6,7 @@ import {
     SectionTitleUI,
     SectionUI,
     ServiceSectionUI,
-    ShopCartUI,
+    ShopCartUI, SwiperUI,
     TotalCardUI
 } from "@/components"
 import {useEffect, useState} from "react"
@@ -17,35 +17,37 @@ import apiService from "@/service/axois";
 import {useMutation} from "react-query";
 import {clearOrder} from "@/slice/basket";
 import {useRouter} from "next/router";
+import {useTranslation} from "react-i18next";
 
 const Index = () => {
     const [isOrderForm, setIsOrderForm] = useState(true)
-    const [orderAccepted, setOrderAccepted] = useState(false)
     const {register, reset, handleSubmit, setValue} = useForm()
     const dispatch = useDispatch();
     const router = useRouter();
+    const {t} = useTranslation();
+    const {lastProduct} = useSelector((state) => state.lastProductSlice);
     const {
         mutate: userPost,
         data: userPostData,
         isLoading: userPostLoading,
         isSuccess: userPostSuccess,
-    } = useMutation(({ url, data }) => apiService.postData(url, data));
+    } = useMutation(({url, data}) => apiService.postData(url, data));
     const [step, setStep] = useState(1);
     const {basket, allPrice, allCount} = useSelector(
         (state) => state.basketSlice
     );
     useEffect(() => {
-        if(userPostSuccess) {
+        if (userPostSuccess) {
             dispatch(clearOrder())
             setTimeout(() => {
                 router.push("/product");
             }, 2000);
         }
-    }, userPostData);
+    }, [userPostData]);
 
 
     const anOrderForm = () => (
-		setIsOrderForm(prevstate => !prevstate)
+        setIsOrderForm(prevstate => !prevstate)
     )
 
     const onSubmit = (data) => {
@@ -59,57 +61,60 @@ const Index = () => {
             order: [],
         }
         basket?.map(item => {
-            const list= {
+            const list = {
                 product_id: item?.id,
                 count: item?.count
             }
             orderProductUser.order.push(list);
         })
-        userPost({ url: "/product-orders/", data: orderProductUser });
+        userPost({url: "/product-orders/", data: orderProductUser});
         reset();
     }
     return (
         <div className="font-rubik min-h-screen">
             {
-				allCount > 0 ?
+                allCount > 0 ?
                     <div>
                         <SectionUI customPadding={'pt-[140px] md:pt-40 pb-10 font-rubik'}>
                             <BreadcrumbUI/>
                             {
 
-                                    <div>
-                                        <div className="grid lg:grid-cols-6 mt-[30px] gap-4 lg:gap-x-[30px]">
-                                            <div className="lg:col-span-4 order">
-                                                {
+                                <div>
+                                    <div className="grid lg:grid-cols-6 mt-[30px] gap-4 lg:gap-x-[30px]">
+                                        <div className="lg:col-span-4 order">
+                                            {
                                                 isOrderForm ?
-                                                <div
-                                                    className="px-3 md:px-[30px] flex flex-col w-full divide-y  divide-borderGrey border border-borderGrey rounded-lg max-h-[580px] md:max-h-[420px] overflow-y-scroll">
-                                                    {
-                                                        basket?.map(product => (
-                                                            <div key={product?.id}
-                                                                 className="flex  items-center justify-center w-full py-4 md:py-[30px]">
-                                                                <ShopCartUI product={product}
-                                                                />
-                                                            </div>
-                                                        ))
-                                                    }
-                                                </div>
+                                                    <div
+                                                        className="px-3 md:px-[30px] flex flex-col w-full divide-y  divide-borderGrey border border-borderGrey rounded-lg max-h-[580px] md:max-h-[420px] overflow-y-scroll">
+                                                        {
+                                                            basket?.map(product => (
+                                                                <div key={product?.id}
+                                                                     className="flex  items-center justify-center w-full py-4 md:py-[30px]">
+                                                                    <ShopCartUI product={product}
+                                                                    />
+                                                                </div>
+                                                            ))
+                                                        }
+                                                    </div>
                                                     :
-                                                    <OrderForm onSubmit={handleSubmit(onSubmit)}  formUserName={{...register("name")}} formUserPhone={{...register("phone")}} formUserAddress={{...register("address")}}/>}
-                                            </div>
-
-                                            <div className="lg:col-span-2">
-                                                <TotalCardUI howMany={allCount} price={allPrice}
-                                                             btn={isOrderForm} onClick={anOrderForm}/>
-                                            </div>
+                                                    <OrderForm onSubmit={handleSubmit(onSubmit)}
+                                                               formUserName={{...register("name")}}
+                                                               formUserPhone={{...register("phone")}}
+                                                               formUserAddress={{...register("address")}}/>}
                                         </div>
-                                        <div className="py-10">
-                                            <SectionTitleUI title={'Вам может понравиться'}/>
-                                            <div>
-                                                {/*<SwiperUI idSwiper={'myswiper2'} productsArr={beLikeProducts}/>				*/}
-                                            </div>
+
+                                        <div className="lg:col-span-2">
+                                            <TotalCardUI howMany={allCount} price={allPrice}
+                                                         btn={isOrderForm} onClick={anOrderForm}/>
                                         </div>
                                     </div>
+                                    <div className="py-10">
+                                        <SectionTitleUI title={t('product-inner.likeProduct')}/>
+                                        <div>
+                                            <SwiperUI idSwiper={'myswiper2'} productsArr={lastProduct}/>
+                                        </div>
+                                    </div>
+                                </div>
 
                             }
                         </SectionUI>
@@ -130,7 +135,7 @@ const Index = () => {
                             </div>
                             <div className="flex flex-col items-center ">
                                 <SectionTitleUI title={'Ваша корзина пуста'} isBorder={true}/>
-                                <p className="text-center">Найдите нужные товары в каталоге или через поиск</p>
+                                <p className="text-center">{t('catalog.findProduct')}</p>
                             </div>
                             <ButtonUI text={'Перейти на главную'} href={'#'}
                                       className={'bg-darkBlue text-white py-3 px-5 md:py-4 md:px-8'}/>
