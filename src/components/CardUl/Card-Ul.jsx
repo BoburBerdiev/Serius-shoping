@@ -65,7 +65,7 @@ const CardUI = ({imageArr, title_ru , title_uz, price, salePrice, rows , slug , 
             </div>
             <div className={`gap-y-4 flex w-full h-full ${rows ? ' max-md:flex-col justify-between gap-x-5' : 'flex-col justify-between '}`}>
               <div className="space-y-3 lg:space-y-[18px] w-full">
-                <h5 className="font-rubik text-sm  h-10 md:text-lg break-all line-clamp-2 md:line-clamp-2">
+                <h5 className="font-rubik text-sm  h-10 md:text-lg break-all line-clamp-2">
                   { lang ? title_ru : title_uz }
                 </h5>
                 {
