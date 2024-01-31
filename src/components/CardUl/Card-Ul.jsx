@@ -129,7 +129,7 @@ const CardUI = ({imageArr, title_ru , title_uz, price, salePrice, rows , slug , 
                 }
                 <div className={`flex gap-2.5 ${rows ? '' : 'md;pr-3 justify-between'}`}>
                   <ButtonUI className={'border-currentRed'} onClick={handleAddBag} leftIcon={<LuShoppingBag className="md:h-[22px] text-currentRed md:w-[22px] "/>}/>
-                  <ButtonUI href={`${slug}`} text={'Подробнее'} cardBtn={true} />
+                  <ButtonUI href={`/product/${slug}`} text={'Подробнее'} cardBtn={true} />
                 </div>
               </div>
             </div>
