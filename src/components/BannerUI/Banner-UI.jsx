@@ -14,13 +14,13 @@ const BannerUI = ({banners, height}) => {
             return
         }
         if(banner?.brand) {
-            dispatch(selectBrand(banner?.brand?.title))
+            dispatch(selectBrand(banner?.brand?.title_uz))
         }else if(banner?.category) {
-            dispatch(selectCatalog(banner?.category?.title))
+            dispatch(selectCatalog(banner?.category?.title_uz))
         }else if(banner?.stock?.stock_type) {
             dispatch(selectStock(banner?.stock?.stock_type))
         }else if(banner?.sub_category) {
-            dispatch(selectSubCatalog(banner?.sub_category?.title))
+            dispatch(selectSubCatalog(banner?.sub_category?.title_uz))
         }
         router.push(`/product`)
 

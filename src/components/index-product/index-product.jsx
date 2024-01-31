@@ -12,7 +12,6 @@ const IndexProduct = ({list}) => {
     const router = useRouter()
 
     const handleSelectBanner = (value) => {
-        console.log(value)
         if(value?.brand) {
             dispatch(selectBrand(value?.brand?.title))
         }else if(value?.category) {

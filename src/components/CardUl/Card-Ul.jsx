@@ -31,7 +31,7 @@ const CardUI = ({imageArr, title_ru , title_uz, price, salePrice, rows , slug , 
     return (
       <>
         <SkeletonTheme>
-          <div className={`flex ${rows ? 'items-center' : 'flex-col  h-full'}  gap-3.5 md:gap-6 card-ui relative`}>
+          <div className={`flex ${rows ? 'items-center pt-2' : 'flex-col  h-full'}  gap-3.5 md:gap-6 card-ui relative`}>
             <div className={`${rows ? 'w-[40%] overflow-hidden ' : 'w-full'}`}>
                         <Swiper
                             id={"mySwiper1"}

@@ -68,7 +68,6 @@ const Index = () => {
             orderProductUser.order.push(list);
         })
 
-        console.log(orderProductUser)
         userPost({url: "/product-orders/", data: orderProductUser});
         reset();
     }

@@ -4,12 +4,11 @@ import {useRouter} from "next/router";
 import {useDispatch} from "react-redux";
 import {selectCatalog} from "@/slice/filterQuery";
 
-const CategoryCardUI = ({src,  text, textPosition, iconPosition, grid  }) => {
+const CategoryCardUI = ({src,  text,value, textPosition, iconPosition, grid  }) => {
     const dispatch = useDispatch()
     const router = useRouter()
     const FilterCatalog = () => {
-        console.log(text)
-        dispatch(selectCatalog(text))
+        dispatch(selectCatalog(value))
         router.push('/product')
     }
 

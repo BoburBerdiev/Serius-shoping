@@ -31,7 +31,7 @@ const Layout = ({ children }) => {
     return (
         <div className={''}>
             <Navbar catalog={catalog} />
-                <main className={" min-h-[100vh] mt-[80px] bg-red-700 " }>
+                <main className={" min-h-screen mt-[80px] bg-red-700 " }>
                         {children}
                 </main>
             <Footer contact={contact} socialMedia={socialMedia} />
