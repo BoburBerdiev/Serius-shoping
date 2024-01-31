@@ -56,6 +56,7 @@
       "discount": "скидка"
     },
     "filter": {
+      "filter": "Фильтр",
       "hightestprice": "Самая высокая цена",
       "loweprice": "Самая низкая цена",
       "az": "По алфавиту A-Z",

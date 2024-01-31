@@ -4,23 +4,25 @@ import { ButtonUI } from '..'
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import {useSelector} from "react-redux";
-
-const bottomNavInfo = [
-  {
-    name: 'Скидки',
-    link: '#'
-  },
-  {
-    name: 'Новинки',
-    link: '#'
-  },
-  {
-    name: 'Акции',
-    link: '#'
-  },
-]
+import {useTranslation} from "react-i18next";
+//
+// const bottomNavInfo = [
+//   {
+//     name: 'Скидки',
+//     link: '#'
+//   },
+//   {
+//     name: 'Новинки',
+//     link: '#'
+//   },
+//   {
+//     name: 'Акции',
+//     link: '#'
+//   },
+// ]
 
 const BottomNavbar = () => {
+  const {t} = useTranslation();
   const {allCount} = useSelector(state => state.basketSlice)
 
   const [dropdown, setDropdown] = useState(false)
@@ -60,18 +62,18 @@ const BottomNavbar = () => {
         <div className="bg-darkBlue py-3 space-y-3 rounded-t-[10px] border-t border-white">
           <div className="w-10 h-[6px] rounded-full bg-slate-600 mx-auto"></div>
           <ul className="flex flex-col items-center gap-3 text-white lg:gap-10 max-md:text-sm lg:text-lg font-medium">
-            {
-              bottomNavInfo.map(item => (
-                <li key={item.name} className="w-full">
-                  <Link href={item.link} className="text-white w-full block">
-                    {item.name}
-                  </Link>
-                </li>
-              ))
-            }
+            {/*{*/}
+            {/*  bottomNavInfo.map(item => (*/}
+            {/*    <li key={item.name} className="w-full">*/}
+            {/*      <Link href={item.link} className="text-white w-full block">*/}
+            {/*        {item.name}*/}
+            {/*      </Link>*/}
+            {/*    </li>*/}
+            {/*  ))*/}
+            {/*}*/}
           </ul>
           <Link href='/contact' className='flex flex-col items-center justify-center text-white'>
-              Контакты
+            {t('navbar.contact')}
           </Link>
         </div>
       </div>

@@ -85,14 +85,14 @@ export const seoContent = {
     },
     orderSeo: {
         uz: {
-            title: "",
-            description: "",
-            ogDescription: "",
+            title: "Sirius | Arzon narxdagi internet do'kon",
+            description: "O'zbekistonga birinchi qo'l bilan yangi turdagi mahsulotlarni taqdim etuvchi internet do'kon. Servis xizmati, garantiya va yetkazib berish xizmati mavjud",
+            ogDescription: "O'zbekistonga birinchi qo'l bilan yangi turdagi mahsulotlarni taqdim etuvchi internet do'kon. Servis xizmati, garantiya va yetkazib berish xizmati mavjud",
         },
         ru: {
-            title: '',
-            description: '',
-            ogDescription: '',
+            title: 'Сириус | Дешевый интернет-магазин',
+            description: 'Интернет-магазин, предлагающий новинки Узбекистана из первых рук. Есть сервис, гарантия и доставка.',
+            ogDescription: 'Интернет-магазин, предлагающий новинки Узбекистана из первых рук. Есть сервис, гарантия и доставка.',
         },
     },
     // newsSEO: {
