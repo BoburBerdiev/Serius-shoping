@@ -30,7 +30,7 @@ const SEO = ({ title, description, canonical, ogUrl, ogTitle, ogDescription, ogI
         additionalLinkTags={[
             {
                 rel: 'icon',
-                href: '/logo.png',
+                href: '/logo-title.png',
             },
             {
                 rel: 'apple-touch-icon',
