@@ -1,13 +1,10 @@
-import { AddCardUI, BannerUI, ButtonUI, CardUI, CategoryCardUI, ImageUI, SectionTitleUI, SectionUI, ServiceSectionUI } from "@/components";
+import {  BannerUI, CardUI, CategoryCardUI, SectionTitleUI, SectionUI, ServiceSectionUI } from "@/components";
 import SEO from '@/SEO/SEO'
 import {index} from '@/SEO/SEO.config'
 import axios from "axios";
 import {Fragment} from "react";
 import {useSelector} from "react-redux";
-import {useQuery} from "react-query";
-import apiService from "@/service/axois";
-import product from "@/pages/product";
-import {log} from "next/dist/server/typescript/utils";
+
 import IndexProduct from "@/components/index-product/index-product";
 export default function Home({newProduct , indexCatalog , service, endBanners , advertisingProduct, banners}) {
 
@@ -15,7 +12,7 @@ export default function Home({newProduct , indexCatalog , service, endBanners , 
   return (
       <>
         <SEO
-            ogImage={'/evolution.png'}
+            ogImage={'/logo.png'}
             title={index[lang].title}
             description={index[lang].description}
             ogTitle={index[lang].ogTitle}

@@ -18,6 +18,8 @@ import {useTranslation} from "react-i18next";
 import {basketList ,totalAllPrice } from '@/slice/basket'
 import Skeleton , { SkeletonTheme } from "react-loading-skeleton";
 import {changleLastProduct} from "@/slice/lastProduct";
+import {contactSEO} from "@/SEO/SEO.config";
+import SEO from "@/SEO/SEO";
 const ProductDetailed = () => {
     const loading = useState(true)
     const router = useRouter()
@@ -70,6 +72,18 @@ const ProductDetailed = () => {
 
     return (
         <>
+            <SEO
+                ogImage={product?.images[0]?.image}
+                title={lang === 'ru' ? product?.title_ru : product?.title_uz}
+                description={ lang === 'ru' ?
+                    product?.description_ru :
+                    product?.description_uz}
+                ogTitle={""}
+                ogDescription={lang === 'ru' ?
+                    product?.description_ru :
+                    product?.description_uz}
+                twitterHandle={""}
+            />
             <SkeletonTheme baseColor="#e6e5e5" highlightColor="#dfd4c7">
             <SectionUI customPadding={'pt-[140px] md:pt-40 pb-10 font-rubik pruduct-inner relative '}>
                 <div className='space-y-5 md:space-y-[30px]'>

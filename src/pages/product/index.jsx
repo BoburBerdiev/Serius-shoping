@@ -19,10 +19,11 @@ import {useTranslation} from "react-i18next";
 import {
     selectFilterBrands,
     selectFilterCatalog,
-    selectFilterPrice,
     selectFilterPriceValue,
     selectFilterSubCategory
 } from "@/slice/filter";
+import {catalogSEO} from "@/SEO/SEO.config";
+import SEO from "@/SEO/SEO";
 
 const Index = () => {
     const {query} = useSelector(state => state.filterQuerySlice)
@@ -33,7 +34,7 @@ const Index = () => {
     const [hasMore, setHasMore] = useState(false)
     const {cardPosition} = useSelector(state => state.CardSlice)
     const {t} = useTranslation();
-
+    const { lang } = useSelector((state) => state.langSlice);
 
     // commit ucun
     const {priceDataValue, brands} = useSelector(state => state.filterSlice)
@@ -121,6 +122,14 @@ const Index = () => {
 
     return (
         <>
+            <SEO
+                ogImage={'/logo.png'}
+                title={catalogSEO[lang].title}
+                description={catalogSEO[lang].description}
+                ogTitle={catalogSEO[lang].ogTitle}
+                ogDescription={catalogSEO[lang].ogDescription}
+                twitterHandle={catalogSEO[lang].twitterHandle}
+            />
             <SectionUI customPadding={'pt-[140px] md:pt-40 pb-10 font-rubik relative '}>
                 <div className="space-y-5 md:space-y-[30px]">
                     <BreadcrumbUI/>
