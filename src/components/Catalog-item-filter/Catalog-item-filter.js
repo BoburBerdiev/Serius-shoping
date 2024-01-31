@@ -17,7 +17,7 @@ const CatalogItemFilter = ({formname, resetField, setPage, setValue}) => {
     const dispatch = useDispatch()
     const [selectItem, setSelectItem] = useState(null)
     const {t} = useTranslation();
-    const {subCategory} = useSelector(state => state.filterSlice)
+    const {subCategory,category} = useSelector(state => state.filterSlice)
     const {catalog, subCatalog, brand, stock} = useSelector(state => state.filterQuerySlice)
 
 
@@ -78,17 +78,27 @@ const CatalogItemFilter = ({formname, resetField, setPage, setValue}) => {
 
 
     useEffect(() => {
+        if (category==='all'){
+            let product = catalogAll?.brands
+            selectedBrandPrice(product)
+            dispatch(selectFilterPrice([catalogAll?.min_price, catalogAll?.max_price]))
+
+        }
+    }, [category]);
+
+    useEffect(() => {
 
 
-        if (catalog !== "" || subCatalog !== "" || brand !== "" || stock !== "") {
             if (catalog !== "") {
                 const data = catalog.split("=")[1]
                 setValue("catalog", data)
                 let product = catalogAll?.all_catalog?.find(product => product?.title_uz === data)
                 selectedBrandPrice(product)
+            }else if (category!=='all'){
+                setValue('catalog',"")
             }
 
-            if (subCatalog !== "") {
+            if (subCatalog !== ""&&brand===""&&stock==="") {
 
                 const data = catalog.split("=")[1]
                 setValue("sub_catalog", subCatalog.split("=")[1])
@@ -97,6 +107,9 @@ const CatalogItemFilter = ({formname, resetField, setPage, setValue}) => {
                 // dispatch(selectFilterPriceValue([0, 0]))
                 selectedBrandPrice(product)
                 dispatch(selectAllQuery())
+            }else {
+                setValue("sub_catalog", "")
+
             }
             if (brand !== "") {
                 const data=brand.split("=")[1]
@@ -104,18 +117,19 @@ const CatalogItemFilter = ({formname, resetField, setPage, setValue}) => {
                 // product=catalogAll?.all_catalog?.map(category=>{
                 //     category?.brands?.find(brand=>brand.title_uz===data)
                 // })
-                // console.log(product)
                 // selectedBrandPrice(product)
                 setValue("brand", data)
+            } else {
+                setValue("brand", "")
+
             }
             if (stock !== "") {
                 setValue("stock", stock.split("=")[1])
+            }else{
+                setValue("stock", "")
             }
 
-        }else {
-            setValue("catalog", 'all')
 
-        }
     }, [catalog, subCatalog, brand, stock, catalogAll])
 
     useEffect(() => {

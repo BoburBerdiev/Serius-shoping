@@ -6,12 +6,15 @@ import {AccordionUI, CheckBoxUI} from "@/components";
 import {useDispatch, useSelector} from "react-redux";
 import {selectBrand} from "@/slice/filterQuery";
 import {selectFilterPrice} from "@/slice/filter";
+import {useTranslation} from "react-i18next";
 
 const SearchBrand = ({formname }) => {
     const dispatch = useDispatch()
     const [selectItem , setSelectItem] = useState(null)
     const [searchBrand, setSearchBrand] = useState([])
     const { brands } = useSelector((state) => state.filterSlice);
+    const {t}=useTranslation()
+
 
     useEffect(() => {
         setSearchBrand(brands)
@@ -37,9 +40,10 @@ const SearchBrand = ({formname }) => {
         );
             return  setSearchBrand(filterData)
     }
+
     return (
         <>
-            <AccordionUI title={'Бренд'} style={' '}>
+            <AccordionUI title={t('filter.brand')} style={' '}>
             <div className="relative mt-5">
                 <input
                     type="text"
@@ -55,7 +59,8 @@ const SearchBrand = ({formname }) => {
             <div className="max-h-[192px] overflow-y-scroll w-full mt-6 catalog-scrollbar">
                 <div className="flex flex-col gap-3 text-textColor ">
                     {
-                        searchBrand?.map(brand => (
+                        searchBrand?.map(brand =>{
+                            return (
                             <Fragment
                                 key={brand?.id}
                             >
@@ -72,7 +77,7 @@ const SearchBrand = ({formname }) => {
 
                             </Fragment>
 
-                        ))
+                        )})
                     }
                 </div>
             </div>

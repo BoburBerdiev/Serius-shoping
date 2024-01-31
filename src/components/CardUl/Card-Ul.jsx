@@ -31,7 +31,7 @@ const CardUI = ({imageArr, title_ru , title_uz, price, salePrice, rows , slug , 
     return (
       <>
         <SkeletonTheme>
-          <div className={`flex ${rows ? 'items-center' : 'flex-col  h-full'}  gap-3.5 md:gap-6 card-ui relative`}>
+          <div className={`flex ${rows ? 'items-center pt-2' : 'flex-col  h-full'}  gap-3.5 md:gap-6 card-ui relative`}>
             <div className={`${rows ? 'w-[40%] overflow-hidden ' : 'w-full'}`}>
                         <Swiper
                             id={"mySwiper1"}
@@ -65,7 +65,7 @@ const CardUI = ({imageArr, title_ru , title_uz, price, salePrice, rows , slug , 
             </div>
             <div className={`gap-y-4 flex w-full h-full ${rows ? ' max-md:flex-col justify-between gap-x-5' : 'flex-col justify-between '}`}>
               <div className="space-y-3 lg:space-y-[18px] w-full">
-                <h5 className="font-rubik text-sm  h-10 md:text-lg break-all line-clamp-2 md:line-clamp-2">
+                <h5 className="font-rubik text-sm  h-10 md:text-lg break-all line-clamp-2">
                   { lang ? title_ru : title_uz }
                 </h5>
                 {
@@ -129,7 +129,7 @@ const CardUI = ({imageArr, title_ru , title_uz, price, salePrice, rows , slug , 
                 }
                 <div className={`flex gap-2.5 ${rows ? '' : 'md;pr-3 justify-between'}`}>
                   <ButtonUI className={'border-currentRed'} onClick={handleAddBag} leftIcon={<LuShoppingBag className="md:h-[22px] text-currentRed md:w-[22px] "/>}/>
-                  <ButtonUI href={`${slug}`} text={'Подробнее'} cardBtn={true} />
+                  <ButtonUI href={`/product/${slug}`} text={'Подробнее'} cardBtn={true} />
                 </div>
               </div>
             </div>

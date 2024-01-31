@@ -18,6 +18,8 @@ import {useMutation} from "react-query";
 import {clearOrder} from "@/slice/basket";
 import {useRouter} from "next/router";
 import {useTranslation} from "react-i18next";
+import SEO from "@/SEO/SEO";
+import {} from "@/SEO/SEO.config";
 
 const Index = () => {
     const [isOrderForm, setIsOrderForm] = useState(true)
@@ -70,11 +72,19 @@ const Index = () => {
             orderProductUser.order.push(list);
         })
 
-        console.log(orderProductUser)
         userPost({url: "/product-orders/", data: orderProductUser});
         reset();
     }
     return (
+        <>
+            <SEO
+                ogImage={'/logo.png'}
+                title={orderSeo[lang].title}
+                description={orderSeo[lang].description}
+                ogTitle={orderSeo[lang].ogTitle}
+                ogDescription={orderSeo[lang].ogDescription}
+                twitterHandle={orderSeo[lang].twitterHandle}
+            />
         <div className="font-rubik min-h-screen">
             {
                 allCount > 0 ?
@@ -170,6 +180,8 @@ const Index = () => {
                 </div>
             }
         </div>
+        </>
+
     )
 }
 

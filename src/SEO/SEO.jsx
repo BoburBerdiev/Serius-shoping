@@ -15,26 +15,26 @@ const SEO = ({ title, description, canonical, ogUrl, ogTitle, ogDescription, ogI
                     url: ogImage,
                     width: 1200,
                     height: 630,
-                    alt: 'Evolution Motors',
+                    alt: 'Sirius Tech',
                     type: 'image/jpeg',
                 },
             ],
-            siteName: 'Evolution Motors',
+            siteName: 'Sirius Tech',
             link: [
                 {
                     rel: 'icon',
-                    href: '/evolution.png',
+                    href: '/logo.png',
                 },
             ],
         }}
         additionalLinkTags={[
             {
                 rel: 'icon',
-                href: '/evolution.png',
+                href: '/logo-title.png',
             },
             {
                 rel: 'apple-touch-icon',
-                href: '/evolution.png',
+                href: '/logo.png',
                 sizes: '76x76'
             },
             {
@@ -43,7 +43,7 @@ const SEO = ({ title, description, canonical, ogUrl, ogTitle, ogDescription, ogI
             },
             {
                 rel: 'preload',
-                href: '/evolution.png',
+                href: '/logo.png',
             }
         ]}
         twitter={{

@@ -5,6 +5,8 @@ import {PiMapPinLine} from "react-icons/pi";
 import axios from "axios";
 import {useSelector} from "react-redux";
 import {useTranslation} from "react-i18next";
+import SEO from "@/SEO/SEO";
+import {contactSEO} from "@/SEO/SEO.config";
 
 const Contact = ({contact, socialMedia}) => {
 
@@ -14,6 +16,14 @@ const Contact = ({contact, socialMedia}) => {
 
     return (
         <>
+            <SEO
+                ogImage={'/logo.png'}
+                title={contactSEO[lang].title}
+                description={contactSEO[lang].description}
+                ogTitle={contactSEO[lang].ogTitle}
+                ogDescription={contactSEO[lang].ogDescription}
+                twitterHandle={contactSEO[lang].twitterHandle}
+            />
             <SectionUI customPadding={'pt-[140px] md:pt-40 pb-10 font-rubik '}>
                 <div className={'space-y-[30px]'}>
                     <BreadcrumbUI/>
@@ -76,17 +86,17 @@ const Contact = ({contact, socialMedia}) => {
                                 </div>
                             </div>
                             <div className={'flex gap-[30px] mt-[38px] justify-center md:justify-start'}>
-                                <a href={socialMedia?.instagram} className={'text-darkBlue'}>
+                                <a target={"_blank"} href={socialMedia?.instagram} className={'text-darkBlue'}>
                                     <p className={'text-base md:text-xl'}>
                                         Facebook
                                     </p>
                                 </a>
-                                <a href={socialMedia?.instagram} className={'text-darkBlue'}>
+                                <a target={"_blank"} href={socialMedia?.instagram} className={'text-darkBlue'}>
                                     <p className={'text-base md:text-xl'}>
                                         Instagram
                                     </p>
                                 </a>
-                                <a href={socialMedia?.telegram} className={'text-darkBlue'}>
+                                <a target={"_blank"} href={socialMedia?.telegram} className={'text-darkBlue'}>
                                     <p className={'text-base md:text-xl'}>
                                         Telegram
                                     </p>

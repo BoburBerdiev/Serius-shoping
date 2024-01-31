@@ -83,6 +83,18 @@ export const seoContent = {
             ogDescription: 'Есть вопросы или нужна помощь? Свяжитесь с Sirius-tech для получения оперативной и дружелюбной поддержки. Мы здесь, чтобы помочь вам найти идеальные мобильные аксессуары по доступной цене, отвечающие вашим потребностям.',
         },
     },
+    orderSeo: {
+        uz: {
+            title: "",
+            description: "",
+            ogDescription: "",
+        },
+        ru: {
+            title: '',
+            description: '',
+            ogDescription: '',
+        },
+    },
     // newsSEO: {
     //     uz: {
     //         title: "Sirius-tech kompaniyasining so'nggi yangiliklari, aksiyalar va mobil aksessuarlardagi tendentsiyalaridan xabardor bo'ling",
@@ -97,4 +109,4 @@ export const seoContent = {
     // },
 };
 
-export const {index , catalogSEO ,driveSEO , contactSEO ,  newsSEO, aboutUsSEO ,creditSEO , insuranceSEO ,serviceSEO} = seoContent
+export const {index , catalogSEO ,driveSEO , contactSEO,orderSeo ,  newsSEO, aboutUsSEO ,creditSEO , insuranceSEO ,serviceSEO} = seoContent

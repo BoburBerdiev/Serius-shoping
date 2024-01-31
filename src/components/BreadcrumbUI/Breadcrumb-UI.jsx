@@ -20,7 +20,7 @@ const BreadcrumbUI = ({pageLink}) => {
       setPage(t('navbar.catalog'))
     }else if(pageSplit[1] === 'product') {
       const data = catalog.split("navbar.catalog")[1]
-      setPage(t('navbar.product'))
+      setPage(t('home.catalog'))
     }
   }
   useEffect(() => {

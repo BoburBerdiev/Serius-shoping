@@ -27,7 +27,8 @@
       "back": "Orqaga",
       "order": "Zakaz",
       "sendHome": "Asosiy sahifaga o'ting",
-      "filter": "Jo'natish"
+      "filter": "Jo'natish",
+      "reset": "O'chirish"
     },
     "form": {
       "name": "Ism",
@@ -59,7 +60,10 @@
       "loweprice": "Eng past narx",
       "az": "Alifbo bo'yicha A-Z",
       "za": "Alifbo bo'yicha Z-A",
-      "notFound": "Hech narsa topilmadi"
+      "notFound": "Hech narsa topilmadi",
+      "brand": "Brand",
+      "stock": "Aksiya",
+      "price": "Narx"
     },
     "home": {
       "home": "Bosh sahifa",
