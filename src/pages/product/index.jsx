@@ -53,7 +53,7 @@ const Index = () => {
         "filter",
         () =>
             apiService.getData(
-                `products-catalog?${priceDataValue[0] ? `min_price=${priceDataValue[0]}` : ''}${priceDataValue[1] ? `&max_price=${priceDataValue[1]}` : ''}${query}&page=${page}&page_size=2`
+                `products-catalog?${priceDataValue[0] ? `min_price=${priceDataValue[0]}` : ''}${priceDataValue[1] ? `&max_price=${priceDataValue[1]}` : ''}${query}&page=${page}&page_size=8`
             ),
         {
             enabled: false,

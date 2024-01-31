@@ -71,7 +71,7 @@ const Navbar = ({catalog}) => {
         dispatch(selectFilterPriceValue([0,0]))
 
         dispatch(selectStock(""))
-
+        setOpenNav(false)
         router.push('/product')
     }
 
@@ -92,6 +92,7 @@ const Navbar = ({catalog}) => {
                                   <IoClose className='text-white md:text-2xl'/>} text={t('navbar.catalog')}
                               onClick={(e) => navbarHandler(e)}/>
                     <div
+                        onClick={e=>e.stopPropagation()}
                         className={`absolute grid grid-rows-[0fr] duration-[.4s] top-[55px] md:top-[80px] w-full left-0 z-50 ${openNav && 'grid-rows-[1fr] h-[90vh]'}`}>
                         <div
                             className={`container overflow-hidden grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 bg-white overscroll-y-auto ${openNav && 'overflow-scroll pb-14'}`}>
