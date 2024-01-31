@@ -19,7 +19,7 @@ import {clearOrder} from "@/slice/basket";
 import {useRouter} from "next/router";
 import {useTranslation} from "react-i18next";
 import SEO from "@/SEO/SEO";
-import {orderSeo} from "@/SEO/SEO.config";
+import {} from "@/SEO/SEO.config";
 
 const Index = () => {
     const [isOrderForm, setIsOrderForm] = useState(true)
