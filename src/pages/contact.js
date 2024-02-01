@@ -9,10 +9,8 @@ import SEO from "@/SEO/SEO";
 import {contactSEO} from "@/SEO/SEO.config";
 
 const Contact = ({contact, socialMedia}) => {
-
     const { lang } = useSelector((state) => state.langSlice);
     const { t   } = useTranslation();
-
 
     return (
         <>
@@ -139,7 +137,7 @@ export async function getServerSideProps({req, res}) {
     );
     // Fetch data from external API
     const [contact, socialMedia] = await Promise.all([
-        axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/contacts/`),
+        axios.get(`${process.env.NEXT_PUBLIC_API_URL}/about/contacts/`),
         axios.get(`${process.env.NEXT_PUBLIC_API_URL}/about/socials/`)
     ]);
 

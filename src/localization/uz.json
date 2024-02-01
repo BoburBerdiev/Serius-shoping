@@ -19,7 +19,7 @@
       "contact": "Bizning aloqa ma'lumotlari",
       "email": "Elektron pochta",
       "support": "Xizmat ko'rsatish",
-      "shop": "Dukan"
+      "shop": "Do'kan"
     },
     "btn": {
       "watch": "Hammasini ko'ring",
@@ -28,7 +28,8 @@
       "order": "Zakaz",
       "sendHome": "Asosiy sahifaga o'ting",
       "filter": "Jo'natish",
-      "reset": "O'chirish"
+      "reset": "O'chirish",
+      "more": "Batafsil"
     },
     "form": {
       "name": "Ism",

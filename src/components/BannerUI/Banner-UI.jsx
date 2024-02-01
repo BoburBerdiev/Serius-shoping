@@ -9,7 +9,6 @@ const BannerUI = ({banners, height}) => {
     const dispatch = useDispatch()
     const router = useRouter()
     const handleSelectBanner = (banner) => {
-        console.log(banner)
         if(banner?.product) {
             router.push(`/product/${banner?.product}`)
             return

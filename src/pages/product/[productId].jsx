@@ -91,7 +91,7 @@ const ProductDetailed = () => {
                     <SectionTitleUI isLoading={loading} title={lang === 'ru' ? product?.title_ru : product?.title_uz} isBorder={true}/>
                     <div className='grid grid-cols-1 md:grid-cols-12 lg:grid-cols-16 gap-6 lg:gap-[30px] static'>
                         <div className=' md:col-span-6 '>
-                            <div className='w-full aspect-video	h-full relative flex gap-5 md:gap-[10px]'>
+                            <div className='w-full aspect-[16/11]  h-full relative flex gap-5 md:gap-[10px]'>
                                 {
                                     product?.images &&
                                     <>

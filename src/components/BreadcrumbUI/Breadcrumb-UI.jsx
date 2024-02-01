@@ -30,7 +30,11 @@ const BreadcrumbUI = ({pageLink}) => {
     <div className="flex flex-wrap gap-1 md:gap-2 items-center text-currentGrey font-rubik text-sm md:text-base">
       <Link href="/">{t('navbar.home')}</Link>
       <LuChevronRight className={`w-4 h-4 md:w-5 md:h-5 ${pageLink ? '' : 'text-darkBlue'}`} />
-      <Link className={pageLink ? '' : 'text-darkBlue'} href={asPath}>{page}</Link>
+      {
+        pageLink ?
+          <Link className={pageLink ? '' : 'text-darkBlue'} href={'/product'}>{t('navbar.catalog')}</Link>:
+          <Link className={pageLink ? '' : 'text-darkBlue'} href={asPath}>{page}</Link>
+      }
       {
           pageLink &&
           <>

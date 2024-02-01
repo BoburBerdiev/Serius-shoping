@@ -30,7 +30,7 @@ const Layout = ({ children }) => {
 
     return (
         <div className={''}>
-            <Navbar catalog={catalog} />
+            <Navbar catalog={catalog} phone={contact?.phone_1} />
                 <main className={" min-h-screen mt-[80px] bg-red-700 " }>
                         {children}
                 </main>

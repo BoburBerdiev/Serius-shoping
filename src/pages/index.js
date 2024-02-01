@@ -6,8 +6,9 @@ import {Fragment} from "react";
 import {useSelector} from "react-redux";
 
 import IndexProduct from "@/components/index-product/index-product";
+import {useTranslation} from "react-i18next";
 export default function Home({newProduct , indexCatalog , service, endBanners , advertisingProduct, banners}) {
-
+    const {t} = useTranslation()
   const {lang} = useSelector(state => state.langSlice)
   return (
       <>
@@ -20,7 +21,7 @@ export default function Home({newProduct , indexCatalog , service, endBanners , 
             twitterHandle={index[lang].twitterHandle}
         />
 
-        <div className="container pt-36">
+        <div className="container pt-[90px] md:pt-[130px]">
           <BannerUI banners={banners}
                     height={'h-[350px] md:h-[400px] overflow-hidden lg:h-[450px] rounded-lg'}/>
 
@@ -60,30 +61,29 @@ export default function Home({newProduct , indexCatalog , service, endBanners , 
                             textPosition={'lg:top-[30px] left-7'} src={indexCatalog[6]?.image}/>
           </div>
         </SectionUI>
+          {advertisingProduct?.length > 0 &&
         <SectionUI customPadding={'py-10 md:pb-20'}>
-          {
+            {
             advertisingProduct?.map(item => (
               <IndexProduct list={item}  key={item?.id}/>
-
             ))
-          }
-
-
+            }
         </SectionUI>
-          <SectionUI>
+          }
+          <div className="container">
             <BannerUI banners={endBanners}
                       height={'h-[200px] md:h-[300px] overflow-hidden lg:h-[350px] rounded-lg'}/>
-          </SectionUI>
+          </div>
 
         <SectionUI customPadding={'py-10 md:pt-20'}>
-          <SectionTitleUI title={'Новинки'} href={'#'}/>
+          <SectionTitleUI title={t('navbar.newItems')}/>
           <div className="grid md:grid-cols-3 lg:grid-cols-4 grid-cols-2 gap-5 md:gap-8 ">
             {
               newProduct?.map(product => (
                   <Fragment key={product?.id}>
                     <CardUI imageArr={product?.images}
                             id={product?.id}
-                            slug={`${product?.slug}`}
+                            slug={`product/${product?.slug}`}
                             title_ru={product?.title_ru}
                             title_uz={product?.title_uz}
                             short_descriptions={product?.short_descriptions}
@@ -110,7 +110,7 @@ export async function getServerSideProps({req, res}) {
   );
   // Fetch data from external API
   const [newProduct,banners,endBanners, indexCatalog , service , advertisingProduct , ] = await Promise.all([
-    axios.get(`${process.env.NEXT_PUBLIC_API_URL}/products-catalog?is_new=new&page=1&page_size=10`),
+    axios.get(`${process.env.NEXT_PUBLIC_API_URL}/products-catalog?is_new=new&page=1&page_size=8`),
       axios.get(`${process.env.NEXT_PUBLIC_API_URL}/banners/`),
       axios.get(`${process.env.NEXT_PUBLIC_API_URL}/ad-banners/`),
     axios.get(`${process.env.NEXT_PUBLIC_API_URL}/main-page-categories/`),

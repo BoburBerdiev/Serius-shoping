@@ -142,7 +142,7 @@ const Index = () => {
                                                formname={{...register("catalog")}}/>
                             <StockItemFilter setValue={setValue} formname={{...register("stock")}}/>
                             <SearchBrand formname={{...register("brand")}}/>
-                            <FilterPrice/>
+                            {/*<FilterPrice/>*/}
                             <div className={'space-y-2'}>
 
                                 <ButtonUI text={t('btn.filter')} type={'submit'}
@@ -168,7 +168,7 @@ const Index = () => {
 
                                         productInfinity?.map(product => (
                                             <CardUI key={product?.id} imageArr={product?.images}
-                                                    slug={`product/${product?.slug}`}
+                                                    slug={`/product/${product?.slug}`}
                                                     title_ru={product?.title_ru}
                                                     title_uz={product?.title_uz}
                                                     rows={cardPosition}
