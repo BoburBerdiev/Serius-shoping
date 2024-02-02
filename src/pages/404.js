@@ -15,7 +15,7 @@ const index = () => {
         </div>
         <div className=" sm:max-w-[500px]">
           {/*<ButtonUI className={'py-3 md:py-4 text-center flex justify-center'} text={'Вернуться назад'}/>*/}
-          <ButtonUI cardBtn={true} className={'py-3 md:py-4'} text={t('btn.sendHome')}/>
+          <ButtonUI cardBtn={true} href={'/'} className={'py-3 md:py-4'} text={t('btn.sendHome')}/>
         </div>
       </div>
     </SectionUI>

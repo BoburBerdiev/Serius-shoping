@@ -45,14 +45,14 @@ const BottomNavbar = () => {
   }, [dropdown])
   return (
     // top radius boladi
-    <div className='w-full h-fit fixed z-40 bottom-0 left-0 right-0 bg-darkBlue md:hidden'>
+    <div className='w-full h-fit fixed z-40 bottom-0 left-0 right-0  bg-darkBlue md:hidden'>
       <div className="bg-darkBlue relative z-50 py-1">
         <div className="container flex items-center justify-center gap-10">
-          <ButtonUI leftIcon={<HiMenuAlt1 className="text-white text-xl" />} onClick={(e) => bottomNavbarHandler(e)} className={'text-sm border-0 p-1 text-white gap-[2px] flex-col'} text={'Меню'} />
+          <ButtonUI leftIcon={<HiMenuAlt1 className="text-white text-xl" />} onClick={(e) => bottomNavbarHandler(e)} className={'text-sm border-0 p-1 text-white gap-[2px] flex-col'} text={t('navbar.menu')} />
           <div className={'relative'}>
              <span
                  className={'text-[10px] absolute group-hover:bg-slate-500 -top-0 right-2.5 py-[3px] px-[4px]  text-darkBlue bg-white rounded-full'}>{allCount}</span>
-            <ButtonUI leftIcon={<LuShoppingBag className='text-2xl font-thin'/>} text={'Корзина'} href={'/order'}
+            <ButtonUI leftIcon={<LuShoppingBag className='text-2xl font-thin'/>} text={t('navbar.basket')} href={'/order'}
                       className={'text-sm flex flex-col items-center justify-center text-white duration-300 hover:text-slate-500 gap-[2px]'}/>
           </div>
         </div>

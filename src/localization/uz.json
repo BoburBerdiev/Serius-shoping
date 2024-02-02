@@ -10,7 +10,9 @@
       "newItems": "Yangi mahsulotlar",
       "stock": "Aksiyalar",
       "uz": "O'z",
-      "ru": "Ru"
+      "ru": "Ru",
+      "menu": "Menu"
+
     },
     "catalog": {
       "findProduct": "Katalogda yoki qidirish orqali kerakli mahsulotlarni toping"
