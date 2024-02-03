@@ -23,7 +23,7 @@ import {orderSeo} from "@/SEO/SEO.config";
 
 const Index = () => {
     const [isOrderForm, setIsOrderForm] = useState(true)
-    const {register, reset, handleSubmit, setValue} = useForm()
+    const {register, reset, handleSubmit} = useForm()
     const dispatch = useDispatch();
     const router = useRouter();
     const {t} = useTranslation();
@@ -32,10 +32,8 @@ const Index = () => {
     const {
         mutate: userPost,
         data: userPostData,
-        isLoading: userPostLoading,
         isSuccess: userPostSuccess,
     } = useMutation(({url, data}) => apiService.postData(url, data));
-    const [step, setStep] = useState(1);
     const {basket, allPrice, allCount} = useSelector(
         (state) => state.basketSlice
     );
