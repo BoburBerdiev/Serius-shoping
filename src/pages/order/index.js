@@ -141,7 +141,7 @@ const Index = () => {
                             <div className="w-full border-t border-borderGrey"></div>
                         </div>
                         <SectionUI customPadding={'py-10 md:pb-20'}>
-                            <ServiceSectionUI/>
+                            <ServiceSectionUI  />
                         </SectionUI>
                     </div>
                     :

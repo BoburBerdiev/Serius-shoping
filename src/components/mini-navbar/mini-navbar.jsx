@@ -5,6 +5,7 @@ import Link from "next/link";
 import {selectBrand, selectCatalog, selectStock, selectSubCatalog} from "@/slice/filterQuery";
 import {useDispatch} from "react-redux";
 import {selectFilterSubCategory} from "@/slice/filter";
+import {formatPhoneNumber} from "@/helper";
 
 const MiniNavbar = ({phone}) => {
   const { t } = useTranslation();
@@ -43,7 +44,7 @@ const filterHandle=(filter)=>{
           }
         </ul>
         <div className="flex items-center justify-between max-md:w-full gap-5 lg:gap-10">
-          <a href={`tel:${phone}`} className="text-sm">{phone}</a>
+          <a href={`tel:${phone}`} className="text-sm">{formatPhoneNumber(phone)}</a>
           <SelectLang />
         </div>
       </div>

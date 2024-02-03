@@ -123,7 +123,7 @@ export async function getServerSideProps({req, res}) {
         endBanners:endBanners?.data,
         banners: banners?.data,
       indexCatalog: indexCatalog.data,
-      service: service?.data,
+        service: service?.data,
       advertisingProduct: advertisingProduct?.data,
     },
   };

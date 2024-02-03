@@ -1,11 +1,9 @@
 import { useEffect, useState } from "react";
-import { FaInstagram, FaTelegramPlane } from "react-icons/fa";
-import { IoLogoWhatsapp } from "react-icons/io";
+import {FaFacebook, FaInstagram, FaTelegramPlane} from "react-icons/fa";
 import { ImageUI } from "..";
-import apiService from "@/service/axois";
-import {useQuery} from "react-query";
 import {useSelector} from "react-redux";
 import {useTranslation} from "react-i18next";
+import {formatPhoneNumber} from "@/helper";
 const Footer = ({contact , socialMedia}) => {
     const [newYear , setNewYear] = useState(null)
     const { t  } = useTranslation();
@@ -36,8 +34,8 @@ const Footer = ({contact , socialMedia}) => {
                     <a href={socialMedia?.telegram}>
                         <FaTelegramPlane className="w-6 h-6" />
                     </a>
-                    <a href={socialMedia?.telegram}>
-                        <IoLogoWhatsapp className="w-6 h-6" />
+                    <a href={socialMedia?.facebook}>
+                        <FaFacebook className="w-6 h-6" />
                     </a>
                   </div>
                 </div>
@@ -45,10 +43,11 @@ const Footer = ({contact , socialMedia}) => {
                   <div className="">
                     <a href={`${contact?.phone_1}`} className="block tel">
                         {
-                        contact?.phone_1
+                            formatPhoneNumber(contact?.phone_1)
+
                     }
                     </a>
-                    <a href={`${contact?.phone_2}`} className="block tel">{`${contact?.phone_2}`}</a>
+                    <a href={`${contact?.phone_2}`} className="block tel">{`${ formatPhoneNumber(contact?.phone_2)}`}</a>
                   </div>
                   <a href={`mailto:${contact?.email}`} className="leading-6">
                         {

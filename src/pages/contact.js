@@ -7,8 +7,9 @@ import {useSelector} from "react-redux";
 import {useTranslation} from "react-i18next";
 import SEO from "@/SEO/SEO";
 import {contactSEO} from "@/SEO/SEO.config";
+import {formatPhoneNumber} from "@/helper";
 
-const Contact = ({contact, socialMedia}) => {
+const Contact = ({contact, socialMedia , service}) => {
     const { lang } = useSelector((state) => state.langSlice);
     const { t   } = useTranslation();
 
@@ -55,7 +56,8 @@ const Contact = ({contact, socialMedia}) => {
                                         </p>
                                         <p className={'text-base md:text-xl'}>
                                             {
-                                                contact?.phone_1
+                                                formatPhoneNumber(contact?.phone_1)
+
                                             }
                                         </p>
                                     </div>
@@ -67,7 +69,7 @@ const Contact = ({contact, socialMedia}) => {
                                         </p>
                                         <p className={'text-base md:text-xl'}>
                                             {
-                                                contact?.phone_2
+                                                formatPhoneNumber(contact?.phone_2)
                                             }
                                         </p>
                                     </div>
@@ -120,7 +122,7 @@ const Contact = ({contact, socialMedia}) => {
                 <div className="w-full border-t border-borderGrey"></div>
             </div>
             <SectionUI customPadding={'py-10 md:pb-20'}>
-                <ServiceSectionUI/>
+                <ServiceSectionUI service={service}/>
             </SectionUI>
         </>
 
@@ -136,15 +138,17 @@ export async function getServerSideProps({req, res}) {
         "public, s-maxage=10, stale-while-revalidate=59"
     );
     // Fetch data from external API
-    const [contact, socialMedia] = await Promise.all([
+    const [contact, socialMedia , service] = await Promise.all([
         axios.get(`${process.env.NEXT_PUBLIC_API_URL}/about/contacts/`),
-        axios.get(`${process.env.NEXT_PUBLIC_API_URL}/about/socials/`)
+        axios.get(`${process.env.NEXT_PUBLIC_API_URL}/about/socials/`),
+        axios.get(`${process.env.NEXT_PUBLIC_API_URL}/about/services/`),
     ]);
 
     return {
         props: {
             contact: contact.data,
             socialMedia: socialMedia.data,
+            service: service?.data,
         },
     };
 }
