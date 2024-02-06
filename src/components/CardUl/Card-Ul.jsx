@@ -6,10 +6,11 @@ import {useDispatch, useSelector} from "react-redux";
 import {basketList, totalAllPrice} from "@/slice/basket";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import { t } from "i18next";
-import { Fragment } from "react";
+import {Fragment, useState} from "react";
 import {priceView} from "@/helper";
 const CardUI = ({imageArr, title_ru , title_uz, price, salePrice, rows , slug , id, short_descriptions}) => {
     const dispatch = useDispatch()
+    const [count , setCount] = useState(null)
 
     const handleAddBag = () => {
         const checkProduct ={
@@ -21,6 +22,7 @@ const CardUI = ({imageArr, title_ru , title_uz, price, salePrice, rows , slug , 
             id: id,
             count: null,
         }
+        setCount(prev => ++prev)
 
 
         dispatch(basketList(checkProduct))
@@ -31,7 +33,7 @@ const CardUI = ({imageArr, title_ru , title_uz, price, salePrice, rows , slug , 
     return (
       <>
         <SkeletonTheme>
-          <div className={`flex ${rows ? 'items-center pt-2' : 'flex-col  h-full'}  gap-3.5 md:gap-6 card-ui relative`}>
+          <div className={`flex shadow-sm  ${rows ? 'items-center pt-2' : 'flex-col  h-full'}  gap-3.5 md:gap-6 card-ui relative`}>
             <div className={`${rows ? 'w-[44%] overflow-hidden ' : 'w-full'}`}>
                         <Swiper
                             id={"mySwiper1"}
@@ -63,7 +65,7 @@ const CardUI = ({imageArr, title_ru , title_uz, price, salePrice, rows , slug , 
                             className={`py-1 px-2 bg-currentRed absolute text-white text-xs md:text-sm font-rubik font-medium rounded-lg top-3 ${rows ? 'left-3' : 'right-3'} z-10  `}>{t('product-inner.discount')}</span>
                     }
             </div>
-            <div className={`gap-y-4 flex w-full h-full ${rows ? ' max-md:flex-col justify-between gap-x-5' : 'flex-col justify-between '}`}>
+            <div className={`gap-y-4 bg-white flex w-full h-full  ${rows ? ' max-md:flex-col justify-between gap-x-5' : 'flex-col justify-between '}`}>
               <div className="space-y-3 lg:space-y-[18px] w-full">
                 <h5 className="font-rubik text-sm md:text-lg  break-all line-clamp-2 font-medium">
                   { lang === 'ru' ? title_ru : title_uz }
@@ -136,9 +138,9 @@ const CardUI = ({imageArr, title_ru , title_uz, price, salePrice, rows , slug , 
 
                   </div>
                 }
-                <div className={`flex gap-2.5 ${rows ? '' : 'md;pr-3 justify-between'}`}>
-                  <ButtonUI className={'border-currentRed'} onClick={handleAddBag} leftIcon={<LuShoppingBag className="md:h-[22px] text-currentRed md:w-[22px] "/>}/>
-                  <ButtonUI href={`${slug}`} text={t('btn.more')} cardBtn={true} />
+                <div className={`flex gap-2.5 ${rows ? '' : 'md:pr-3 justify-between'}`}>
+                  <ButtonUI  onClick={handleAddBag} btnRed={true} leftIcon={<LuShoppingBag className="md:h-[22px]  md:w-[22px] border-currentRed "/>} count={count}/>
+                  <ButtonUI href={`${slug}`} text={t('btn.more')} cardBtn={true}  />
                 </div>
               </div>
             </div>

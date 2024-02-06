@@ -3,6 +3,7 @@ import {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {changleLang} from "@/slice/lang";
 import { IoIosArrowDown } from "react-icons/io";
+import {ImageUI} from "@/components";
 
 const SelectLang = () => {
     const [language, setLanguage] = useState('Русский')
@@ -44,19 +45,19 @@ const SelectLang = () => {
                     <IoIosArrowDown />
                 </span>
                 <div
-                    className={`absolute w-[60px] z-[100] dropdown-list grid grid-rows-[0fr] duration-300 rounded-xl border-white  top-6 md:top-[38px] left-[50%] translate-x-[-50%] ${dropdown && 'grid-rows-[1fr] border'}`}>
-                    <ul className="overflow-hidden rounded-xl bg-darkBlue">
+                    className={`absolute w-[60px] z-[100] dropdown-list grid grid-rows-[0fr] duration-300 rounded-xl   top-6 md:top-[28px] left-[50%] translate-x-[-50%] ${dropdown && 'grid-rows-[1fr] '}`}>
+                    <ul className="overflow-hidden rounded-b-xl bg-darkBlue">
                         <li onClick={() => handleChangleLang(t('ru'))}
                             className="duration-300 py-2 px-3 hover:bg-slate-600 cursor-pointer max-md:text-sm flex items-center justify-center gap-1">
-                            <div className="h-4 w-4 shrink-0">
-                                <img src="/ru-flag.svg" alt="ru" className="w-full h-full object-cover rounded-full"/>
+                            <div className="h-5 w-5 shrink-0 relative">
+                                <ImageUI src={'/ru-flag.svg'} alt={'ru'} priority={true} imgStyle={`w-full h-full object-cover rounded-full`} />
                             </div>
                             {t('navbar.ru')}
                         </li>
                         <li onClick={() => handleChangleLang(t('uz'))}
                             className="duration-300 py-2 px-3 hover:bg-slate-600 cursor-pointer max-md:text-sm flex items-center justify-center gap-1">
-                            <div className="h-4 w-4 shrink-0">
-                                <img src="/uzbekistan.png" alt="uz" className="w-full h-full rounded-full"/>
+                            <div className="h-5 w-5 shrink-0 relative">
+                                <ImageUI src={'/uzbekistan.png'} alt={'uz'} priority={true} imgStyle={`w-full h-full object-cover rounded-full`} />
                             </div>
                             {t('navbar.uz')}
                         </li>
