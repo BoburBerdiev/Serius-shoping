@@ -17,7 +17,7 @@ const ButtonUI = ({leftIcon,type, rightIcon, text, onClick, href, cardBtn, class
          }
         </Link>
       :
-      <button type={type ? type : 'button'} onClick={onClick} className={`${className} ${btnRed ? 'duration-100  border-currentRed text-currentRed hover:bg-currentRed hover:text-white' :'border-darkBlue text-darkBlue hover:opacity-80'} flex items-center justify-center gap-3 border relative  rounded-lg  font-rubik md:text-lg  ${text ? 'px-4 py-2' : 'py-2 px-2.5 md:p-3'} ${respText && 'py-2 px-2.5 md:p-3'} relative ${cardBtn && 'w-full text-sm md:text-base lg:text-lg justify-center text-white bg-darkBlue'}  `} >
+      <button type={type ? type : 'button'} onClick={onClick} className={`${className} ${btnRed ? 'duration-100  border-currentRed text-currentRed hover:bg-currentRed hover:text-white' :'border-darkBlue text-darkBlue hover:opacity-80'} flex items-center justify-center gap-3 border relative  rounded-lg  font-rubik md:text-lg  ${text ? 'px-4 py-2' : 'py-2 px-2.5 md:p-3'} ${respText && 'py-2 px-2.5 md:p-3'} relative group ${cardBtn && 'w-full text-sm md:text-base lg:text-lg justify-center text-white bg-darkBlue'}  `} >
         { 
           leftIcon && <span className=''>{leftIcon}</span>
         }
@@ -29,7 +29,7 @@ const ButtonUI = ({leftIcon,type, rightIcon, text, onClick, href, cardBtn, class
          }
 
         {
-          count && <span className={'absolute top-0 right-2 text-xs rounded-full'}>{count}</span>
+          count && <span className={'absolute -top-1 -right-1 text-[9px]  bg-white rounded-full group-hover:bg-currentRed px-1 py-[0.5px] border-[0.1px] border-currentRed flex justify-center items-center group-hover:border-white'}>{count}</span>
         }
       </button>
 
