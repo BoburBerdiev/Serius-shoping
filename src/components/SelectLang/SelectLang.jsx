@@ -6,7 +6,6 @@ import { IoIosArrowDown } from "react-icons/io";
 import {ImageUI} from "@/components";
 
 const SelectLang = () => {
-    const [language, setLanguage] = useState('Русский')
     const [dropdown, setDropdown] = useState(false)
     const { t , i18n  } = useTranslation();
     const dispatch = useDispatch();
