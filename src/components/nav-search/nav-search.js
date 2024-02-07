@@ -6,13 +6,15 @@ import apiService from "@/service/axois";
 import {useQuery} from "react-query";
 import useDebounce from "@/hook/useDebounce";
 import {AiOutlineLoading3Quarters} from "react-icons/ai";
+import {useRouter} from "next/router";
+import {PageWayRouter} from "@/helper";
 
 const NavSearch = () => {
+    const router = useRouter()
+    const [slug , setSlug] = useState(null)
     const {t}=useTranslation()
     const [isSearchBarOpen, setIsSearchBarOpen] = useState(false);
     const searchInputRef = useRef(null);
-    const [isDelayActive, setIsDelayActive] = useState(false);
-    const [isSearchFocused, setIsSearchFocused] = useState(false);
     const [inputValue, setInputValue] = useState('')
     const debounceInputValue = useDebounce(inputValue, 700)
     const [isShowPanel, setIsShowPanel] = useState(false)
@@ -21,6 +23,16 @@ const NavSearch = () => {
         {
             enabled:false
         })
+
+    useEffect(()=> {
+        let findPage =  PageWayRouter(router.asPath , 'product')
+        console.log(findPage)
+        if(findPage === 'product') {
+            setSlug('product/')
+        }else  {
+            setSlug('')
+        }
+    }  , [])
 
     useEffect(() => {
         if (debounceInputValue!==""){
@@ -60,15 +72,10 @@ const NavSearch = () => {
     };
     const handleSearchFocus = () => {
         setIsSearchBarOpen(true);
-        setIsSearchFocused(true);
-        setIsDelayActive(false);
     };
     const handleSearchBlur = () => {
-        setIsDelayActive(true);
         setTimeout(() => {
-            setIsSearchFocused(false);
             setIsSearchBarOpen(false);
-            setIsDelayActive(false);
         }, 100);
     };
     return (
@@ -99,10 +106,10 @@ const NavSearch = () => {
             </label>
             <div
                 className={`${data?.results.length > 0 && isShowPanel && isSearchBarOpen
-                    ? 'block' : 'hidden'}  max-h-[300px] md:max-h-[600px] overflow-y-scroll duration-500 absolute w-full md:max-lg:w-[200%] z-50 top-[115px] md:top-14 md:left-[50%] lg:left-0 right-0 md:max-lg:translate-x-[-50%] bg-white rounded-xl overflow-hidden pb-2`}>
+                    ? 'block' : 'hidden'} ${data?.results.length > 4 ? 'overflow-y-scroll h-[300px]' : '' }   duration-500 absolute w-full md:max-lg:w-[200%] z-50 top-[115px] md:top-14 md:left-[50%] lg:left-0 right-0 md:max-lg:translate-x-[-50%] bg-white rounded-xl  pb-2`}>
                 {
                     data?.results?.map(product => (
-                        <SearchCardUI key={product?.id} image={product?.image?.image} title_ru={product?.title_ru} title_uz={product.title_uz} subtitle_ru={product?.brands?.title_ru} subtitle_uz={product?.brands?.title_uz} href={`product/${product?.slug}`} price={product?.price} sale={product?.salePrice}/>
+                        <SearchCardUI key={product?.id} image={product?.image?.image} title_ru={product?.title_ru} title_uz={product.title_uz} subtitle_ru={product?.brands?.title_ru} subtitle_uz={product?.brands?.title_uz} href={slug + product?.slug} price={product?.price} sale={product?.salePrice}/>
 
                     ))
                 }
