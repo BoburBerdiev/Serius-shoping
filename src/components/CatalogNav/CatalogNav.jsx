@@ -64,7 +64,7 @@ const CatalogNav = () => {
         dispatch(changleCardPosition(item))
     }
     return (
-        <div className={'sticky top-[88px] md:top-[100px] left-0 z-20 bg-white py-5'}>
+        <div className={'sticky top-[56px] md:top-[100px] left-0 z-20 bg-white py-5'}>
             <div className="relative w-full flex justify-between items-center">
                 <button
                     className="flex items-center justify-between px-4 py-2 gap-3 rounded-[41px] border border-[#efefef]"

@@ -23,7 +23,7 @@ const Contact = ({contact, socialMedia , service}) => {
                 ogDescription={contactSEO[lang].ogDescription}
                 twitterHandle={contactSEO[lang].twitterHandle}
             />
-            <SectionUI customPadding={'pt-[140px] md:pt-40 pb-10 font-rubik '}>
+            <SectionUI customPadding={'pt-[80px] md:pt-40 pb-10 font-rubik '}>
                 <div className={'space-y-[30px]'}>
                     <BreadcrumbUI/>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">

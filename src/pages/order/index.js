@@ -88,7 +88,7 @@ const Index = () => {
             {
                 allCount > 0 ?
                     <div>
-                        <SectionUI customPadding={'pt-[140px] md:pt-40 pb-10 font-rubik'}>
+                        <SectionUI customPadding={'pt-[80px] md:pt-40 pb-10 font-rubik'}>
                             <BreadcrumbUI/>
                             {
 

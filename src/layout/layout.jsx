@@ -35,7 +35,7 @@ const Layout = ({ children }) => {
                         {children}
                 </main>
             <Footer contact={contact} socialMedia={socialMedia} />
-            <BottomNavbar />
+            <BottomNavbar phone={contact?.phone_1} />
         </div>
     );
 };

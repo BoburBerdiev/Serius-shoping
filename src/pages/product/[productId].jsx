@@ -85,7 +85,7 @@ const ProductDetailed = () => {
                 twitterHandle={""}
             />
             <SkeletonTheme baseColor="#e6e5e5" highlightColor="#dfd4c7">
-            <SectionUI customPadding={'pt-[140px] md:pt-40 pb-10 font-rubik pruduct-inner relative '}>
+            <SectionUI customPadding={'pt-[80px] md:pt-40 pb-10 font-rubik pruduct-inner relative '}>
                 <div className='space-y-5 md:space-y-[30px]'>
                     <BreadcrumbUI pageLink={lang === 'ru' ? product?.title_ru : product?.title_uz}/>
                     <SectionTitleUI isLoading={loading} title={lang === 'ru' ? product?.title_ru : product?.title_uz} isBorder={true}/>

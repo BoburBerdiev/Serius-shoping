@@ -1,10 +1,12 @@
 import { HiMenuAlt1 } from "react-icons/hi";
 import { LuShoppingBag } from "react-icons/lu";
-import { ButtonUI } from '..'
+import {ButtonUI, ImageUI, SelectLang} from '..'
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {useTranslation} from "react-i18next";
+import {formatPhoneNumber} from "@/helper";
+import {changleLang} from "@/slice/lang";
 //
 // const bottomNavInfo = [
 //   {
@@ -21,16 +23,20 @@ import {useTranslation} from "react-i18next";
 //   },
 // ]
 
-const BottomNavbar = () => {
-  const {t} = useTranslation();
+const BottomNavbar = ({phone}) => {
   const {allCount} = useSelector(state => state.basketSlice)
-
+  const { t , i18n  } = useTranslation();
   const [dropdown, setDropdown] = useState(false)
+  const dispatch = useDispatch();
 
   const bottomNavbarHandler = (e) => {
     e.stopPropagation()
     setDropdown(prevstate => !prevstate)
 }
+  const handleChangleLang = (lang) => {
+    i18n.changeLanguage(lang)
+    dispatch(changleLang(lang))
+  }
   
   useEffect(() => {
     const handleCloseModal=()=>{
@@ -75,6 +81,27 @@ const BottomNavbar = () => {
           <Link href='/contact' className='flex flex-col items-center justify-center text-white'>
             {t('navbar.contact')}
           </Link>
+          <div className={'flex justify-center items-cente r'}>
+            <ul className="overflow-hidden rounded-b-xl  text-white text-lg bg-darkBlue">
+              <li onClick={() => handleChangleLang(t('ru'))}
+                  className="duration-300 py-2 px-3 hover:bg-slate-600 cursor-pointer max-md:text-sm flex items-center justify-center gap-1">
+                <div className="h-5 w-5 shrink-0 relative">
+                  <ImageUI src={'/ru-flag.svg'} alt={'ru'} priority={true}
+                           imgStyle={`w-full h-full object-cover rounded-full`}/>
+                </div>
+                {t('navbar.ru')}
+              </li>
+              <li onClick={() => handleChangleLang(t('uz'))}
+                  className="duration-300 py-2 px-3 hover:bg-slate-600 cursor-pointer max-md:text-sm flex items-center justify-center gap-1">
+                <div className="h-5 w-5 shrink-0 relative">
+                  <ImageUI src={'/uzbekistan.png'} alt={'uz'} priority={true}
+                           imgStyle={`w-full h-full object-cover rounded-full`}/>
+                </div>
+                {t('navbar.uz')}
+              </li>
+            </ul>
+          </div>
+          {/*<a href={`tel:${phone}`} className="flex flex-col items-center justify-center text-white">{formatPhoneNumber(phone)}</a>*/}
         </div>
       </div>
     </div>

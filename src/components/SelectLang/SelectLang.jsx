@@ -5,7 +5,7 @@ import {changleLang} from "@/slice/lang";
 import { IoIosArrowDown } from "react-icons/io";
 import {ImageUI} from "@/components";
 
-const SelectLang = () => {
+const SelectLang = ({colorBlack , bottomNav}) => {
     const [dropdown, setDropdown] = useState(false)
     const { t , i18n  } = useTranslation();
     const dispatch = useDispatch();
@@ -33,7 +33,7 @@ const SelectLang = () => {
 
     return (
         <div onClick={(e) => handleLanguage(e)}
-             className="lang flex items-center gap-[10px] group cursor-pointer relative z-[60]">
+             className={`lang ${bottomNav} text-white flex items-center  gap-[10px] group cursor-pointer relative z-[60]`}>
 
             <div className="h-full w-full gap-x-2 flex">
                 <p className="lang-change max-md:text-xs text-sm"> {
@@ -45,7 +45,7 @@ const SelectLang = () => {
                 </span>
                 <div
                     className={`absolute w-[60px] z-[100] dropdown-list grid grid-rows-[0fr] duration-300 rounded-xl   top-6 md:top-[28px] left-[50%] translate-x-[-50%] ${dropdown && 'grid-rows-[1fr] '}`}>
-                    <ul className="overflow-hidden rounded-b-xl bg-darkBlue">
+                    <ul className="overflow-hidden rounded-b-xl  bg-darkBlue">
                         <li onClick={() => handleChangleLang(t('ru'))}
                             className="duration-300 py-2 px-3 hover:bg-slate-600 cursor-pointer max-md:text-sm flex items-center justify-center gap-1">
                             <div className="h-5 w-5 shrink-0 relative">

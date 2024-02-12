@@ -21,13 +21,13 @@ export default function Home({newProduct , indexCatalog , service, endBanners , 
             twitterHandle={index[lang].twitterHandle}
         />
 
-        <div className="container pt-[90px] md:pt-[130px]">
+        <div className="container pt-[70px] md:pt-[130px]">
           <BannerUI banners={banners}
                     height={'h-[350px] md:h-[400px] overflow-hidden lg:h-[450px] rounded-lg'}/>
 
         </div>
         <SectionUI customPadding={'py-10 md:pt-20'}>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-7 gap-8">
+          <div className="grid grid-cols-2 lg:grid-cols-7 gap-3 lg:gap-6">
             <CategoryCardUI grid={'md:row-span-2 md:h-full lg:col-span-3'}
                             value={indexCatalog[0]?.title_uz}
                             text={lang === 'ru' ? indexCatalog[0]?.title_ru : indexCatalog[0]?.title_uz}
@@ -55,7 +55,7 @@ export default function Home({newProduct , indexCatalog , service, endBanners , 
                             value={indexCatalog[5]?.title_uz}
                             text={lang === 'ru' ? indexCatalog[5]?.title_ru : indexCatalog[5]?.title_uz}
                             textPosition={'lg:top-[30px] left-7'} src={indexCatalog[5]?.image}/>
-            <CategoryCardUI grid={'lg:col-span-2'}
+            <CategoryCardUI grid={' col-span-2'}
                             value={indexCatalog[6]?.title_uz}
                             text={lang === 'ru' ? indexCatalog[6]?.title_ru : indexCatalog[6]?.title_uz}
                             textPosition={'lg:top-[30px] left-7'} src={indexCatalog[6]?.image}/>

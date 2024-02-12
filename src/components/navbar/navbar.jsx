@@ -77,7 +77,10 @@ const Navbar = ({catalog , phone}) => {
 
     return (
         <nav className="bg-white fixed w-[100%] z-50 top-0 start-0 border-b border-gray-200 font-rubik">
-            <MiniNavbar phone={phone}/>
+            <div className={'hidden md:block'}>
+                <MiniNavbar phone={phone}/>
+
+            </div>
             <div
                 className="container relative flex flex-wrap items-center justify-between py-2 md:py-4 gap-5 md:gap-x-10">
                 <div className='flex items-center gap-[18px] max-md:justify-between max-md:flex-1'>

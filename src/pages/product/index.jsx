@@ -130,10 +130,10 @@ const Index = () => {
                 ogDescription={catalogSEO[lang].ogDescription}
                 twitterHandle={catalogSEO[lang].twitterHandle}
             />
-            <SectionUI customPadding={'pt-[140px] md:pt-40 pb-10 font-rubik relative '}>
+            <SectionUI customPadding={'pt-[80px] md:pt-40 pb-10 font-rubik relative '}>
                 <div className="space-y-5 md:space-y-[30px]">
                     <BreadcrumbUI/>
-                    <SectionTitleUI title={'Каталог'} btnText={t('filter.filter')} btnStyle={'md:hidden'}
+                    <SectionTitleUI title={t('home.catalog')} btnText={t('filter.filter')} btnStyle={'md:hidden'}
                                     onClick={sideBarHandler}/>
                     <div className="grid grid-cols-1 md:grid-cols-5 relative gap-6 min-h-screen">
                         <form onSubmit={handleSubmit(onSubmit)}
