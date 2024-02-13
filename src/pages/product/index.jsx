@@ -135,9 +135,9 @@ const Index = () => {
                     <BreadcrumbUI/>
                     <SectionTitleUI title={t('home.catalog')} btnText={t('filter.filter')} btnStyle={'md:hidden'}
                                     onClick={sideBarHandler}/>
-                    <div className="grid grid-cols-1 md:grid-cols-5 relative gap-6 min-h-screen">
+                    <div className="grid grid-cols-1 md:grid-cols-5 relative gap-6 min-h-screen ">
                         <form onSubmit={handleSubmit(onSubmit)}
-                              className={`border space-y-4 lg:space-y-[30px] p-4 rounded-lg max-md:absolute z-40 top-0 left-[-100%] max-md:h-[100vh] max-md:w-[30vh] duration-500 bg-white ${sideBar && 'left-[0%]'}`}>
+                              className={`border space-y-4 lg:space-y-[30px] p-4 rounded-lg max-lg:absolute z-40 top-0 left-[-100%] max-md:h-[100vh] max-md:w-[30vh] duration-500 bg-white ${sideBar && 'left-[0%]'}`}>
                             <CatalogItemFilter setPage={setPage} resetField={resetField} setValue={setValue}
                                                formname={{...register("catalog")}}/>
                             <StockItemFilter setValue={setValue} formname={{...register("stock")}}/>
