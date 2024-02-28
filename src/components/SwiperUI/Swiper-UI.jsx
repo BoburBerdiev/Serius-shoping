@@ -17,11 +17,11 @@ const SwiperUI =({idSwiper, productsArr}) => {
         }else  {
             setSlug('')
         }
-    }  , [])
+    }  , [router.asPath])
 
 
     return (
-    <div className='card-ui relative'>
+    <div className='relative'>
         <Swiper
             id={idSwiper}
             autoplay={{
@@ -44,15 +44,7 @@ const SwiperUI =({idSwiper, productsArr}) => {
                 768: {
                     slidesPerView: 3,
                     spaceBetween: 15,
-                },
-                1024: {
-                    slidesPerView: 4,
-                    spaceBetween: 20,
-                },
-                1280: {
-                    slidesPerView: 5,
-                    spaceBetween: 20,
-                },
+                }
             }}
             loop={true}
             modules={[Navigation]}

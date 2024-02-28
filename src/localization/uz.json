@@ -67,7 +67,8 @@
       "notFound": "Hech narsa topilmadi",
       "brand": "Brand",
       "stock": "Aksiya",
-      "price": "Narx"
+      "price": "Narx",
+      "noProduct": "Siz qidirgan narsani topa olmadik"
     },
     "home": {
       "home": "Bosh sahifa",
