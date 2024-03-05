@@ -26,6 +26,7 @@ const Index = () => {
     const {register, reset, handleSubmit} = useForm()
     const dispatch = useDispatch();
     const router = useRouter();
+
     const {t} = useTranslation();
     const { lang } = useSelector((state) => state.langSlice);
     const {lastProduct} = useSelector((state) => state.lastProductSlice);
