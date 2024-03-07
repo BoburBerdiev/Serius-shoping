@@ -17,7 +17,7 @@ const CatalogItemFilter = ({formname, resetField, setPage, setValue}) => {
     const dispatch = useDispatch()
     const [selectItem, setSelectItem] = useState(null)
     const {t} = useTranslation();
-    const {subCategory,category} = useSelector(state => state.filterSlice)
+    const {subCategory, category} = useSelector(state => state.filterSlice)
     const {catalog, subCatalog, brand, stock} = useSelector(state => state.filterQuerySlice)
 
 
@@ -35,6 +35,7 @@ const CatalogItemFilter = ({formname, resetField, setPage, setValue}) => {
     const selectedBrandPrice = (catalog) => {
         dispatch(selectFilterBrands(catalog?.brands))
         dispatch(selectFilterPrice([catalog?.min_price, catalog?.max_price]))
+        dispatch(selectFilterPriceValue([0, 0]))
     }
 
     useEffect(() => {
@@ -78,57 +79,57 @@ const CatalogItemFilter = ({formname, resetField, setPage, setValue}) => {
 
 
     useEffect(() => {
-        if (category==='all'){
-            let product = catalogAll?.brands
-            selectedBrandPrice(product)
-            dispatch(selectFilterPrice([catalogAll?.min_price, catalogAll?.max_price]))
+        if (category === 'all') {
+            selectedBrandPrice(catalogAll)
 
         }
     }, [category]);
 
     useEffect(() => {
+        if (catalog !== "" && brand === "") {
+            const data = catalog.split("=")[1]
+            setValue("catalog", data)
+            let product = catalogAll?.all_catalog?.find(product => product?.title_uz === data)
+            selectedBrandPrice(product)
+        } else if (category !== 'all'&& brand === "") {
 
+            setValue('catalog', "")
+        }
 
-            if (catalog !== "") {
-                const data = catalog.split("=")[1]
-                setValue("catalog", data)
-                let product = catalogAll?.all_catalog?.find(product => product?.title_uz === data)
-                selectedBrandPrice(product)
-            }else if (category!=='all'){
-                setValue('catalog',"")
+        if (subCatalog !== "" && brand === "" && stock === "") {
+            const data = catalog.split("=")[1]
+            const subCatalogData = subCatalog.split("=")[1]
+            setValue("sub_catalog", subCatalogData)
+            let product = catalogAll?.all_catalog?.find(product => product?.title_uz === data)
+            let subCatalogProduct = product?.sub_categories
+                ?.find(subCatalogProduct => subCatalogProduct?.title_uz === subCatalogData)
+            setPage(1)
+            selectedBrandPrice(subCatalogProduct)
+            dispatch(selectAllQuery())
+        } else {
+            setValue("sub_catalog", "")
+        }
+        if (brand !== "") {
+            const data = brand.split("=")[1]
+
+            if (catalog === "" && subCatalog === "") {
+
+                let product = catalogAll?.brands?.find(brands => brands?.title_uz === data)
+                dispatch(selectFilterBrands(catalogAll?.brands))
+                dispatch(selectFilterPrice([product?.min_price, product?.max_price]))
+                dispatch(selectFilterPriceValue([0, 0]))
             }
 
-            if (subCatalog !== ""&&brand===""&&stock==="") {
+            setValue("brand", data)
 
-                const data = catalog.split("=")[1]
-                setValue("sub_catalog", subCatalog.split("=")[1])
-                let product = catalogAll?.all_catalog?.find(product => product?.title_uz === data)
-                setPage(1)
-                // dispatch(selectFilterPriceValue([0, 0]))
-                selectedBrandPrice(product)
-                dispatch(selectAllQuery())
-            }else {
-                setValue("sub_catalog", "")
-
-            }
-            if (brand !== "") {
-                const data=brand.split("=")[1]
-                let product =null
-                // product=catalogAll?.all_catalog?.map(category=>{
-                //     category?.brands?.find(brand=>brand.title_uz===data)
-                // })
-                // selectedBrandPrice(product)
-                setValue("brand", data)
-            } else {
-                setValue("brand", "")
-
-            }
-            if (stock !== "") {
-                setValue("stock", stock.split("=")[1])
-            }else{
-                setValue("stock", "")
-            }
-
+        } else {
+            setValue("brand", "")
+        }
+        if (stock !== "") {
+            setValue("stock", stock.split("=")[1])
+        } else {
+            setValue("stock", "")
+        }
 
     }, [catalog, subCatalog, brand, stock, catalogAll])
 
@@ -143,7 +144,8 @@ const CatalogItemFilter = ({formname, resetField, setPage, setValue}) => {
         <div>
             <AccordionUI title={t('navbar.catalog')}>
                 <div className={'max-h-[192px] overflow-y-scroll w-full space-y-2'}>
-                    <CheckBoxUI isRadio={true} formname={{...formname}} title_ru={'Все категории'} title_uz={'Barcha kategoriya'}
+                    <CheckBoxUI isRadio={true} formname={{...formname}} title_ru={'Все категории'}
+                                title_uz={'Barcha kategoriya'}
                                 value={'all'} setSelectItem={setSelectItem}/>
                     {
                         catalogAll?.all_catalog?.map(item => (

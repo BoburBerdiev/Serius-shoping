@@ -59,7 +59,7 @@ const Footer = ({contact , socialMedia}) => {
                   <div className="flex items-center gap-[18px]">
                     <p>{t('footer.created')}</p>
                     <a target="_blank" href="https://abduganiev.uz" className="relative w-[120px] h-[34px] ">
-                        <ImageUI src={'/abduganiev.png'} alt={'Abduganiev Technology'} imgStyle={'object-contain'}/>
+                        <ImageUI card={true} src={'/abduganiev.png'} alt={'Abduganiev Technology'} imgStyle={'object-contain'}/>
                     </a>
                   </div>
                   <p className="text-center md:text-end">

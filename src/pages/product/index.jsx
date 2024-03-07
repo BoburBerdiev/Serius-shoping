@@ -12,7 +12,14 @@ import {useForm} from "react-hook-form"
 import {useQuery} from "react-query";
 import apiService from "@/service/axois";
 import InfiniteScroll from "react-infinite-scroll-component";
-import {selectAllQuery, selectBrand, selectCatalog, selectStock, selectSubCatalog} from "@/slice/filterQuery";
+import {
+    selectAllQuery,
+    selectBrand,
+    selectCatalog,
+    selectSort,
+    selectStock,
+    selectSubCatalog
+} from "@/slice/filterQuery";
 import {AiOutlineLoading3Quarters} from "react-icons/ai";
 import {useDispatch, useSelector} from "react-redux";
 import {useTranslation} from "react-i18next";
@@ -26,7 +33,7 @@ import {catalogSEO} from "@/SEO/SEO.config";
 import SEO from "@/SEO/SEO";
 
 const Index = () => {
-    const {query} = useSelector(state => state.filterQuerySlice)
+    const {query,sort} = useSelector(state => state.filterQuerySlice)
     const dispatch = useDispatch()
     const [sideBar, setSideBar] = useState(false)
     const [page, setPage] = useState(1)
@@ -36,7 +43,6 @@ const Index = () => {
     const {t} = useTranslation();
     const { lang } = useSelector((state) => state.langSlice);
 
-    // commit ucun
     const {priceDataValue, brands} = useSelector(state => state.filterSlice)
 
     const {register, resetField, reset, handleSubmit, setValue} = useForm()
@@ -62,8 +68,6 @@ const Index = () => {
 
 
     const onSubmit = (data) => {
-
-
         if (!data.stock || data.stock?.length === 0) {
             dispatch(selectStock(''))
         } else {
@@ -73,18 +77,19 @@ const Index = () => {
 
         }
         setPage(1)
-        // dispatch(selectSubCatalog(''))
-        dispatch(selectAllQuery(null))
         dispatch(selectAllQuery())
-        // dispatch(selectFilterPriceValue([0,0]))
     }
     useEffect(() => {
         if (query !== null && page === 1) {
-            // setPage(1)
             productFilteredRefetch()
         }
     }, [query, page]);
 
+    useEffect(() => {
+        if (sort){
+            dispatch(selectAllQuery())
+        }
+    }, [sort]);
 
     useEffect(() => {
         if (productFilteredSuccess) {
@@ -116,6 +121,7 @@ const Index = () => {
         dispatch(selectBrand(""))
         dispatch(selectSubCatalog(""))
         dispatch(selectAllQuery(""))
+        dispatch(selectSort(""))
         dispatch(selectFilterPriceValue([0,0]))
 
     }
@@ -133,16 +139,16 @@ const Index = () => {
             <SectionUI customPadding={'pt-[80px] md:pt-40 pb-10 font-rubik relative '}>
                 <div className="space-y-5 md:space-y-[30px]">
                     <BreadcrumbUI/>
-                    <SectionTitleUI title={t('home.catalog')} btnText={t('filter.filter')} btnStyle={'md:hidden'}
+                    <SectionTitleUI title={t('home.catalog')} btnText={t('filter.filter')} btnStyle={'lg:hidden'}
                                     onClick={sideBarHandler}/>
-                    <div className="grid grid-cols-1 md:grid-cols-5 relative gap-6 min-h-screen ">
+                    <div className="grid grid-cols-1 lg:grid-cols-5 relative gap-6 min-h-screen ">
                         <form onSubmit={handleSubmit(onSubmit)}
-                              className={`border space-y-4 lg:space-y-[30px] p-4 rounded-lg max-lg:absolute z-40 top-0 left-[-100%] max-md:h-[100vh] max-md:w-[30vh] duration-500 bg-white ${sideBar && 'left-[0%]'}`}>
+                              className={`border space-y-4 lg:space-y-[30px] p-4 rounded-lg max-lg:absolute z-40 top-0 left-[-100%] max-lg:h-[100vh] max-lg:w-[30vh] duration-500 bg-white ${sideBar && 'left-[0%]'}`}>
                             <CatalogItemFilter setPage={setPage} resetField={resetField} setValue={setValue}
                                                formname={{...register("catalog")}}/>
                             <StockItemFilter setValue={setValue} formname={{...register("stock")}}/>
                             <SearchBrand formname={{...register("brand")}}/>
-                            {/*<FilterPrice/>*/}
+                            <FilterPrice/>
                             <div className={'space-y-2'}>
 
                                 <ButtonUI text={t('btn.filter')} type={'submit'}
@@ -154,6 +160,15 @@ const Index = () => {
 
                         <div className=" w-full relative md:col-span-4">
                             <CatalogNav/>
+                            <div className={'h-full'}>
+                                {
+                                    !productInfinity?.length>0 ?
+                                        <div className={'flex  justify-center mt-[20vh] w-full h-full'}>
+                                            <span className={'text-base md:text-xl text-[#8A8A8A]'}>
+                                                {t('filter.notFound')}
+                                            </span>
+                                        </div>
+                                        :
                             <InfiniteScroll
                                 next={productFilteredRefetch}
                                 hasMore={hasMore}
@@ -181,6 +196,9 @@ const Index = () => {
                                 </div>
 
                             </InfiniteScroll>
+                                }
+
+                            </div>
 
                         </div>
                     </div>

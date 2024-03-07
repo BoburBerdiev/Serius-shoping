@@ -1,11 +1,10 @@
 import { HiMenuAlt1 } from "react-icons/hi";
 import { LuShoppingBag } from "react-icons/lu";
-import {ButtonUI, ImageUI, SelectLang} from '..'
+import {ButtonUI, ImageUI} from '..'
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import {useDispatch, useSelector} from "react-redux";
 import {useTranslation} from "react-i18next";
-import {formatPhoneNumber} from "@/helper";
 import {changleLang} from "@/slice/lang";
 //
 // const bottomNavInfo = [
@@ -86,7 +85,7 @@ const BottomNavbar = ({phone}) => {
               <li onClick={() => handleChangleLang(t('ru'))}
                   className="duration-300 py-2 px-3 hover:bg-slate-600 cursor-pointer max-md:text-sm flex items-center justify-center gap-1">
                 <div className="h-5 w-5 shrink-0 relative">
-                  <ImageUI src={'/ru-flag.svg'} alt={'ru'} priority={true}
+                  <ImageUI card={true} src={'/ru-flag.svg'} alt={'ru'} priority={true}
                            imgStyle={`w-full h-full object-cover rounded-full`}/>
                 </div>
                 {t('navbar.ru')}
@@ -94,7 +93,7 @@ const BottomNavbar = ({phone}) => {
               <li onClick={() => handleChangleLang(t('uz'))}
                   className="duration-300 py-2 px-3 hover:bg-slate-600 cursor-pointer max-md:text-sm flex items-center justify-center gap-1">
                 <div className="h-5 w-5 shrink-0 relative">
-                  <ImageUI src={'/uzbekistan.png'} alt={'uz'} priority={true}
+                  <ImageUI card={true} src={'/uzbekistan.png'} alt={'uz'} priority={true}
                            imgStyle={`w-full h-full object-cover rounded-full`}/>
                 </div>
                 {t('navbar.uz')}

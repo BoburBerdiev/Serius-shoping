@@ -8,7 +8,7 @@ import {RxHamburgerMenu} from "react-icons/rx";
 import {changleCardPosition} from "@/slice/cardPosition";
 import {selectSort} from "@/slice/filterQuery";
 
-const CatalogNav = () => {
+const   CatalogNav = () => {
     const {t} = useTranslation()
     const dispatch = useDispatch()
     const [isSort, setIsSort] = useState(false)
@@ -59,6 +59,7 @@ const CatalogNav = () => {
             window.removeEventListener('click', handleWindow)
         }
     }, [isSort]);
+
 
     const cardRow = (item) => {
         dispatch(changleCardPosition(item))

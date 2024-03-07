@@ -5,6 +5,7 @@ import {AccordionUI} from "@/components";
 import { selectFilterPriceValue} from "@/slice/filter";
 import {priceView} from "@/helper";
 import {useTranslation} from "react-i18next";
+import {selectAllQuery} from "@/slice/filterQuery";
 
 const FilterPrice = () => {
     const {priceData,priceDataValue} = useSelector(state => state.filterSlice)
@@ -12,6 +13,7 @@ const FilterPrice = () => {
     const {t}=useTranslation()
 
     const onChangeRange = (newValues) => {
+        dispatch(selectAllQuery(null))
         dispatch(selectFilterPriceValue(newValues))
     };
 

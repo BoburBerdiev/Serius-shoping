@@ -52,7 +52,7 @@ const CardUI = ({imageArr, title_ru , title_uz, price, salePrice, rows , slug , 
                                     {
                                       product.image
                                       ?
-                                      <ImageUI src={product?.image} alt={title_uz} imgStyle={'object-cover'}/>
+                                      <ImageUI card={true} src={product?.image} alt={title_uz} imgStyle={'object-cover'}/>
                                       :
                                       <Skeleton width={'100%'} height={'100%'} />
                                       }
@@ -67,7 +67,7 @@ const CardUI = ({imageArr, title_ru , title_uz, price, salePrice, rows , slug , 
             </div>
             <div className={`gap-y-4 bg-white flex w-full h-full  ${rows ? ' max-md:flex-col justify-between gap-x-5' : 'flex-col justify-between '}`}>
               <div className="space-y-3 lg:space-y-[18px] w-full">
-                <h5 className="font-rubik text-sm md:text-lg  break-all line-clamp-2 font-medium">
+                <h5 className="font-rubik text-sm md:text-lg  break-all line-clamp-2 font-medium h-[35px] md:h-[45px]">
                   { lang === 'ru' ? title_ru : title_uz }
                 </h5>
                   {

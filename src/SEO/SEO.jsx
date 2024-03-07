@@ -38,10 +38,6 @@ const SEO = ({ title, description, canonical, ogUrl, ogTitle, ogDescription, ogI
                 sizes: '76x76'
             },
             {
-                rel: 'manifest',
-                href: '/manifest.json'
-            },
-            {
                 rel: 'preload',
                 href: '/logo.png',
             }

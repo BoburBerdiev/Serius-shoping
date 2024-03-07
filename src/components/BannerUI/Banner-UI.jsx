@@ -5,10 +5,12 @@ import {useDispatch} from "react-redux";
 import {selectBrand, selectCatalog, selectStock, selectSubCatalog} from "@/slice/filterQuery";
 import {useRouter} from "next/router";
 import { Autoplay } from 'swiper/modules';
+import {selectFilterSubCategory} from "@/slice/filter";
 const BannerUI = ({banners, height}) => {
     const dispatch = useDispatch()
     const router = useRouter()
     const handleSelectBanner = (banner) => {
+
         if(banner?.product) {
             router.push(`/product/${banner?.product}`)
             return
@@ -20,6 +22,13 @@ const BannerUI = ({banners, height}) => {
         }else if(banner?.stock?.stock_type) {
             dispatch(selectStock(banner?.stock?.stock_type))
         }else if(banner?.sub_category) {
+            let subTitleSend = {
+                title: banner?.sub_category?.category.title_uz,
+                subTitle: banner.sub_category.title_uz
+            }
+            dispatch(selectFilterSubCategory(subTitleSend))
+            dispatch(selectCatalog(subTitleSend?.title))
+            dispatch(selectSubCatalog(subTitleSend?.subTitle))
             dispatch(selectSubCatalog(banner?.sub_category?.title_uz))
         }
         router.push(`/product`)
@@ -35,7 +44,7 @@ const BannerUI = ({banners, height}) => {
             }}
             modules={[Autoplay]}
             loop={true}
-            className="w-full mySwiper h-full flex items-center justify-center overflow-auto"
+            className="w-full mySwiper h-full flex items-center justify-center cursor-pointer overflow-auto"
         >
             {
                 banners?.map(banner => (
@@ -44,13 +53,13 @@ const BannerUI = ({banners, height}) => {
                         {
                             lang === 'ru' ?
                                 <>
-                        <ImageUI src={banner?.web_image_ru} alt={'banner'} imgStyle={'object-cover md:block'}/>
-                        <ImageUI src={banner?.rsp_image_ru} alt={'banner'} imgStyle={'object-cover md:hidden'}/>
+                        <ImageUI card={false} src={banner?.web_image_ru} alt={'banner'} imgStyle={'object-cover md:block'}/>
+                        <ImageUI card={false} src={banner?.rsp_image_ru} alt={'banner'} imgStyle={'object-cover md:hidden'}/>
                                 </>
                                 :
                                 <>
-                        <ImageUI src={banner?.web_image_uz} alt={'banner'} imgStyle={'object-cover md:block'}/>
-                        <ImageUI src={banner?.rsp_image_ru} alt={'banner'} imgStyle={'object-cover md:hidden'}/>
+                        <ImageUI card={false} src={banner?.web_image_uz} alt={'banner'} imgStyle={'object-cover md:block'}/>
+                        <ImageUI card={false} src={banner?.rsp_image_ru} alt={'banner'} imgStyle={'object-cover md:hidden'}/>
                                 </>
 
                         }
