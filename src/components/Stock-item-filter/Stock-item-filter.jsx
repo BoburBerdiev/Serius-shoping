@@ -1,7 +1,7 @@
 import {AccordionUI, CheckBoxUI} from "@/components";
 import {useEffect, useState} from "react";
 import {useDispatch} from "react-redux";
-import {selectStock} from "@/slice/filterQuery";
+import {selectAllQuery, selectStock} from "@/slice/filterQuery";
 import {useQuery} from "react-query";
 import apiService from "@/service/axois";
 import {useTranslation} from "react-i18next";
@@ -28,6 +28,8 @@ const {t}=useTranslation()
 
     useEffect(() => {
         if (selectItem) {
+            dispatch(selectAllQuery(null))
+
             const data=selectItem.value
                 setValue('stock',data)
 

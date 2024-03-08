@@ -5,6 +5,7 @@ import apiService from "@/service/axois";
 import {useQuery} from "react-query";
 import {selectBrand, selectCatalog, selectStock, selectSubCatalog} from "@/slice/filterQuery";
 import {useRouter} from "next/router";
+import {selectFilterSubCategory} from "@/slice/filter";
 
 const IndexProduct = ({list}) => {
     const {lang} = useSelector(state => state.langSlice)
@@ -13,13 +14,20 @@ const IndexProduct = ({list}) => {
 
     const handleSelectBanner = (value) => {
         if(value?.brand) {
-            dispatch(selectBrand(value?.brand?.title))
+            dispatch(selectBrand(value?.brand?.title_uz))
         }else if(value?.category) {
-            dispatch(selectCatalog(value?.category?.title))
+            dispatch(selectCatalog(value?.category?.title_uz))
         }else if(value?.stock?.stock_type) {
             dispatch(selectStock(value?.stock?.stock_type))
         }else if(value?.sub_category) {
-            dispatch(selectSubCatalog(value?.sub_category?.title))
+            let subTitleSend = {
+                title: value?.sub_category?.category.title_uz,
+                subTitle: value.sub_category.title_uz
+            }
+            dispatch(selectFilterSubCategory(subTitleSend))
+            dispatch(selectCatalog(subTitleSend?.title))
+            dispatch(selectSubCatalog(subTitleSend?.subTitle))
+            dispatch(selectSubCatalog(value?.sub_category?.title_uz))
         }
         router.push('/product')
     }

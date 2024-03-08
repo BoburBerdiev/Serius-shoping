@@ -8,6 +8,7 @@ export const formatPhoneNumber =(originalString) => {
 
 
 export const PageWayRouter  = ( pageAsPath , findPage) => {
+
    const pageSplit = pageAsPath.split('/')
    if(findPage) {
      return  pageSplit?.find(item => item === findPage)

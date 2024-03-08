@@ -106,7 +106,9 @@ const ProductDetailed = () => {
                                                     <SwiperSlide key={image?.id} className='relative w-full h-full  rounded-lg  overflow-hidden'>
                                                         {
                                                             loading ? 
-                                                            <ImageUI src={image?.image} imgStyle={'object-cover'}/>
+                                                            <ImageUI card={true} src={image?.image} imgStyle={'object-cover'}
+                                                            alt={product?.title_uz}
+                                                            />
                                                             :
                                                             <Skeleton width={'100%'} height={'100%'}/>
                                                         }
@@ -128,7 +130,7 @@ const ProductDetailed = () => {
 
                                                     product?.images?.map(image => (
                                                         <SwiperSlide key={image?.id} className='relative aspect-square h-auto w-full border rounded-lg  overflow-hidden'>
-                                                            <ImageUI src={image?.image} imgStyle={'object-cover cursor-pointer '}/>
+                                                            <ImageUI card={true} src={image?.image} imgStyle={'object-cover cursor-pointer '} alt={product?.title_uz}/>
                                                         </SwiperSlide>
                                                     ))
                                                 }

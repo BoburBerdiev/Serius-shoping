@@ -1,17 +1,14 @@
-import {useEffect, useRef} from 'react'
+import {useEffect} from 'react'
 import Link from "next/link";
 import {ButtonUI, ImageUI, NavSearch} from "@/components";
 import {useState} from "react";
 import MiniNavbar from "../mini-navbar/mini-navbar";
-import {IoIosSearch} from "react-icons/io";
 import {LuShoppingBag} from "react-icons/lu";
 import {FiPhone} from "react-icons/fi";
 import {IoClose} from "react-icons/io5";
 import {MdOutlineKeyboardArrowRight} from "react-icons/md";
 import {useTranslation} from "react-i18next";
-import SearchCardUI from '../search-card/search-card-UI';
-import apiService from "@/service/axois";
-import {useQuery} from "react-query";
+
 import {useDispatch, useSelector} from "react-redux";
 import {selectFilterBrands, selectFilterCatalog, selectFilterPriceValue, selectFilterSubCategory} from "@/slice/filter";
 import {useRouter} from "next/router";
@@ -44,6 +41,9 @@ const Navbar = ({catalog , phone}) => {
             dispatch(selectAllQuery(null))
             dispatch(selectFilterPriceValue([0,0]))
             dispatch(selectFilterSubCategory(null))
+            dispatch(selectFilterBrands(null))
+            dispatch(selectFilterCatalog(null))
+
         }
     }, [router.asPath]);
 
@@ -86,7 +86,7 @@ const Navbar = ({catalog , phone}) => {
                 <div className='flex items-center gap-[18px] max-md:justify-between max-md:flex-1'>
                     <Link href="/"
                           className="flex flex-shrink-0 items-center space-x-3 relative w-[98px] h-10 max-md:order-2 max-md:mx-auto">
-                        <ImageUI src={'/logo.png'} alt={'Sirus'} imgStyle={'object-contain'}/>
+                        <ImageUI card={true} src={'/logo.png'} alt={'Sirus'} imgStyle={'object-contain'}/>
                     </Link>
 
                     <ButtonUI respText={true} className={`${openNav && 'bg-darkBlue text-white'} flex-shrink-0 duration-300 max-md:text-base`}

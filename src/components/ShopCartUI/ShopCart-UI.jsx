@@ -31,7 +31,7 @@ const dispatch =     useDispatch()
         <div className='h-16 w-16 xl:w-24 xl:h-24 relative'>
             {
                 product?.image &&
-                <ImageUI src={product?.image} imgStyle={'object-cover'} alt={ product?.title_ru}/>
+                <ImageUI card={true} src={product?.image} imgStyle={'object-cover'} alt={ product?.title_ru}/>
             }
         </div>
           <div className={'space-y-2'}>
